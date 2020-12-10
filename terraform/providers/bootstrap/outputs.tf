@@ -48,14 +48,14 @@ output "namespace" {
   description = "Namespace for this deployment - Less than 5 characters, lower case"
 }
 
-output "logging_workspace_name" {
-  value       = azurerm_log_analytics_workspace.log_workspace.name
-  description = "Name of the Log Analytics Workspace"
+output "logging_workspace_resource_id" {
+  value = azurerm_log_analytics_workspace.log_workspace.id
+  description = "the id of the log workspace itself"
 }
 
 output "logging_workspace_id" {
-  value       = azurerm_log_analytics_workspace.log_workspace.id
-  description = "Id of the Log Analytics Workspace"
+  value = azurerm_log_analytics_workspace.log_workspace.workspace_id
+  description = "the workspace id of the log workspace"
 }
 
 output "logging_workspace_uuid" {

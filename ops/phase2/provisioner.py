@@ -74,9 +74,14 @@ logger = logging.getLogger(__name__)
     envvar="COMMIT_SHA",
 )
 @click.option(
-    "--logging_workspace",
-    help="Name of the logging workspace - envvar: LOGGING_WORKSPACE",
-    envvar="LOGGING_WORKSPACE",
+    "--logging_workspace_id",
+    help="Id of the logging workspace - envvar: LOGGING_WORKSPACE_ID",
+    envvar="LOGGING_WORKSPACE_ID",
+)
+@click.option(
+    "--logging_workspace_resource_id",
+    help="Id of the logging workspace's resource group - envvar: LOGGING_WORKSPACE_RESOURCE_ID",
+    envvar="LOGGING_WORKSPACE_RESOURCE_ID",
 )
 def provision(
     sp_client_id,
@@ -90,7 +95,8 @@ def provision(
     ops_config_container,
     ops_registry,
     commit_sha,
-    logging_workspace,
+    logging_workspace_id,
+    logging_workspace_resource_id,
 ):
     login(sp_client_id, sp_client_secret, subscription_id, tenant_id)
 
@@ -127,6 +133,8 @@ def provision(
         backend_storage_account_name=ops_storage_account,
         backend_container_name=ops_tf_application_container,
         namespace=namespace,
+        logging_workspace_resource_id=logging_workspace_resource_id,
+        logging_workspace_id=logging_workspace_id,
     )
 
 
@@ -182,6 +190,8 @@ def terraform_application(
     backend_storage_account_name,
     backend_container_name,
     namespace,
+    logging_workspace_resource_id,
+    logging_workspace_id,
     backend_key="terraform.tfstate",
     bootrap_container_name="tf-bootstrap",
 ):
@@ -212,6 +222,8 @@ def terraform_application(
             f"-var=ops_storage_account={backend_storage_account_name}",
             f"-var=tf_bootstrap_container={bootrap_container_name}",
             f"-var=deployment_namespace={namespace}",
+            f"-var=logging_workspace_resource_id={logging_workspace_resource_id}",
+            f"-var=logging_workspace_id={logging_workspace_id}",
         ]
         cmd = [
             "terraform",

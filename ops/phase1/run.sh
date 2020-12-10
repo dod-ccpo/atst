@@ -30,7 +30,8 @@ export TF_VAR_resource_group_name=$(terraform output -raw operations_resource_gr
 export TF_VAR_storage_account_name=$(terraform output -raw operations_storage_account_name)
 export SUBNET_ID=$(terraform output -raw operations_deployment_subnet_id)
 export OPERATIONS_VIRTUAL_NETWORK=$(terraform output -raw operations_virtual_network)
-export LOGGING_WORKSPACE=$(terraform output -raw logging_workspace_name)
+export LOGGING_WORKSPACE_ID=$(terraform output -raw logging_workspace_id)
+export LOGGING_WORKSPACE_RESOURCE_ID=$(terraform output -raw logging_workspace_resource_id)
 
 
 # Now, need to lock that folder down to just the subnet that was created.
@@ -73,20 +74,11 @@ az container create \
   --registry-username ${TF_VAR_operator_client_id} \
   --memory 4 \
   --cpu 4 \
-  --secure-environment-variables "OPS_RESOURCE_GROUP=$TF_VAR_resource_group_name" "OPS_STORAGE_ACCOUNT=$TF_VAR_storage_account_name" "SUBSCRIPTION_ID=$TF_VAR_operator_subscription_id" "SP_CLIENT_ID=$TF_VAR_operator_client_id" "SP_CLIENT_SECRET=$TF_VAR_operator_client_secret" "TENANT_ID=$TF_VAR_operator_tenant_id" "OPS_REGISTRY=$REGISTRY_NAME" "NAMESPACE=$1" "LOGGING_WORKSPACE=$LOGGING_WORKSPACE" \
+  --secure-environment-variables "OPS_RESOURCE_GROUP=$TF_VAR_resource_group_name" "OPS_STORAGE_ACCOUNT=$TF_VAR_storage_account_name" "SUBSCRIPTION_ID=$TF_VAR_operator_subscription_id" "SP_CLIENT_ID=$TF_VAR_operator_client_id" "SP_CLIENT_SECRET=$TF_VAR_operator_client_secret" "TENANT_ID=$TF_VAR_operator_tenant_id" "OPS_REGISTRY=$REGISTRY_NAME" "NAMESPACE=$1" "LOGGING_WORKSPACE_ID=$LOGGING_WORKSPACE_ID" "LOGGING_WORKSPACE_RESOURCE_ID=$LOGGING_WORKSPACE_RESOURCE_ID" \
   --command-line "tail -f /dev/null" \
   --log-analytics-workspace $LOGGING_WORKSPACE \
   --restart-policy Never
 
-echo "export OPS_RESOURCE_GROUP=$TF_VAR_resource_group_name" >> ../../.envrc
-echo "export OPS_STORAGE_ACCOUNT=$TF_VAR_storage_account_name" >> ../../.envrc
-echo "export SUBSCRIPTION_ID=$TF_VAR_operator_subscription_id" >> ../../.envrc
-echo "export SP_CLIENT_ID=$TF_VAR_operator_client_id" >> ../../.envrc
-echo "export SP_CLIENT_SECRET=$TF_VAR_operator_client_secret" >> ../../.envrc
-echo "export TENANT_ID=$TF_VAR_operator_tenant_id" >> ../../.envrc
-echo "export OPS_REGISTRY=$REGISTRY_NAME" >> ../../.envrc
-echo "export NAMESPACE=$1">> ../../.envrc
-
 echo "==============REMEMBER==============="
-echo "You must put an app.tfvars.json and atatdev.pem file and ccpo_users.yml file in the config container before running the next file"
 
+echo "You must put these files in the config container: \n\t- app.tfvars.json\n\t- atatdev.pem\n\t- ccpo_users.yml"

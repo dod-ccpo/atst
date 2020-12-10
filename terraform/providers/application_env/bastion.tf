@@ -33,6 +33,10 @@ resource "azurerm_subnet" "mgmt_subnet" {
     }
   }
 }
+resource "azurerm_subnet_network_security_group_association" "mgmt_subnet" {
+  subnet_id                 = azurerm_subnet.mgmt_subnet.id
+  network_security_group_id = azurerm_network_security_group.logging_nsg.id
+}
 
 resource "azurerm_network_profile" "bastion" {
   name                = "bastion-net-profile"

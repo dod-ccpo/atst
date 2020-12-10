@@ -119,3 +119,11 @@ variable "maintenance_page_ip" {
   description = "The IP of the loadbalancer that will be created by k8s"
   default     = "10.1.2.203"
 }
+variable "logging_workspace_id" {
+  type        = string
+  description = "We create a logging workspace in phase1 to log everything. This is it's workspace_id"
+}
+variable "logging_workspace_resource_id" {
+  type        = string
+  description = "We create a logging workspace in phase1 to log everything. This is its id"
+}
