@@ -8,6 +8,7 @@ resource "azurerm_key_vault" "app_keyvault" {
   location            = azurerm_resource_group.app_keyvault.location
   resource_group_name = azurerm_resource_group.app_keyvault.name
   tenant_id           = data.azurerm_client_config.current.tenant_id
+  workspace_id        = var.logging_workspace_id
   soft_delete_enabled = true
 
   sku_name = "premium"
