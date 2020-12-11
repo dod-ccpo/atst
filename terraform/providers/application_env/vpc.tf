@@ -45,7 +45,7 @@ resource "azurerm_storage_account" "flowlogs_storage" {
 }
 
 resource "azurerm_network_security_group" "logging_nsg" {
-   name                = "${var.name}-nsg-${var.deployment-namespace}"
+   name                = "${var.name}-nsg-${var.deployment_namespace}"
    location            = azurerm_resource_group.vpc.location
    resource_group_name = azurerm_resource_group.vpc.name
    security_rule {
