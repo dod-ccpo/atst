@@ -67,7 +67,7 @@ resource "azurerm_network_security_group" "logging_nsg" {
 
 resource "azurerm_network_watcher_flow_log" "vpc" {
   network_watcher_name = "${var.name}-network-watcher-${var.deployment_namespace}"
-  resource_group_name  = azurerm_resource_group.name
+  resource_group_name  = azurerm_resource_group.vpc.name
   network_security_group_id = azurerm_network_security_group.logging_nsg.id
   storage_account_id        = azurerm_storage_account.flowlogs_storage.id
   enabled                   = true
