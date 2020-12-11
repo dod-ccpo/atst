@@ -108,3 +108,7 @@ output "aks_subnet" {
 output "aks_internal_lb_ip" {
   value = var.aks_internal_lb_ip
 }
+
+output "logging_nsg_id" {
+  value = azurerm_network_security_group.logging_nsg.id
+}
