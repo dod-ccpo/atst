@@ -31,7 +31,7 @@ resource "azurerm_virtual_network" "vpc" {
 resource "azurerm_network_watcher" "vpc" {
   name                = "${var.name}-network-watcher-${var.deployment_namespace}"
   location            = azurerm_resource_group.vpc.location
-  resource_group_name = azurerm_resource_group.name
+  resource_group_name = azurerm_resource_group.vpc.name
 }
 
 resource "azurerm_storage_account" "flowlogs_storage" {
