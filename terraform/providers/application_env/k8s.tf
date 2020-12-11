@@ -18,7 +18,7 @@ resource "azurerm_subnet" "aks" {
   ]
 }
 
-resource "azurerm_subnet_network_security_group_association" "mgmt_subnet" {
+resource "azurerm_subnet_network_security_group_association" "aks_subnet" {
   subnet_id                 = azurerm_subnet.aks.id
   network_security_group_id = azurerm_network_security_group.logging_nsg.id
 }
