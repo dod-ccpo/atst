@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: atst-worker-envvars
+  namespace: atat
+data:
+  AZURE_STORAGE_ACCOUNT_NAME: atat
+  AZURE_TO_BUCKET_NAME: task-order-pdfs
+  CELERY_DEFAULT_QUEUE: celery-master
+  DEBUG: "0"
+  MAIL_PORT: "587"
+  MAIL_SENDER: postmaster@mail.atat.dev
+  MAIL_SERVER: smtp.mailgun.org
+  MAIL_TLS: "true"
+  OVERRIDE_CONFIG_DIRECTORY: /config
+  PGAPPNAME: atst
+  PGDATABASE: staging
+  PGHOST: atat-db.postgres.database.azure.com
+  PGPORT: "5432"
+  PGSSLMODE: verify-full
+  PGSSLROOTCERT: /opt/atat/atst/ssl/pgsslrootcert.crt
+  PGUSER: atat_master@atat-db
+  REDIS_HOST: atat.redis.cache.windows.net:6380
+  REDIS_SSLCHECKHOSTNAME: "true"
+  REDIS_SSLMODE: "required"
+  REDIS_TLS: "true"
+  SERVER_NAME: staging.atat.dev
+  TZ: UTC

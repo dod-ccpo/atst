@@ -1,0 +1,62 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: atst-nginx
+  namespace: atat
+data:
+  atst.conf: |-
+    server {
+        access_log /var/log/nginx/access.log json;
+
+        listen 8342;
+        server_name ${MAIN_DOMAIN};
+        root /usr/share/nginx/html;
+        location /.well-known/acme-challenge/ {
+          try_files $uri =404;
+        }
+        location / {
+          return 301 https://$host$request_uri;
+        }
+    }
+    server {
+        access_log /var/log/nginx/access.log json;
+
+        server_name ${MAIN_DOMAIN};
+        # access_log /var/log/nginx/access.log json;
+        listen 8442 ssl;
+        listen [::]:8442 ssl ipv6only=on;
+        ssl_certificate /etc/ssl/atat.crt;
+        ssl_certificate_key /etc/ssl/atat.key;
+        # additional SSL/TLS settings
+        include /etc/nginx/snippets/ssl.conf;
+
+        location / {
+            try_files $uri @app;
+        }
+        location @app {
+            include uwsgi_params;
+            uwsgi_pass unix:///var/run/uwsgi/uwsgi.socket;
+            uwsgi_param HTTP_X_REQUEST_ID $request_id;
+        }
+    }
+  00json_log.conf: |-
+    log_format json escape=json
+      '{'
+        '"source":"nginx",'
+        '"timestamp":"$time_iso8601",'
+        '"msec":"$msec",'
+        '"request_id":"$request_id",'
+        '"remote_addr":"$remote_addr",'
+        '"remote_user":"$remote_user",'
+        '"request":"$request",'
+        '"status":$status,'
+        '"body_bytes_sent":$body_bytes_sent,'
+        '"request_time":$request_time,'
+        '"app_response_time":$upstream_response_time,'
+        '"app_connect_time":$upstream_connect_time,'
+        '"app_header_time":$upstream_header_time,'
+        '"referer":"$http_referer",'
+        '"user_agent":"$http_user_agent",'
+        '"http_x_forwarded_for":"$http_x_forwarded_for"'
+      '}';

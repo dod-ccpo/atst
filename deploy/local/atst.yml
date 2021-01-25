@@ -1,0 +1,225 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: atat
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: atst
+  name: atst
+  namespace: atat
+spec:
+  selector:
+    matchLabels:
+      role: web
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: atst
+        role: web
+        aadpodidbinding: atat-kv-id-binding
+    spec:
+      securityContext:
+        fsGroup: 101
+      containers:
+        - name: atst
+          image: atst:1.0.0
+          securityContext:
+            allowPrivilegeEscalation: false
+          env:
+            - name: UWSGI_PROCESSES
+              value: "2"
+            - name: UWSGI_THREADS
+              value: "2"
+            - name: UWSGI_ENABLE_THREADS
+              value: "1"
+          envFrom:
+            - configMapRef:
+                name: atst-envvars
+          volumeMounts:
+            - name: uwsgi-socket-dir
+              mountPath: "/var/run/uwsgi"
+            - name: uwsgi-config
+              mountPath: "/opt/atat/atst/uwsgi.ini"
+              subPath: uwsgi.ini
+          resources:
+            requests:
+              memory: 800Mi
+              cpu: 940m
+            limits:
+              memory: 800Mi
+              cpu: 940m
+        - name: nginx
+          image: nginx:rhel-8.2
+          securityContext:
+            allowPrivilegeEscalation: false
+          ports:
+            - containerPort: 8342
+              name: main-upgrade
+            - containerPort: 8442
+              name: main
+          volumeMounts:
+            - name: nginx-config
+              mountPath: "/etc/nginx/conf.d/"
+            - name: uwsgi-socket-dir
+              mountPath: "/var/run/uwsgi"
+            - name: snippets
+              mountPath: "/etc/nginx/snippets/"
+          resources:
+            requests:
+              memory: 20Mi
+              cpu: 25m
+            limits:
+              memory: 20Mi
+              cpu: 25m
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: atst-nginx
+        - name: uwsgi-socket-dir
+          emptyDir:
+            medium: Memory
+        - name: uwsgi-config
+          configMap:
+            name: uwsgi-config
+            defaultMode: 0666
+            items:
+              - key: uwsgi.ini
+                path: uwsgi.ini
+                mode: 0644
+        - name: snippets
+          configMap:
+            name: nginx-snippets
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: atst
+  name: atst-worker
+  namespace: atat
+spec:
+  selector:
+    matchLabels:
+      role: worker
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: atst
+        role: worker
+        aadpodidbinding: atat-kv-id-binding
+    spec:
+      securityContext:
+        fsGroup: 101
+      containers:
+        - name: atst-worker
+          image: atst:1.0.0
+          imagePullPolicy: Always
+          securityContext:
+            allowPrivilegeEscalation: false
+          args:
+            [
+              "/opt/atat/atst/.venv/bin/python",
+              "/opt/atat/atst/.venv/bin/celery",
+              "-A",
+              "celery_worker.celery",
+              "worker",
+              "--loglevel=INFO",
+            ]
+          envFrom:
+            - configMapRef:
+                name: atst-envvars
+            - configMapRef:
+                name: atst-worker-envvars
+          resources:
+            requests:
+              memory: 280Mi
+              cpu: 400m
+            limits:
+              memory: 280Mi
+              cpu: 400m
+      volumes:
+        - name: pgsslrootcert
+          configMap:
+            name: pgsslrootcert
+            items:
+              - key: cert
+                path: pgsslrootcert.crt
+                mode: 0666
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: atst
+  name: atst-beat
+  namespace: atat
+spec:
+  selector:
+    matchLabels:
+      role: beat
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: atst
+        role: beat
+        aadpodidbinding: atat-kv-id-binding
+    spec:
+      securityContext:
+        fsGroup: 101
+      containers:
+        - name: atst-beat
+          image: atst:1.0.0
+          securityContext:
+            allowPrivilegeEscalation: false
+          args:
+            [
+              "/opt/atat/atst/.venv/bin/python",
+              "/opt/atat/atst/.venv/bin/celery",
+              "-A",
+              "celery_worker.celery",
+              "beat",
+              "--loglevel=INFO",
+            ]
+          envFrom:
+            - configMapRef:
+                name: atst-envvars
+            - configMapRef:
+                name: atst-worker-envvars
+          resources:
+            requests:
+              memory: 80Mi
+              cpu: 10m
+            limits:
+              memory: 80Mi
+              cpu: 10m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: atst
+  name: atst-main
+  namespace: atat
+spec:
+  externalTrafficPolicy: Local
+  ports:
+    - port: 80
+      targetPort: 8342
+      name: http
+    - port: 443
+      targetPort: 8442
+      name: https
+  selector:
+    role: web
+  type: LoadBalancer

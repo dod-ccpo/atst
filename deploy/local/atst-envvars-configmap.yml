@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: atst-envvars
+  namespace: atat
+data:
+  ALLOW_LOCAL_ACCESS: "false"
+  ASSETS_URL: https://atat-cdn.azureedge.net/
+  AZURE_STORAGE_ACCOUNT_NAME: atat
+  AZURE_TO_BUCKET_NAME: task-order-pdfs
+  BLOB_STORAGE_URL: https://atat.blob.core.windows.net/
+  CDN_ORIGIN: https://staging.atat.dev
+  CELERY_DEFAULT_QUEUE: celery-master
+  CSP: azure
+  DEBUG: "0"
+  FLASK_ENV: master
+  LIMIT_CONCURRENT_SESSIONS: "true"
+  LOG_JSON: "true"
+  MAIL_PORT: "587"
+  MAIL_SENDER: postmaster@mail.atat.dev
+  MAIL_SERVER: smtp.mailgun.org
+  MAIL_TLS: "true"
+  OVERRIDE_CONFIG_DIRECTORY: /config
+  PGAPPNAME: atst
+  PGDATABASE: staging
+  PGHOST: postgres-loadbalancer
+  PGPORT: "5432"
+  PGSSLMODE: disable
+  PGUSER: postgres
+  PGPASSWORD: mysecretpassword
+  REDIS_HOST: redis
+  SESSION_COOKIE_DOMAIN: atat.dev
+  SESSION_COOKIE_SECURE: "true"
+  STATIC_URL: https://atat-cdn.azureedge.net/static/
+  TZ: UTC
+  UWSGI_CONFIG_FULLPATH: /opt/atat/atst/uwsgi.ini

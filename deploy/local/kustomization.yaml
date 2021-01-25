@@ -1,0 +1,20 @@
+namespace: atat
+resources:
+  - atst.yml
+  - atst-envvars-configmap.yml
+  - atst-nginx-configmap.yml
+  - atst-worker-envvars-configmap.yml
+  - nginx-snippets.yml
+  - pg-service.yml
+  - pg-stateful-set.yml
+  - redis-pod.yml
+configMapGenerator:
+- name: uwsgi-config
+  namespace: atat
+  files:
+  - uwsgi.ini
+- name: example-redis-config
+  files:
+    - redis-config
+generatorOptions:
+  disableNameSuffixHash: true
