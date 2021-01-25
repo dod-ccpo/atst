@@ -15,6 +15,10 @@ pattern for setting up and running the project. The scripts are located in the
 [scriptz](https://github.com/dod-ccpo/scriptz) repository that are shared across
 ATAT repositories.
 
+General instructions follow; however, there are
+[specific instructions](/docs/WindowsSubsystemLinux.md) available for running
+using the Windows Subsystem for Linux.
+
 Before running the setup scripts, a couple of dependencies need to be installed
 locally:
 
