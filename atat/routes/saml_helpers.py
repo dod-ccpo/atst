@@ -1,5 +1,6 @@
+import random
 import re
-from random import randint
+import string
 from urllib.parse import urlparse
 
 import cachetools.func
@@ -129,7 +130,11 @@ def _validate_saml_assertion(saml_auth):
 
 
 def unique_dod_id():
-    new_dod_id = f"{randint(0,99999999):09}"  # nosec
+    """
+    Generate a new DOD ID for a development user.
+    """
+    # Ensure that the identifier always starts with a leading 0
+    new_dod_id = "".join(random.choices(string.digits, k=9)).zfill(10)  # nosec
     try:
         Users.get_by_dod_id(new_dod_id)
     except NotFoundError:

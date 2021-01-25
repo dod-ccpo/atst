@@ -1,3 +1,4 @@
+import re
 from unittest.mock import Mock, patch
 
 import pytest
@@ -14,6 +15,7 @@ from atat.routes.saml_helpers import (
     _validate_saml_assertion,
     init_saml_auth,
     init_saml_auth_dev,
+    unique_dod_id,
 )
 from tests.factories import UserFactory
 
@@ -85,6 +87,11 @@ def test_validate_saml_assertion_valid_with_errors(mock_logger):
 
     assert session["AuthNRequestID"] == "ABC123"
     mock_last_err.assert_called()
+
+
+def test_unique_dod_id_10_digits():
+    dod_id_regex = re.compile(r"\d{10}")
+    assert dod_id_regex.match(unique_dod_id())
 
 
 def create_saml_auth_mock(validation_result=None):
