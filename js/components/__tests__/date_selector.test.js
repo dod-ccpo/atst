@@ -161,6 +161,8 @@ describe('DateSelector', () => {
 
     it('returns true if year is present', () => {
       component.year = new Date().getFullYear()
+      component.mindate = ''
+      component.maxdate = ''
       expect(component.isYearValid).toEqual(true)
     })
 
