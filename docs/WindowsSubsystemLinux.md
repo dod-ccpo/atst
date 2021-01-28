@@ -99,16 +99,13 @@ for the `postgres` user. This value is configured in
 The password can be set by connecting to the PostgreSQL as the `psql` user:
 
 ```
-$ sudo -u postgres psql
+$ sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'postgres';"
 ```
 
-At this point, the password can be set with the following SQL statement,
-specifying the appropriate password and updating the configuration as needed:
-
-```
-ALTER USER postgres WITH PASSWORD 'postgres';
-exit;
-```
+*Note*: If you continue to have problems connecting to PostgreSQL, ensure that
+it is running on the correct port and that there are not other PostgreSQL
+servers running on other WSL installations or on the Windows host itself that
+have bound to port 5432.
 
 ## Proceed with setup and running
 
