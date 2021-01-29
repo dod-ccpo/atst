@@ -1,7 +1,5 @@
 # ATAT
 
-[![Build Status](https://circleci.com/gh/dod-ccpo/atst.svg?style=svg)](https://circleci.com/gh/dod-ccpo/atst)
-
 ## Description
 
 This is the user-facing web application for ATAT.
