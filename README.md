@@ -439,7 +439,7 @@ Note that the uWSGI config used for this build in the repo root is symlinked fro
 
 The `/login-local` endpoint is protected by HTTP basic auth by uWSGI in the docker container (https://uwsgi-docs.readthedocs.io/en/latest/InternalRouting.html#basicauth).
 
-To enable this in a deployed environment, you must set ALLOW_LOCAL_ACCESS to true and provide a password file to the container my mounting a volume or other means. The uWSGI configuration expects to find the password file at `/config/localpassword`.
+To enable this in a deployed environment, you must set ALLOW_LOCAL_ACCESS to true and provide a password file to the container by mounting a volume or other means. The uWSGI configuration expects to find the password file at `/config/localpassword`.
 
 You can generate a password with the htpassword. In this example, the command will generate a "localpassword" file in the current directory for a user called "atat":
 
