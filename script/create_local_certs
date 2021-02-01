@@ -2,6 +2,9 @@
 
 # This will create some self-signed certificates in the ssl folder
 
-cd ssl
-openssl req -x509 -out local.crt -keyout local.key -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost'
-cd ..
+set -e
+
+ssl_dir="$(dirname "$0")/../ssl"
+mkdir -p "$ssl_dir"
+
+openssl req -x509 -out "$ssl_dir/local.crt" -keyout "$ssl_dir/local.key" -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost'
