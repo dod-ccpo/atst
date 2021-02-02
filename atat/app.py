@@ -174,6 +174,7 @@ def map_config(config):
                 "sslmode": config["default"]["PGSSLMODE"],
                 "sslrootcert": config["default"]["PGSSLROOTCERT"],
             },
+            "pool_pre_ping": True
         },
         "WTF_CSRF_ENABLED": config.getboolean("default", "WTF_CSRF_ENABLED"),
         "PERMANENT_SESSION_LIFETIME": config.getint(
