@@ -13,7 +13,7 @@ jobs:
     container: "ubuntu:bionic"
     services:
       redis:
-        image: redis
+        image: redis:6
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
@@ -82,8 +82,18 @@ jobs:
         shell: bash
         env:
           PGHOST: postgres
-          PGPORT: ${{ job.services.postgres.ports[5432] }}
-          REDIS_HOST: "redis:${{ job.services.redis.ports[6379] }}"
+          PGPORT: 5432
+          REDIS_HOST: redis:6379
+      - name: Run cibuild script
+        run: |
+          . ~/.bashrc
+          pyenv local 3.7.3
+          script/cibuild
+        shell: bash
+        env:
+          PGHOST: postgres
+          PGPORT: 5432
+          REDIS_HOST: redis:6379
       - name: Run sonar scan script
         run: |
           . ~/.bashrc
@@ -93,5 +103,5 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           PGHOST: postgres
-          PGPORT: ${{ job.services.postgres.ports[5432] }}
-          REDIS_HOST: "redis:${{ job.services.redis.ports[6379] }}"
+          PGPORT: 5432
+          REDIS_HOST: redis:6379
