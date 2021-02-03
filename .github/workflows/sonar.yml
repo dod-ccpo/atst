@@ -81,9 +81,10 @@ jobs:
           script/setup
         shell: bash
         env:
+          PGDATABASE: atat_test
           PGHOST: postgres
           PGPORT: 5432
-          REDIS_HOST: redis:6379
+          REDIS_HOST: redis:6379    
       - name: Run cibuild script
         run: |
           . ~/.bashrc
