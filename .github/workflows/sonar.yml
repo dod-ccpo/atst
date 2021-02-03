@@ -52,10 +52,11 @@ jobs:
           echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
       - name: Install python 3.7.3
         run: |
-          pyenv init -
+          . ~/.bashrc
           pyenv install 3.7.3
           pyenv local 3.7.3
           python -V
+        shell: bash
       - name: Set Up Poetry
         run: |
           pip3 install poetry
