@@ -56,7 +56,7 @@ jobs:
           pip3 install poetry
       - name: Install yarn
         run: |
-          apt-get install -qqy nodejs
+          apt-get install -qqy nodejs npm
           npm install -g yarn
       - name: Run project setup script
         run: |
