@@ -61,6 +61,8 @@
     "snapshotSerializers": [
       "<rootDir>/node_modules/jest-serializer-vue"
     ],
-    "setupFiles": ["<rootDir>/js/test_utils/setup"]
+    "setupFiles": [
+      "<rootDir>/js/test_utils/setup"
+    ]
   }
 }

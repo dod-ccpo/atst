@@ -1,0 +1,9 @@
+{% if config.get('CLASSIFIER_TEXT') and config.get('CLASSIFIER_COLOR') %} 
+  <div class="classifier-banner"
+       style="background:#{{config.get('CLASSIFIER_COLOR')}}">
+       {{config.get('CLASSIFIER_TEXT')}}
+  </div>
+{%endif%}
+
+
+

@@ -1,6 +1,7 @@
 {% from "components/icon.html" import Icon %}
 
-<header class="topbar">
+<header class="topbar" 
+        style="{%if config.get('CLASSIFIER_TEXT') and config.get('CLASSIFIER_COLOR')%} top: 5.6rem;{% endif %}">
   <nav class="topbar__navigation">
     <a href="{{ url_for('atat.home') }}" class="topbar__link topbar__link--home">
       {{ Icon('shield', classes='topbar__link-icon') }}
