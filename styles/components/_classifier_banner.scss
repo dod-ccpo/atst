@@ -6,15 +6,5 @@
   height: $classifier-banner-height;
   width: 100%;
   z-index: 15;
-  color:#ffffff;
-
-  &.classified{
-    background:red;
-    color:#ffffff;
-  }
-
-  &.unclassified{
-    background:green;
-    color:#ffffff;
-  }
+  color: #ffffff;
 }
