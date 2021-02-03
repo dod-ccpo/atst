@@ -3,8 +3,6 @@ name: SonarCloud Scan Jobs
 on:
   pull_request:
   push:
-    branches:
-      - "feature/AT-5899"
 
 jobs:
   sonarcloudScan:
