@@ -56,8 +56,14 @@ jobs:
       - name: Run project setup script
         run: |
           script/setup
+        env:
+          PGHOST: postgres
+          PGPORT: ${{ job.services.postgres.ports[5432] }}
       - name: Run sonar scan script
         run: |
           script/sonar_scanner
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          PGHOST: postgres
+          PGPORT: ${{ job.services.postgres.ports[5432] }}
+          REDIS_HOST: "redis:${{ job.services.redis.ports[6379] }}"
