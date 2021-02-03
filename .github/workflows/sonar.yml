@@ -1,0 +1,61 @@
+---
+name: SonarCloud Scan Jobs
+on:
+  pull_request:
+  push:
+    branches:
+      - "feature/AT-5899"
+
+jobs:
+  sonarcloudScan:
+    name: SonarCloud Scan
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      postgres:
+        image: postgres:10
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: atat_test
+          POSTGRES_USER: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install xmlsec dependencies
+        run: |
+          apt-get update
+          apt-get install -qqy libxml2-dev libxmlsec1-dev libxmlsec1-openssl
+      - name: Get pyenv
+        run: |
+          git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+          echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+          echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+      - name: Get python 3.7.3
+        run: |
+          pyenv install 3.7.3
+      - name: Set Up Poetry
+        run: |
+          pyenv local 3.7.3
+          pip3 install poetry
+          poetry install --no-root
+      - name: Run project setup script
+        run: |
+          script/setup
+      - name: Run sonar scan script
+        run: |
+          script/sonar_scanner
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

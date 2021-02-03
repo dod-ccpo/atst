@@ -15,21 +15,21 @@ fi
 SONAR_SCANNER_IMAGE="sonarsource/sonar-scanner-cli:4.5"
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 GIT_CLEAN=$(git diff --no-ext-diff)
-TARGET_BRANCH="staging"
+TARGET_BRANCH="develop"
 
 # check if user is on appropriate branch
-if [ $BRANCH != $TARGET_BRANCH ];
-then
-    echo "You are not on $TARGET_BRANCH."
-    exit 1
-fi
+# if [ $BRANCH != $TARGET_BRANCH ];
+# then
+#     echo "You are not on $TARGET_BRANCH."
+#     exit 1
+# fi
 
 # verify there's no extra code laying around
-if [[ -n $GIT_CLEAN ]];
-then
-    echo "$TARGET_BRANCH is not clean."
-    exit 1
-fi
+# if [[ -n $GIT_CLEAN ]];
+# then
+#     echo "$TARGET_BRANCH is not clean."
+#     exit 1
+# fi
 
 # exit when any command fails
 set -e
@@ -42,11 +42,11 @@ run_python_render_vue_component
 
 # generate coverage reports
 poetry run pytest --cov-report=xml
-yarn jest --coverage
+yarn run jest --coverage --collectCoverageFrom='js/**/*.js' --no-cache --no-watchman
 
 # repace local directory with container working directory
-sed -i '' 's/\/.*\/atst/\/usr\/src/g' coverage.xml
-sed -i '' 's/\/.*\/atst/\/usr\/src/g' coverage/lcov.info
+sed -i '' 's/\/atat\/atat/\/usr\/src\/atat/g' coverage.xml
+sed -i '' 's/\/atat\/atat/\/usr\/src\/atat/g' coverage/lcov.info
 
 # run SonarScanner using docker
 docker run --rm \
