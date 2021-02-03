@@ -45,8 +45,8 @@ poetry run pytest --cov-report=xml
 yarn run jest --coverage --collectCoverageFrom='js/**/*.js' --no-cache --no-watchman
 
 # repace local directory with container working directory
-sed -i 's/.*\/atat\/atat/\/usr\/src\/atat/g' coverage.xml
-sed -i 's/.*\/atat\/atat/\/usr\/src\/atat/g' coverage/lcov.info
+#sed -i 's/.*\/atat\/atat/\/usr\/src\/atat/g' coverage.xml
+#sed -i 's/.*\/atat\/atat/\/usr\/src\/atat/g' coverage/lcov.info
 
 curl -s https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.5.0.2216-linux.zip -o /tmp/sonar.zip
 unzip /tmp/sonar.zip -d /opt/
