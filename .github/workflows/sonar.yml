@@ -36,20 +36,14 @@ jobs:
           fetch-depth: 0
       - name: Install xmlsec dependencies
         run: |
-          sudo apt-get update
+          sudo apt-get update -qqy
           sudo apt-get install -qqy libxml2-dev libxmlsec1-dev libxmlsec1-openssl
-      - name: Get pyenv
-        run: |
-          git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-          echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-          echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
-          source ~/.bashrc
       - name: Get python 3.7.3
-        run: |
-          pyenv install 3.7.3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7.3
       - name: Set Up Poetry
         run: |
-          pyenv local 3.7.3
           pip3 install poetry
           poetry install --no-root
       - name: Run project setup script
