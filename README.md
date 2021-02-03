@@ -4,6 +4,9 @@
 
 This is the user-facing web application for ATAT.
 
+## Status
+![SonarCloud Scan Jobs](https://github.com/dod-ccpo/atat/workflows/SonarCloud%20Scan%20Jobs/badge.svg)
+
 ## Installation
 
 ### System Requirements
