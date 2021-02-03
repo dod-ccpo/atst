@@ -103,6 +103,7 @@ jobs:
         shell: bash
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          PGDATABASE: atat_test
           PGHOST: postgres
           PGPORT: 5432
           REDIS_HOST: redis:6379
