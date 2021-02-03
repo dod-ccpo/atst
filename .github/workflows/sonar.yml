@@ -41,9 +41,9 @@ jobs:
           apt-get install -qqy build-essential curl git
           apt-get install -qqy sqlite3 libsqlite3-dev libffi-dev python-dev
           apt-get install -qqy libxml2-dev libxmlsec1-dev libxmlsec1-openssl xmlsec1
-          echo UTC > /etc/timezone
-          DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
-          dpkg-reconfigure -f noninteractive tzdata
+          # echo UTC > /etc/timezone
+          # DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata
+          # dpkg-reconfigure -f noninteractive tzdata
       - name: Get pyenv
         run: |
           git clone https://github.com/pyenv/pyenv.git ~/.pyenv
@@ -52,7 +52,7 @@ jobs:
           echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
       - name: Install python 3.7.3
         run: |
-          source ~/.bashrc
+          exec "$SHELL"
           pyenv install 3.7.3
           pyenv local 3.7.3
           python -V
