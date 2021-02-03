@@ -37,11 +37,19 @@ jobs:
       - name: Install xmlsec dependencies
         run: |
           sudo apt-get update -qqy
+          sudo apt-get install -qqy build-essential curl
           sudo apt-get install -qqy libxml2-dev libxmlsec1-dev libxmlsec1-openssl
-      - name: Get python 3.7.3
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7.3
+      - name: Get and Install python 3.7.3
+        run: |
+          export prevDir=$(pwd)
+          sudo cd /usr/src
+          sudo curl -s https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz -o Python-3.7.3.tgz
+          sudo tar xzf Python-3.7.3.tgz
+          sudo cd Python-3.7.3
+          sudo ./configure --enable-loadable-sqlite-extensions --enable-optimizations
+          sudo make install
+          sudo rm rm /usr/src/Python-3.7.3.tgz
+          cd $prevDir
       - name: Set Up Poetry
         run: |
           pip3 install poetry
