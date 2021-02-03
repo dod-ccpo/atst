@@ -54,7 +54,10 @@ jobs:
       - name: Set Up Poetry
         run: |
           pip3 install poetry
-          poetry install --no-root
+      - name: Install yarn
+        run: |
+          apt-get install -qqy nodejs
+          npm install -g yarn
       - name: Run project setup script
         run: |
           script/setup
