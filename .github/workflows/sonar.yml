@@ -37,22 +37,22 @@ jobs:
           fetch-depth: 0
       - name: Install xmlsec dependencies
         run: |
-          sudo apt-get update -qqy
-          sudo apt-get install -qqy build-essential curl
-          sudo apt-get install -qqy libxml2-dev libxmlsec1-dev libxmlsec1-openssl
+          apt-get update -qqy
+          apt-get install -qqy build-essential curl
+          apt-get install -qqy libxml2-dev libxmlsec1-dev libxmlsec1-openssl
       - name: Get python 3.7.3
         run: |
-          sudo curl -s https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz -o Python-3.7.3.tgz
-          sudo tar xzf Python-3.7.3.tgz
+          curl -s https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz -o Python-3.7.3.tgz
+          tar xzf Python-3.7.3.tgz
         working-directory: /usr/src
       - name: Install python 3.7.3
         run: |
-          sudo ./configure --enable-loadable-sqlite-extensions --enable-optimizations
-          sudo make install
+          ./configure --enable-loadable-sqlite-extensions --enable-optimizations
+          make install
         working-directory: /usr/src/Python-3.7.3
       - name: Set Up Poetry
         run: |
-          sudo pip3 install poetry
+          pip3 install poetry
           poetry install --no-root
       - name: Run project setup script
         run: |
