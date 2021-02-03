@@ -51,7 +51,7 @@ jobs:
         working-directory: /usr/src/Python-3.7.3
       - name: Set Up Poetry
         run: |
-          pip3 install poetry
+          sudo pip3 install poetry
           poetry install --no-root
       - name: Run project setup script
         run: |
