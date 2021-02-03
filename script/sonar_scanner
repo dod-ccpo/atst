@@ -34,7 +34,7 @@ TARGET_BRANCH="develop"
 # exit when any command fails
 set -e
 
-git pull origin ${TARGET_BRANCH}
+# git pull origin ${TARGET_BRANCH}
 
 # run update script
 script/update
