@@ -36,8 +36,8 @@ jobs:
           fetch-depth: 0
       - name: Install xmlsec dependencies
         run: |
-          apt-get update
-          apt-get install -qqy libxml2-dev libxmlsec1-dev libxmlsec1-openssl
+          sudo apt-get update
+          sudo apt-get install -qqy libxml2-dev libxmlsec1-dev libxmlsec1-openssl
       - name: Get pyenv
         run: |
           git clone https://github.com/pyenv/pyenv.git ~/.pyenv
