@@ -40,7 +40,7 @@ jobs:
           apt-get update -qqy
           apt-get install -qqy build-essential curl
           apt-get install -qqy libxml2-dev libxmlsec1-dev libxmlsec1-openssl
-          apt-get install -qqy sqlite3 libsqlite3-dev
+          apt-get install -qqy sqlite3 libsqlite3-dev libffi-dev
       - name: Get python 3.7.3
         run: |
           curl -s https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz -o Python-3.7.3.tgz
