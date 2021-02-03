@@ -10,6 +10,7 @@ jobs:
   sonarcloudScan:
     name: SonarCloud Scan
     runs-on: ubuntu-latest
+    container: "ubuntu:bionic"
     services:
       redis:
         image: redis
@@ -57,14 +58,14 @@ jobs:
         run: |
           script/setup
         env:
-          PGHOST: localhost
+          PGHOST: postgres
           PGPORT: ${{ job.services.postgres.ports[5432] }}
-          REDIS_HOST: "localhost:${{ job.services.redis.ports[6379] }}"
+          REDIS_HOST: "redis:${{ job.services.redis.ports[6379] }}"
       - name: Run sonar scan script
         run: |
           script/sonar_scanner
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          PGHOST: localhost
+          PGHOST: postgres
           PGPORT: ${{ job.services.postgres.ports[5432] }}
-          REDIS_HOST: "localhost:${{ job.services.redis.ports[6379] }}"
+          REDIS_HOST: "redis:${{ job.services.redis.ports[6379] }}"
