@@ -108,3 +108,4 @@ jobs:
           PGHOST: postgres
           PGPORT: 5432
           REDIS_HOST: redis:6379
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
