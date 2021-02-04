@@ -27,7 +27,6 @@ data:
   ASSETS_URL:
   AZURE_STORAGE_ACCOUNT_NAME: {{ azure_storage_account_name }}
   AZURE_POWERSHELL_CLIENT_ID: 1950a258-227b-4e31-a9cf-717495945fc2
-  AZURE_TENANT_ADMIN_USERNAME: hybrid.admin@atathybrid.onmicrosoft.com
   AZURE_VAULT_URL: {{ application_keyvault_url }}
   BLOB_STORAGE_URL: https://{{ environment }}tasks.blob.core.windows.net/
   CDN_ORIGIN: https://{{ environment }}.atat.dev
@@ -49,4 +48,3 @@ data:
   SAML_DEV_ENTITY_ID: https://{{ environment }}.atat.dev/login-dev
   SAML_DEV_ACS: https://{{ environment }}.atat.dev/login-dev?acs
   SAML_DEV_SLS: https://{{ environment }}.atat.dev/login-dev?sls
-  SAML_DEV_IDP_URI: https://login.microsoftonline.com/59b2f493-ee7d-45a5-990e-be2123c97648/federationmetadata/2007-06/federationmetadata.xml?appid=f33601d8-2890-4f83-aa3e-23d9f1975d34
