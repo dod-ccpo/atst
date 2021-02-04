@@ -4,5 +4,6 @@
   padding: ($gap / 2) $gap;
   height: $classifier-banner-height;
   width: 100%;
+  z-index: 15;
   color: #ffffff;
 }
