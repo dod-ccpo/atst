@@ -1,6 +1,7 @@
 {% from "components/tooltip.html" import Tooltip %}
 
-<aside class='usa-banner'>
+<aside class='usa-banner' 
+  style="{%if config.get('CLASSIFIER_TEXT') and config.get('CLASSIFIER_COLOR')%} top: 2.8rem;{% endif %}">
   <img src='{{ url_for("static", filename="img/us_flag_small.png") }}' alt='{{ "components.usa_header.flag_image_alt" | translate }}' />
   <p>{{ "components.usa_header.official_message" | translate }}
 
