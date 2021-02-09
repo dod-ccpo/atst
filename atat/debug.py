@@ -1,7 +1,7 @@
 from flask_debugtoolbar import DebugToolbarExtension
 
 
-def setup_debug_toolbar(app, enviroment_name: str):
+def setup_debug_toolbar(app, environment_name: str):
     """
     Setup Flask debug toolbar.
     
@@ -10,7 +10,7 @@ def setup_debug_toolbar(app, enviroment_name: str):
     """
     toolbar = None
 
-    is_development = enviroment_name in ["dev", "development"]
+    is_development = environment_name in ["dev", "development"]
     is_dev_tool = str(app.config["DEV_DEBUG_TOOL"]).lower() == "true"
 
     if is_development and is_dev_tool:
