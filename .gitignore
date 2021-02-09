@@ -75,6 +75,7 @@ atst-overrides.ini
 
 # binary file created by celery beat
 celerybeat-schedule
+celerybeat-schedule.*
 
 # templates created for JS tests
 js/test_templates
