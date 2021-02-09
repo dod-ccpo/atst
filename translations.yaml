@@ -352,7 +352,7 @@ login:
   ccpo_logo_alt_text: Cloud Computing Program Office Logo
   certificate_selection:
     learn_more: Learn more
-    message: "When you are prompted to select a certificate, please select Email Certificate from the provided choices."
+    message: "When you are prompted to select a certificate, please select an Authentication (Identification) Certificate from the provided choices."
     title: Certificate Selection
   h1_title: Access the JEDI cloud
   login_button: Sign in with CAC
