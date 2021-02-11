@@ -163,11 +163,11 @@ To log in as one of them, navigate to `/login-local?username=<lowercase name>`.
 For example `/login-local?username=amanda`.
 
 Additionally, this endpoint can be used to log into any real users in the dev environments by providing their DoD ID:
-`/login-local?dod_id=1234567890123`
+`/login-local?dod_id=1234567890`
 
 With ALLOW_LOCAL_ACCESS enabled, you can create new users by passing first name, last name, and DoD ID query parameters to `/dev-new-user` like so:
 ```
-/dev-new-user?first_name=Harrold&last_name=Henderson&dod_id=1234567890123
+/dev-new-user?first_name=Harrold&last_name=Henderson&dod_id=1234567890
 ```
 And it will create the new user, sign in as them, and load their profile page to fill out the rest of the details.
 
