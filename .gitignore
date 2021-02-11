@@ -1,6 +1,8 @@
 # Node modules get installed here
 node_modules/
 
+.idea
+
 # sass and webassets output artifacts
 scss/assets
 scss/variables.scss
