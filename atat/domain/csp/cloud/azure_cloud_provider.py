@@ -1225,7 +1225,7 @@ class AzureCloudProvider(CloudProviderInterface):
 
     @log_and_raise_exceptions
     def create_admin_role_definition(self, payload: AdminRoleDefinitionCSPPayload):
-        """Fetch the UUID for the "Global Admin" / "Company Admin" role."""
+        """Fetch the UUID for the "Global Administrator" role."""
 
         graph_token = self._get_tenant_admin_token(payload.tenant_id, self.graph_scope)
 
@@ -1243,19 +1243,19 @@ class AzureCloudProvider(CloudProviderInterface):
                 (
                     role.get("id")
                     for role in role_list
-                    if role.get("displayName") == "Company Administrator"
+                    if role.get("displayName") == "Global Administrator"
                 )
             )
             return AdminRoleDefinitionCSPResult(admin_role_def_id=admin_role_def_id)
         except StopIteration:
             raise ResourceProvisioningError(
                 "Azure role definition",
-                "Could not locate Azure Global Admin / Company Admin role",
+                " / Global Administrator role",
             )
 
     @log_and_raise_exceptions
     def create_principal_admin_role(self, payload: PrincipalAdminRoleCSPPayload):
-        """Grant the "Global Admin" / "Company Admin" role to the service
+        """Grant the "Global Administrator" role to the service
         principal (create a role assignment).
         """
 
