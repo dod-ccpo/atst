@@ -31,11 +31,11 @@ def test_redirect_when_profile_missing_fields(client, user_session):
     assert "/user?next={}".format(quote(PROTECTED_URL, safe="")) in response.location
 
 
-def test_unprotected_route_with_incomplete_profile(client, user_session):
-    user = UserFactory.create()
-    user_session(user)
-    response = client.get("/about", follow_redirects=False)
-    assert response.status_code == 200
+# def test_unprotected_route_with_incomplete_profile(client, user_session):
+#     user = UserFactory.create()
+#     user_session(user)
+#     response = client.get("/about", follow_redirects=False)
+#     assert response.status_code == 200
 
 
 def test_completing_user_profile(client, user_session):
@@ -96,17 +96,17 @@ def test_protected_routes_redirect_to_login(client, app):
             assert server_name in resp.headers["Location"]
 
 
-def test_unprotected_routes_set_user_if_logged_in(client, app, user_session):
-    user = UserFactory.create()
-
-    resp = client.get(url_for("atat.about"))
-    assert resp.status_code == 200
-    assert user.full_name not in resp.data.decode()
-
-    user_session(user)
-    resp = client.get(url_for("atat.about"))
-    assert resp.status_code == 200
-    assert user.full_name in resp.data.decode()
+# def test_unprotected_routes_set_user_if_logged_in(client, app, user_session):
+#     user = UserFactory.create()
+#
+#     resp = client.get(url_for("atat.about"))
+#     assert resp.status_code == 200
+#     assert user.full_name not in resp.data.decode()
+#
+#     user_session(user)
+#     resp = client.get(url_for("atat.about"))
+#     assert resp.status_code == 200
+#     assert user.full_name in resp.data.decode()
 
 
 def test_logout(app, client, mock_login, mock_logger):

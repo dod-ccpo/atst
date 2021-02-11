@@ -76,9 +76,9 @@ def logout():
     return response
 
 
-@bp.route("/about")
-def about():
-    return render_template("about.html")
+# @bp.route("/about")
+# def about():
+#     return render_template("about.html")
 
 
 @bp.route("/login", methods=["GET"])
