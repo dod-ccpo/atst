@@ -1249,8 +1249,7 @@ class AzureCloudProvider(CloudProviderInterface):
             return AdminRoleDefinitionCSPResult(admin_role_def_id=admin_role_def_id)
         except StopIteration:
             raise ResourceProvisioningError(
-                "Azure role definition",
-                " / Global Administrator role",
+                "Azure role definition", " / Global Administrator role",
             )
 
     @log_and_raise_exceptions
