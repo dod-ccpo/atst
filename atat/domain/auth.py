@@ -5,6 +5,7 @@ from werkzeug.datastructures import ImmutableTypeConversionDict
 
 from atat.domain.users import Users
 
+# Routes not included in this list are not accessible without an authenticated browser session
 UNPROTECTED_ROUTES = [
     "atat.root",
     "dev.login_dev",
