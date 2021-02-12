@@ -20,10 +20,10 @@ home:
   new_portfolio: New Portfolio
   get_started: Get Started
   head: JEDI Cloud Services
-  funding_descrip: The Task Orders section allows you to enter, manage, and edit awarded TOs associated to a specific Portfolio.
-  applications_descrip: The Applications section allows you to easily create and define new Applications within a Portfolio, as well as manage user permissions and Environments.
-  reports_descrip: The Reports section allows you to view and monitor funding usage within a specific Portfolio.
-  admin_descrip: Within the Settings section, you can manage your Portfolio name and description, as well as add, edit, and delete Portfolio managers.
+  funding_descrip: The task orders section allows you to enter, manage, and edit awarded TOs associated to a specific portfolio.
+  applications_descrip: The applications section allows you to easily create and define new applications within a portfolio, as well as manage user permissions and environments.
+  reports_descrip: The reports section allows you to view and monitor funding usage within a specific portfolio.
+  admin_descrip: Within the settings section, you can manage your portfolio name and description, as well as add, edit, and delete portfolio managers.
 ccpo:
   users_title: CCPO Users
   add_user: Add new CCPO user
