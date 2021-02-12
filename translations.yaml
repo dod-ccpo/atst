@@ -13,7 +13,7 @@ audit_log:
       changes: "Changes:"
       details: "Details:"
 base_public:
-  login: Log in
+  login: Login
   title_tag: JEDI Cloud
 home:
   add_portfolio_button_text: Add New Portfolio
@@ -83,10 +83,10 @@ email:
   application_invite: "{inviter_name} has invited you to a JEDI Cloud application"
   app_role_created:
     subject: Application Role Created
-    body: "Your application role has been created.\nVisit {url}, and use your username, {username}, to log in."
+    body: "Your application role has been created.\nVisit {url}, and use your username, {username}, to login."
   azure_account_update:
     subject: Azure account update
-    body: "There has been an update to your Azure account. \nVisit {url}, and use your username, {username}, to log in."
+    body: "There has been an update to your Azure account. \nVisit {url}, and use your username, {username}, to login."
   portfolio_invite: "{inviter_name} has invited you to a JEDI Cloud portfolio"
   portfolio_ready:
     subject: Portfolio Provisioned
@@ -173,8 +173,8 @@ flash:
   invite_revoked:
     title: "{resource} invitation revoked"
     message: "You have successfully revoked the invite for {user_name} from {resource_name}"
-  login_required_message: After you log in, you will be redirected to your destination page.
-  login_required_title: Log in required
+  login_required_message: After you login, you will be redirected to your destination page.
+  login_required_title: Login required
   logged_out:
     title: Logged out
     message: You've been logged out.
@@ -201,7 +201,7 @@ flash:
       message: There was an error processing the invitation for {user_name}.
   session_expired:
     title: Session Expired
-    message: Your session expired due to inactivity. Please log in again to continue.
+    message: Your session expired due to inactivity. Please login again to continue.
   success: Success!
   task_order_number_error:
     message: "The TO number has already been entered for a JEDI task order #{to_number}. Please double-check the TO number you are entering. If you believe this is in error, please contact support@cloud.mil."
