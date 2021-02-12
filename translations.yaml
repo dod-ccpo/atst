@@ -80,14 +80,14 @@ errors:
   not_found: Page Not Found
   not_found_sub: This page does not exist.
 email:
-  application_invite: "{inviter_name} has invited you to a JEDI cloud application"
+  application_invite: "{inviter_name} has invited you to a JEDI Cloud application"
   app_role_created:
     subject: Application Role Created
     body: "Your application role has been created.\nVisit {url}, and use your username, {username}, to log in."
   azure_account_update:
     subject: Azure account update
     body: "There has been an update to your Azure account. \nVisit {url}, and use your username, {username}, to log in."
-  portfolio_invite: "{inviter_name} has invited you to a JEDI cloud portfolio"
+  portfolio_invite: "{inviter_name} has invited you to a JEDI Cloud portfolio"
   portfolio_ready:
     subject: Portfolio Provisioned
     body: "Your portfolio has been provisioned.\nVisit {password_reset_address}, and use your username, {username}, to create a password."
@@ -354,9 +354,9 @@ login:
     learn_more: Learn more
     message: "When you are prompted to select a certificate, please select an Authentication (Identification) Certificate from the provided choices."
     title: Certificate Selection
-  h1_title: Access the JEDI cloud
+  h1_title: Access the JEDI Cloud
   login_button: Sign in with CAC
-  title_tag: Sign in | JEDI cloud
+  title_tag: Sign in | JEDI Cloud
 navigation:
   portfolio_navigation:
     breadcrumbs:
@@ -366,7 +366,7 @@ navigation:
       applications: Applications
   topbar:
     jedi_cloud_link_text: JEDI
-    logout_link_title: Log out of JEDI cloud
+    logout_link_title: Log out of JEDI Cloud
 portfolios:
   admin:
     activity_log_title: Activity log
@@ -520,7 +520,7 @@ task_orders:
   form:
     add_clin: Add Another CLIN
     add_to_header: Enter the Task Order number
-    add_to_description: Please input your Task Order number. This number may be listed under "Order Number" if your Contracting Officer used form 1149, or "Delivery Order/Call No." if form 1155 was used. Moving forward, this portion of funding will be referenced by the recorded Task Order number.
+    add_to_description: Please input your Task Order number. This number is listed under "Order Number" on form SF 1449. Moving forward, this portion of funding will be referenced by the recorded Task Order number.
     builder_base:
       cancel_modal: Do you want to save this draft?
       delete_draft: No, delete it
