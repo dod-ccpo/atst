@@ -97,11 +97,11 @@ email:
 empty_state:
   applications:
     header:
-      edit: You don’t have any Applications yet
-      view: This portfolio has no Applications
+      edit: You don’t have any applications yet
+      view: This portfolio has no applications
     message:
-      edit: You can manage multiple Applications within a single Portfolio as long as the funding sources are the same.
-      view: A Portfolio member with <b>Edit Application</b> permissions can add Applications to this Portfolio.
+      edit: You can manage multiple applications within a single portfolio as long as the funding sources are the same.
+      view: A portfolio member with <b>Edit Application</b> permissions can add applications to this portfolio.
     button_text: Create Your First Application
   applications_reporting:
     header:
@@ -116,8 +116,8 @@ empty_state:
       edit: Add approved task orders
       view: This Portfolio has no Task Orders
     message:
-      edit: Upload your approved Task Order here. You are required to confirm you have the appropriate signature. You will have the ability to add additional approved Task Orders with more funding to this Portfolio in the future.
-      view: A Portfolio member with <b>Edit Funding</b> permissions can fund this Portfolio with approved Task Orders.
+      edit: Upload your approved task order here. You are required to confirm you have the appropriate signature. You will have the ability to add additional approved task orders with more funding to this portfolio in the future.
+      view: A portfolio member with <b>Edit Funding</b> permissions can fund this portfolio with approved task orders.
     button_text: Add Task Order
 flash:
   application:
@@ -244,7 +244,7 @@ forms:
   new_member:
     app_mgmt:
       label: Edit Applications
-      description: Add, remove and edit applications in this Portfolio.
+      description: Add, remove and edit applications in this portfolio.
     dod_id_label: DoD ID
     dod_help: How do I find out the DoD ID?
     dod_text: "An individual's DOD ID (formerly known as EDIPI) number can be found on the back of their CAC. Access to this system requires a valid CAC and DOD ID."
@@ -252,7 +252,7 @@ forms:
     first_name_label: First name
     funding:
       label: Edit Funding
-      description: Add and Modify Task Orders to fund this Portfolio.
+      description: Add and Modify Task Orders to fund this portfolio.
     last_name_label: Last name
     phone_number_label: Phone number
     portfolio_mgmt:
@@ -282,7 +282,7 @@ forms:
       help_text: |
         <div class="usa-input__help">
           <p>
-            Add a brief one to two sentence description of your Portfolio. Consider this your statement of work.
+            Add a brief one to two sentence description of your portfolio. Consider this your statement of work.
           </p>
           <p>
             <strong>Writer's Block? A description example includes:</strong>
@@ -400,7 +400,7 @@ portfolios:
         name: |
           <div>
             <p>
-              The name of your Application should be intuitive and easily recognizable for all of your team members.
+              The name of your application should be intuitive and easily recognizable for all of your team members.
             </p>
             <p>
               <strong>Writer's Block? A naming example includes:</strong>
@@ -412,7 +412,7 @@ portfolios:
         description: |
           <div>
             <p>
-              Add a brief one to two sentence description of your Application. You should be able to reference your TO Description of Work.
+              Add a brief one to two sentence description of your application. You should be able to reference your TO Description of Work.
             </p>
             <p>
               <strong>Writer's Block? A description example includes:</strong>
@@ -566,7 +566,7 @@ task_orders:
     sticky_header_review_text: Review Changes
     sticky_header_context: "Step {step} of 5"
   sign:
-    digital_signature_description: I confirm the uploaded Task Order is signed by the appropriate, duly warranted Agency Contracting Officer who authorized me to upload the Task Order.
+    digital_signature_description: I confirm the uploaded task order is signed by the appropriate, duly warranted Agency Contracting Officer who authorized me to upload the task order.
     confirmation_description: I confirm that the information entered here in matches that of the submitted Task Order.
     acknowledge:
       title: Acknowledge Statement
