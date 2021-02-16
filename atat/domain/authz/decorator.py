@@ -21,8 +21,6 @@ def check_access(permission, message, override, *args, **kwargs):
     return user_can_access(g.current_user, permission, **access_args)
 
 
-
-
 def user_can_access_decorator(permission, message=None, override=None):
     def decorator(f):
         @wraps(f)
