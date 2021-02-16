@@ -61,6 +61,37 @@ resource "azurerm_container_registry" "operations_container_registry" {
   sku                 = "Premium"
 }
 
+resource "azurerm_monitor_diagnostic_setting" "bucket_diagnostic" {
+  name                       = "czopsstorageaccount-bucket-diag-${var.namespace}"
+  target_resource_id         = azurerm_storage_account.operations_storage_account.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.log_workspace.id
+
+  log {
+    category = "StorageRead"
+    retention_policy {
+      enabled = true
+    }
+  }
+  log {
+    category = "StorageWrite"
+    retention_policy {
+      enabled = true
+    }
+  }
+  log {
+    category = "StorageDelete"
+    retention_policy {
+      enabled = true
+    }
+  }
+  metric {
+    category = "Transaction"
+    retention_policy {
+      enabled = true
+    }
+  }
+}
+
 # resource "azurerm_monitor_diagnostic_setting" "ops_acr_diagnostic" {
 #   name                       = "${var.namespace}-ops-acr-diag"
 #   target_resource_id         = azurerm_container_registry.operations_container_registry.id

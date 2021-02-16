@@ -22,7 +22,7 @@ def test_csrf_error(csrf_enabled_app, client):
 
     body = response.data.decode()
     assert "Session Expired" in body
-    assert "Log in required" in body
+    assert "Login required" in body
 
 
 @pytest.fixture
