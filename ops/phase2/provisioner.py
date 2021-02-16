@@ -96,7 +96,10 @@ def provision(
 
     try:
         download_file(
-            ops_storage_account, ops_config_container, "dhparams.pem", "/tmp/dhparams.pem",
+            ops_storage_account,
+            ops_config_container,
+            "dhparams.pem",
+            "/tmp/dhparams.pem",
         )
         ssl_process = None
     except FileNotFoundError:

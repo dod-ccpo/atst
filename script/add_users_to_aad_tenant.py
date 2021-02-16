@@ -66,7 +66,8 @@ def run(cli_args):
         TOKEN_SCOPE, cli_args.client_id, cli_args.client_secret, cli_args.tenant_id
     )
     users = [
-        create_user(token, cli_args.tenant_id, cli_args.tenant_name) for _ in range(cli_args.user_count)
+        create_user(token, cli_args.tenant_id, cli_args.tenant_name)
+        for _ in range(cli_args.user_count)
     ]
 
     with open(cli_args.out, "w") as output:
