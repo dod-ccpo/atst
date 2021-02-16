@@ -5,7 +5,61 @@ from uuid import uuid4
 
 from atat.domain.csp.cloud.azure_cloud_provider import AzureCloudProvider
 from atat.domain.csp.cloud.mock_cloud_provider import MockCloudProvider
-from atat.domain.csp.cloud.models import *
+from atat.domain.csp.cloud.models import (
+    AdminRoleDefinitionCSPPayload,
+    AdminRoleDefinitionCSPResult,
+    BillingInstructionCSPPayload,
+    BillingInstructionCSPResult,
+    BillingOwnerCSPPayload,
+    BillingOwnerCSPResult,
+    BillingProfileCreationCSPPayload,
+    BillingProfileCreationCSPResult,
+    BillingProfileTenantAccessCSPPayload,
+    BillingProfileTenantAccessCSPResult,
+    BillingProfileVerificationCSPPayload,
+    BillingProfileVerificationCSPResult,
+    CostManagementQueryCSPPayload,
+    EnvironmentCSPPayload,
+    EnvironmentCSPResult,
+    InitialMgmtGroupCSPPayload,
+    InitialMgmtGroupCSPResult,
+    InitialMgmtGroupVerificationCSPPayload,
+    InitialMgmtGroupVerificationCSPResult,
+    KeyVaultCredentials,
+    PoliciesCSPPayload,
+    PoliciesCSPResult,
+    PrincipalAdminRoleCSPPayload,
+    PrincipalAdminRoleCSPResult,
+    PrincipalAppGraphApiPermissionsCSPPayload,
+    PrincipalAppGraphApiPermissionsCSPResult,
+    ProductPurchaseCSPPayload,
+    ProductPurchaseCSPResult,
+    ProductPurchaseVerificationCSPPayload,
+    ProductPurchaseVerificationCSPResult,
+    SubscriptionCreationCSPPayload,
+    TaskOrderBillingCreationCSPPayload,
+    TaskOrderBillingCreationCSPResult,
+    TaskOrderBillingVerificationCSPPayload,
+    TaskOrderBillingVerificationCSPResult,
+    TenantAdminCredentialResetCSPPayload,
+    TenantAdminCredentialResetCSPResult,
+    TenantAdminOwnershipCSPPayload,
+    TenantAdminOwnershipCSPResult,
+    TenantCSPPayload,
+    TenantCSPResult,
+    TenantPrincipalAppCSPPayload,
+    TenantPrincipalAppCSPResult,
+    TenantPrincipalCredentialCSPPayload,
+    TenantPrincipalCredentialCSPResult,
+    TenantPrincipalCSPPayload,
+    TenantPrincipalCSPResult,
+    TenantPrincipalOwnershipCSPPayload,
+    TenantPrincipalOwnershipCSPResult,
+    UserCSPPayload,
+    UserCSPResult,
+    UserRoleCSPPayload,
+    UserRoleCSPResult,
+)
 
 
 @contextlib.contextmanager
@@ -80,7 +134,6 @@ class HybridCloudProvider(object):
     def create_billing_profile_verification(
         self, payload: BillingProfileVerificationCSPPayload
     ) -> Union[BillingProfileCreationCSPResult, BillingProfileVerificationCSPResult]:
-
         return self.mock.create_billing_profile_verification(payload)
 
     def create_billing_profile_tenant_access(

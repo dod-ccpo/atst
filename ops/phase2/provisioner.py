@@ -12,6 +12,7 @@ import sys
 
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 logger = logging.getLogger(__name__)
+_TMP_PEM = "/tmp/dhparams.pem"
 
 
 @click.command()
@@ -96,10 +97,7 @@ def provision(
 
     try:
         download_file(
-            ops_storage_account,
-            ops_config_container,
-            "dhparams.pem",
-            "/tmp/dhparams.pem",
+            ops_storage_account, ops_config_container, "dhparams.pem", _TMP_PEM,
         )
         ssl_process = None
     except FileNotFoundError:
@@ -242,11 +240,10 @@ def terraform_application(
 
 def diffie_helman(encryption: int = 4096) -> Optional[subprocess.Popen]:
     logger.info("diffie_helman")
-    if path.exists("/tmp/dhparams.pem"):
+    if path.exists(_TMP_PEM):
         return
     return subprocess.Popen(
-        ["openssl", "dhparam", "-out", "/tmp/dhparams.pem", "4096",],
-        stdout=subprocess.DEVNULL,
+        ["openssl", "dhparam", "-out", _TMP_PEM, "4096",], stdout=subprocess.DEVNULL,
     )
 
 

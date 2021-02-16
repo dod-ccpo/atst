@@ -20,7 +20,6 @@ from atat.domain.csp.cloud.utils import (
 )
 from atat.domain.csp.cloud.models import ServicePrincipalTokenPayload, UserCSPPayload
 
-
 GRAPH_RESOURCE = "https://graph.microsoft.com"
 TOKEN_SCOPE = GRAPH_RESOURCE + "/.default"
 
@@ -67,7 +66,7 @@ def run(cli_args):
     token = get_token(
         TOKEN_SCOPE, cli_args.client_id, cli_args.client_secret, cli_args.tenant_id
     )
-    for i in range(cli_args.user_count):
+    for _ in range(cli_args.user_count):
         user = create_user(token, cli_args.tenant_id, cli_args.tenant_name)
         users.append(user)
 

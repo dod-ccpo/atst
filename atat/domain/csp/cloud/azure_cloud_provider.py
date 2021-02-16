@@ -109,6 +109,7 @@ USER_ACCESS_ADMIN_ROLE_DEFINITION_ID = "18d7d88d-d35e-4fb5-a5c3-7773c20a72d9"
 DEFAULT_POLICY_SET_DEFINITION_NAME = "Default JEDI Policy Set"
 
 DEFAULT_SCOPE_SUFFIX = "/.default"
+FILTER_MAP_KEY = "$filter"
 
 
 def log_and_raise_exceptions(func):
@@ -991,7 +992,7 @@ class AzureCloudProvider(CloudProviderInterface):
             principal_id: UUID for a principal
         """
         role_assignments = self._list_role_assignments(
-            token, params={"$filter": f"principalId eq '{principal_id}'"},
+            token, params={FILTER_MAP_KEY: f"principalId eq '{principal_id}'"},
         )
         return self._filter_role_assignments(role_assignments, definition_name)
 
@@ -1212,7 +1213,7 @@ class AzureCloudProvider(CloudProviderInterface):
         response = self.sdk.requests.get(
             f"{self.graph_resource}/v1.0/servicePrincipals",
             params={
-                "$filter": f"servicePrincipalNames/any(name:name eq '{GRAPH_API_APPLICATION_ID}')"
+                FILTER_MAP_KEY: f"servicePrincipalNames/any(name:name eq '{GRAPH_API_APPLICATION_ID}')"
             },
             headers=make_auth_header(graph_token),
         )
@@ -1343,7 +1344,7 @@ class AzureCloudProvider(CloudProviderInterface):
         # Step 3: Try and retrieve the billing admin role id. If it isn't found,
         # activate the Billing Admin role and return the id
         # TODO: Find out if we need to check for the Billing Admin role first
-        # for provisioning. Will the Billing Admin role be applied by defaut?
+        # for provisioning. Will the Billing Admin role be applied by default?
         billing_admin_role_id = self._get_billing_owner_role(graph_token)
         if billing_admin_role_id is None:
             billing_admin_role_id = self._activate_and_return_billing_admin_role_id(
@@ -1699,7 +1700,7 @@ class AzureCloudProvider(CloudProviderInterface):
 
     def _get_role_definition_id(self, token, role_definition_name):
         definitions = self._list_role_definitions(
-            token, params={"$filter": f"roleName eq '{role_definition_name}'"}
+            token, params={FILTER_MAP_KEY: f"roleName eq '{role_definition_name}'"}
         )
         return next((d["name"] for d in definitions), None)
 
@@ -1720,7 +1721,8 @@ class AzureCloudProvider(CloudProviderInterface):
 
         if token is None:
             token = self._get_tenant_admin_token(
-                tenant_id, self.sdk.cloud.endpoints.resource_manager + "/.default",
+                tenant_id,
+                self.sdk.cloud.endpoints.resource_manager + DEFAULT_SCOPE_SUFFIX,
             )
 
         # The User Access Administrator definition id may be a constant, but
@@ -1768,7 +1770,7 @@ class AzureCloudProvider(CloudProviderInterface):
     def _get_elevated_access_token(self, tenant_id, user_object_id):
 
         tenant_admin_token = self._get_tenant_admin_token(
-            tenant_id, self.sdk.cloud.endpoints.resource_manager + "/.default"
+            tenant_id, self.sdk.cloud.endpoints.resource_manager + DEFAULT_SCOPE_SUFFIX
         )
         self._elevate_tenant_admin_access(tenant_admin_token)
         app.logger.info(
@@ -1779,7 +1781,8 @@ class AzureCloudProvider(CloudProviderInterface):
         elevated_token = None
         try:
             elevated_token = self._get_tenant_admin_token(
-                tenant_id, self.sdk.cloud.endpoints.resource_manager + "/.default"
+                tenant_id,
+                self.sdk.cloud.endpoints.resource_manager + DEFAULT_SCOPE_SUFFIX,
             )
             yield elevated_token
         finally:
@@ -1789,7 +1792,7 @@ class AzureCloudProvider(CloudProviderInterface):
                     tenant_id, user_object_id, token=remove_access_token
                 )
                 app.logger.info(
-                    "Succssfully removed User Access Administrator assignment from user %s in tenant %s",
+                    "Successfully removed User Access Administrator assignment from user %s in tenant %s",
                     user_object_id,
                     tenant_id,
                 )

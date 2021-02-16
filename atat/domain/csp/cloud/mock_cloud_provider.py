@@ -73,7 +73,6 @@ from .models import (
 
 
 class MockCloudProvider(CloudProviderInterface):
-
     # TODO: All of these constants
     AUTHENTICATION_EXCEPTION = AuthenticationException("Authentication failure.")
     AUTHORIZATION_EXCEPTION = AuthorizationException("Not authorized.")
@@ -85,6 +84,8 @@ class MockCloudProvider(CloudProviderInterface):
     ENV_CREATE_FAILURE_PCT = 12
     ATAT_ADMIN_CREATE_FAILURE_PCT = 12
     UNAUTHORIZED_RATE = 2
+
+    _ZOMBO_URL = "https://zombo.com"
 
     def __init__(
         self, config, with_delay=True, with_failure=True, with_authorization=True
@@ -102,6 +103,7 @@ class MockCloudProvider(CloudProviderInterface):
         return self._auth_credentials
 
     def set_secret(self, secret_key: str, secret_value: str):
+        # TODO: Add implementation
         pass
 
     def get_secret(self, secret_key: str, default=dict()):
@@ -113,7 +115,7 @@ class MockCloudProvider(CloudProviderInterface):
         self._maybe_raise(self.UNAUTHORIZED_RATE, self.AUTHORIZATION_EXCEPTION)
 
         return SubscriptionCreationCSPResult(
-            subscription_verify_url="https://zombo.com", subscription_retry_after=10
+            subscription_verify_url=self._ZOMBO_URL, subscription_retry_after=10
         )
 
     def create_tenant(self, payload: TenantCSPPayload):
@@ -146,7 +148,7 @@ class MockCloudProvider(CloudProviderInterface):
 
         return BillingProfileCreationCSPResult(
             **dict(
-                billing_profile_verify_url="https://zombo.com",
+                billing_profile_verify_url=self._ZOMBO_URL,
                 billing_profile_retry_after=10,
             )
         )
@@ -303,7 +305,7 @@ class MockCloudProvider(CloudProviderInterface):
 
         return ProductPurchaseCSPResult(
             **dict(
-                product_purchase_verify_url="https://zombo.com",
+                product_purchase_verify_url=self._ZOMBO_URL,
                 product_purchase_retry_after=10,
             )
         )

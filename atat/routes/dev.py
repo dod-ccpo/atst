@@ -41,6 +41,8 @@ def random_service_branch():
     return random.choice([k for k, v in SERVICE_BRANCHES if k])  # nosec
 
 
+_US = "United States"
+
 _DEV_USERS = {
     "sam": {
         "dod_id": "6346349876",
@@ -50,7 +52,7 @@ _DEV_USERS = {
         "email": "sam@example.com",
         "service_branch": random_service_branch(),
         "phone_number": "1234567890",
-        "citizenship": "United States",
+        "citizenship": _US,
         "designation": "military",
     },
     "amanda": {
@@ -60,7 +62,7 @@ _DEV_USERS = {
         "email": "amanda@example.com",
         "service_branch": random_service_branch(),
         "phone_number": "1234567890",
-        "citizenship": "United States",
+        "citizenship": _US,
         "designation": "military",
     },
     "brandon": {
@@ -70,7 +72,7 @@ _DEV_USERS = {
         "email": "brandon@example.com",
         "service_branch": random_service_branch(),
         "phone_number": "1234567890",
-        "citizenship": "United States",
+        "citizenship": _US,
         "designation": "military",
     },
     "christina": {
@@ -80,7 +82,7 @@ _DEV_USERS = {
         "email": "christina@example.com",
         "service_branch": random_service_branch(),
         "phone_number": "1234567890",
-        "citizenship": "United States",
+        "citizenship": _US,
         "designation": "military",
     },
     "dominick": {
@@ -90,7 +92,7 @@ _DEV_USERS = {
         "email": "dominick@example.com",
         "service_branch": random_service_branch(),
         "phone_number": "1234567890",
-        "citizenship": "United States",
+        "citizenship": _US,
         "designation": "military",
     },
     "erica": {
@@ -100,7 +102,7 @@ _DEV_USERS = {
         "email": "erica@example.com",
         "service_branch": random_service_branch(),
         "phone_number": "1234567890",
-        "citizenship": "United States",
+        "citizenship": _US,
         "designation": "military",
     },
 }

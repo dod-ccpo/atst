@@ -1,5 +1,3 @@
-import ally from 'ally.js'
-
 export default {
   methods: {
     closeModal: function (name) {
