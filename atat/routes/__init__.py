@@ -76,11 +76,6 @@ def logout():
     return response
 
 
-@bp.route("/about")
-def about():
-    return render_template("about.html")
-
-
 @bp.route("/login", methods=["GET"])
 def login():
     saml_login_uri = prepare_idp_url(request)
