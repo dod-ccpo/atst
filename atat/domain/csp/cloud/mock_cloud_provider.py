@@ -85,7 +85,7 @@ class MockCloudProvider(CloudProviderInterface):
     ATAT_ADMIN_CREATE_FAILURE_PCT = 12
     UNAUTHORIZED_RATE = 2
 
-    _ZOMBO_URL = "https://zombo.com"
+    _MOCK_URL = "https://zombo.com"
 
     def __init__(
         self, config, with_delay=True, with_failure=True, with_authorization=True
@@ -115,7 +115,7 @@ class MockCloudProvider(CloudProviderInterface):
         self._maybe_raise(self.UNAUTHORIZED_RATE, self.AUTHORIZATION_EXCEPTION)
 
         return SubscriptionCreationCSPResult(
-            subscription_verify_url=self._ZOMBO_URL, subscription_retry_after=10
+            subscription_verify_url=self._MOCK_URL, subscription_retry_after=10
         )
 
     def create_tenant(self, payload: TenantCSPPayload):
@@ -148,7 +148,7 @@ class MockCloudProvider(CloudProviderInterface):
 
         return BillingProfileCreationCSPResult(
             **dict(
-                billing_profile_verify_url=self._ZOMBO_URL,
+                billing_profile_verify_url=self._MOCK_URL,
                 billing_profile_retry_after=10,
             )
         )
@@ -305,7 +305,7 @@ class MockCloudProvider(CloudProviderInterface):
 
         return ProductPurchaseCSPResult(
             **dict(
-                product_purchase_verify_url=self._ZOMBO_URL,
+                product_purchase_verify_url=self._MOCK_URL,
                 product_purchase_retry_after=10,
             )
         )

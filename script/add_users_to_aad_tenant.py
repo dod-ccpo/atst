@@ -62,13 +62,12 @@ def create_user(token, tenant_id, tenant_host_name):
 
 
 def run(cli_args):
-    users = []
     token = get_token(
         TOKEN_SCOPE, cli_args.client_id, cli_args.client_secret, cli_args.tenant_id
     )
-    for _ in range(cli_args.user_count):
-        user = create_user(token, cli_args.tenant_id, cli_args.tenant_name)
-        users.append(user)
+    users = [
+        create_user(token, cli_args.tenant_id, cli_args.tenant_name) for _ in range(cli_args.user_count)
+    ]
 
     with open(cli_args.out, "w") as output:
         yaml.dump(users, output)
