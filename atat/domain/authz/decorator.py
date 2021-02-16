@@ -18,9 +18,9 @@ def check_access(permission, message, override, *args, **kwargs):
     if override is not None and override(g.current_user, **access_args, **kwargs):
         return True
 
-    user_can_access(g.current_user, permission, **access_args)
+    return user_can_access(g.current_user, permission, **access_args)
 
-    return True
+
 
 
 def user_can_access_decorator(permission, message=None, override=None):
