@@ -520,7 +520,7 @@ task_orders:
   form:
     add_clin: Add Another CLIN
     add_to_header: Enter the Task Order number
-    add_to_description: Please input your Task Order number. This number is listed under "Order Number" on form SF 1449. Moving forward, this portion of funding will be referenced by the recorded Task Order number.
+    add_to_description: Please input your task order number. This number is listed under "Order Number" on form SF 1449. Moving forward, this portion of funding will be referenced by the recorded task order number.
     builder_base:
       cancel_modal: Do you want to save this draft?
       delete_draft: No, delete it
@@ -567,7 +567,7 @@ task_orders:
     sticky_header_context: "Step {step} of 5"
   sign:
     digital_signature_description: I confirm the uploaded task order is signed by the appropriate, duly warranted Agency Contracting Officer who authorized me to upload the task order.
-    confirmation_description: I confirm that the information entered here in matches that of the submitted Task Order.
+    confirmation_description: I confirm that the information entered here in matches that of the submitted task order.
     acknowledge:
       title: Acknowledge Statement
       text: I acknowledge, by executing the confirmation above and submitting this verification, that I am subject to potential penalties that may include fines, imprisonment, or both, under the U.S. law and regulations for any false statement or misrepresentation in association with this task order submission or on any accompanying documentation.
