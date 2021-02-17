@@ -7,8 +7,7 @@ parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(parent_dir)
 
 import argparse
-import random
-from secrets import token_urlsafe
+from secrets import token_urlsafe, choice
 import string
 
 import factory
@@ -55,7 +54,7 @@ def create_user(token, tenant_id, tenant_host_name):
             "first_name": first_name,
             "last_name": last_name,
             "login_name": payload.user_principal_name,
-            "dod_id": "".join(random.choices(string.digits, k=10)),
+            "dod_id": "".join(choice(string.digits) for _ in range(10)),
         }
     )
     return result
