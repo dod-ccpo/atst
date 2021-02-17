@@ -1,8 +1,6 @@
 # Node modules get installed here
 node_modules/
 
-.idea
-
 # sass and webassets output artifacts
 scss/assets
 scss/variables.scss
@@ -92,6 +90,8 @@ js/test_templates
 
 # vscode config files
 .vscode/
+# intellij/pycharm config files
+.idea/
 
 # mac indexing
 **/*.DS_Store
