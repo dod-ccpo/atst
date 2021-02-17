@@ -54,17 +54,17 @@ jobs:
           echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
           echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
         shell: bash
-      - name: Install python 3.7.3
+      - name: Install python 3.8.7
         run: |
           . ~/.bashrc
-          pyenv install 3.7.3
-          pyenv global 3.7.3
+          pyenv install 3.8.7
+          pyenv global 3.8.7
           python -V
         shell: bash
       - name: Set Up Poetry
         run: |
           . ~/.bashrc
-          pyenv local 3.7.3
+          pyenv local 3.8.7
           pip install poetry
         shell: bash
       - name: Install yarn
@@ -79,7 +79,7 @@ jobs:
       - name: Run project setup script
         run: |
           . ~/.bashrc
-          pyenv local 3.7.3
+          pyenv local 3.8.7
           apt-get install -qqy postgresql-client
           script/setup
         shell: bash
@@ -91,7 +91,7 @@ jobs:
       - name: Run cibuild script
         run: |
           . ~/.bashrc
-          pyenv local 3.7.3
+          pyenv local 3.8.7
           script/cibuild
         shell: bash
         env:
@@ -102,7 +102,7 @@ jobs:
         run: |
           . ~/.bashrc
           apt-get install -qqy unzip
-          pyenv local 3.7.3
+          pyenv local 3.8.7
           script/sonar_scanner
         shell: bash
         env:

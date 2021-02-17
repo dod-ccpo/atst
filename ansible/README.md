@@ -13,11 +13,11 @@ Even though ATAT is completely containerized, its not immune to the benefits of 
 ## Requirements
 
 
-* `python` == 3.7.3
-  Python version 3.7.3 **must** be installed on your machine before installing `poetry`.
-  You can download Python 3.7.3 [from python.org](https://www.python.org/downloads/)
+* `python` >= 3.8
+  Python version 3.8 **must** be installed on your machine before installing `poetry`.
+  You can download Python 3.8 [from python.org](https://www.python.org/downloads/)
   or use your preferred system package manager. Multiple versions of Python can exist on one
-  computer, but 3.7.3 is required for ATAT's ansible.
+  computer, but 3.8 or newer is required for ATAT.
 
 * `poetry`
   ATAT's Ansible package requires `poetry` to be installed for python dependency management. `poetry`
