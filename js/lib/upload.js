@@ -42,10 +42,10 @@ export class MockUploader {
 }
 
 export const buildUploader = (
-  cloudProvider = 'mock',
   token,
   objectName,
-  config
+  config,
+  cloudProvider = 'mock'
 ) => {
   if (cloudProvider === 'azure') {
     // TODO: generate objectName right here instead generating it in the backend and passing it through
