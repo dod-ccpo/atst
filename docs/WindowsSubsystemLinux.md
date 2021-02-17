@@ -25,9 +25,11 @@ $ sudo apt install git python3 python-is-python3
 
 ## Python Setup
 
-Currently, ATAT requires specifically Python 3.7.3. Since Ubuntu currently
-includes Python 3.8 in the repositories, Python 3.7.3 must be installed through
-external means. This can be done with [`pyenv`](https://github.com/pyenv/pyenv).
+Currently, ATAT requires at least Python 3.8. While Ubuntu currently
+includes Python 3.8 in its repositories, it is generally not best practice to
+use the system Python for development work. A separate Python install should be
+done through another means.
+This guide will use [`pyenv`](https://github.com/pyenv/pyenv).
 
 1. Install the [prerequisites](https://github.com/pyenv/pyenv/wiki#suggested-build-environment)
    for building Python
@@ -44,7 +46,7 @@ external means. This can be done with [`pyenv`](https://github.com/pyenv/pyenv).
     $ echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
     $ echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
     ```
-1. Install Python 3.7.3: `pyenv install 3.7.3`
+1. Install Python 3.8.7: `pyenv install 3.8.7`
 
 If you get an error that `pyenv` is not installed, re-execute your shell by
 running the following and trying again:
@@ -53,10 +55,10 @@ running the following and trying again:
 $ exec "$SHELL"
 ```
 
-Temporarily enter the `pyenv` environment for Python 3.7.3 and install Poetry:
+Temporarily enter the `pyenv` environment for Python 3.8.7 and install Poetry:
 
 ```
-$ pyenv shell 3.7.3
+$ pyenv shell 3.8.7
 $ pip install poetry 
 ```
 
@@ -109,10 +111,10 @@ have bound to port 5432.
 
 ## Proceed with setup and running
 
-Ensure you are using the Python 3.7.3 installed earlier by running
+Ensure you are using the Python 3.8.7 installed earlier by running
 
 ```
-$ pyenv shell 3.7.3
+$ pyenv shell 3.8.7
 ```
 
 From here, your local development environment should be sufficiently configured
