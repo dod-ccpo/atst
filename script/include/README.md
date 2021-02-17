@@ -38,7 +38,7 @@ alpine_setup specific functions.
 
 ## Requirements
 
-- **[Python 3.7.3](https://www.python.org/downloads/)**
+- **[Python 3.8](https://www.python.org/downloads/)**
 - **[poetry](https://python-poetry.org/docs/)**
 
 **Note:** None of these script fragments are designed to be run by themselves. 
