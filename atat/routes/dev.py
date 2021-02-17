@@ -102,7 +102,7 @@ _DEV_USERS = {
         "last_name": "Eichner",
         "email": "erica@example.com",
         "service_branch": random_service_branch(),
-        "phone_number": _DEV_PHONE_NUMBER,
+        "phone_number": "1234567890",
         "citizenship": _US,
         "designation": _MILITARY,
     },
