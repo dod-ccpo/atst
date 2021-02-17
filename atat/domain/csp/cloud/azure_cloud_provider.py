@@ -988,7 +988,7 @@ class AzureCloudProvider(CloudProviderInterface):
         defintion id to return a role assignment
 
         Args:
-            definition_name: UUID of a role defintion
+            definition_name: UUID of a role definition
             principal_id: UUID for a principal
         """
         role_assignments = self._list_role_assignments(
