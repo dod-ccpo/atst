@@ -43,7 +43,6 @@ def random_service_branch():
 
 _US = "United States"
 _MILITARY = "military"
-_DEV_PHONE_NUMBER = "1234567890"
 
 _DEV_USERS = {
     "sam": {
@@ -53,7 +52,7 @@ _DEV_USERS = {
         "permission_sets": _ALL_PERMS,
         "email": "sam@example.com",
         "service_branch": random_service_branch(),
-        "phone_number": _DEV_PHONE_NUMBER,
+        "phone_number": "1234567890",
         "citizenship": _US,
         "designation": _MILITARY,
     },
@@ -63,7 +62,7 @@ _DEV_USERS = {
         "last_name": "Adamson",
         "email": "amanda@example.com",
         "service_branch": random_service_branch(),
-        "phone_number": _DEV_PHONE_NUMBER,
+        "phone_number": "1234567890",
         "citizenship": _US,
         "designation": _MILITARY,
     },
@@ -73,7 +72,7 @@ _DEV_USERS = {
         "last_name": "Buchannan",
         "email": "brandon@example.com",
         "service_branch": random_service_branch(),
-        "phone_number": _DEV_PHONE_NUMBER,
+        "phone_number": "1234567890",
         "citizenship": _US,
         "designation": _MILITARY,
     },
@@ -83,7 +82,7 @@ _DEV_USERS = {
         "last_name": "Collins",
         "email": "christina@example.com",
         "service_branch": random_service_branch(),
-        "phone_number": _DEV_PHONE_NUMBER,
+        "phone_number": "1234567890",
         "citizenship": _US,
         "designation": _MILITARY,
     },
@@ -93,7 +92,7 @@ _DEV_USERS = {
         "last_name": "Domingo",
         "email": "dominick@example.com",
         "service_branch": random_service_branch(),
-        "phone_number": _DEV_PHONE_NUMBER,
+        "phone_number": "1234567890",
         "citizenship": _US,
         "designation": _MILITARY,
     },
