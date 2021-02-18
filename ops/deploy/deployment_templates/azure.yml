@@ -3,14 +3,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: atst
-  name: atst
+    app: atat
+  name: atat-app
   namespace: atat
 spec:
   template:
     spec:
       containers:
-        - name: atst
+        - name: atat-app
           image: {{ application_container_image }}
         - name: nginx
           image: {{ nginx_container_image }}
@@ -19,26 +19,26 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: atst
-  name: atst-worker
+    app: atat
+  name: atat-worker
   namespace: atat
 spec:
   template:
     spec:
       containers:
-        - name: atst-worker
+        - name: atat-worker
           image: {{ application_container_image }}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: atst
-  name: atst-beat
+    app: atat
+  name: atat-beat
   namespace: atat
 spec:
   template:
     spec:
       containers:
-        - name: atst-beat
+        - name: atat-beat
           image: {{ application_container_image }}

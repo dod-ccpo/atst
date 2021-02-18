@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: atst-main
+  name: atat-main
   annotations:
     service.beta.kubernetes.io/azure-load-balancer-internal-subnet: "{{ aks_subnet }}"
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"

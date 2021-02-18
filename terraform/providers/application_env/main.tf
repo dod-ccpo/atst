@@ -13,6 +13,8 @@ locals {
   operations_storage_account_name = data.terraform_remote_state.previous_stage.outputs.operations_storage_account_name
   operator_ip                     = chomp(data.http.myip.body)
   log_analytics_workspace_id      = data.terraform_remote_state.previous_stage.outputs.logging_workspace_id
+  log_analytics_workspace_key     = data.terraform_remote_state.previous_stage.outputs.logging_workspace_primary_key
+  log_analytics_workspace_uuid    = data.terraform_remote_state.previous_stage.outputs.logging_workspace_uuid
 }
 
 module "tenant_keyvault_app" {

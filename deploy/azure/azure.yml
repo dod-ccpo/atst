@@ -8,8 +8,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: atst
-  name: atst
+    app: atat
+  name: atat-app
   namespace: atat
 spec:
   selector:
@@ -20,14 +20,14 @@ spec:
   template:
     metadata:
       labels:
-        app: atst
+        app: atat
         role: web
         aadpodidbinding: atat-kv-id-binding
     spec:
       securityContext:
         fsGroup: 101
       containers:
-        - name: atst
+        - name: atat-app
           imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
@@ -40,15 +40,15 @@ spec:
               value: "1"
           envFrom:
             - configMapRef:
-                name: atst-envvars
+                name: atat-envvars
           volumeMounts:
             - name: uwsgi-socket-dir
               mountPath: "/var/run/uwsgi"
             - name: pgsslrootcert
-              mountPath: "/opt/atat/atst/ssl/pgsslrootcert.crt"
+              mountPath: "/opt/atat/atat/ssl/pgsslrootcert.crt"
               subPath: pgsslrootcert.crt
             - name: uwsgi-config
-              mountPath: "/opt/atat/atst/uwsgi.ini"
+              mountPath: "/opt/atat/atat/uwsgi.ini"
               subPath: uwsgi.ini
             - name: flask-secret
               mountPath: "/config"
@@ -89,7 +89,7 @@ spec:
       volumes:
         - name: nginx-config
           configMap:
-            name: atst-nginx
+            name: atat-nginx
         - name: uwsgi-socket-dir
           emptyDir:
             medium: Memory
@@ -132,8 +132,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: atst
-  name: atst-worker
+    app: atat
+  name: atat-worker
   namespace: atat
 spec:
   selector:
@@ -144,21 +144,21 @@ spec:
   template:
     metadata:
       labels:
-        app: atst
+        app: atat
         role: worker
         aadpodidbinding: atat-kv-id-binding
     spec:
       securityContext:
         fsGroup: 101
       containers:
-        - name: atst-worker
+        - name: atat-worker
           imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
           args:
             [
-              "/opt/atat/atst/.venv/bin/python",
-              "/opt/atat/atst/.venv/bin/celery",
+              "/opt/atat/atat/.venv/bin/python",
+              "/opt/atat/atat/.venv/bin/celery",
               "-A",
               "celery_worker.celery",
               "worker",
@@ -166,12 +166,12 @@ spec:
             ]
           envFrom:
             - configMapRef:
-                name: atst-envvars
+                name: atat-envvars
             - configMapRef:
-                name: atst-worker-envvars
+                name: atat-worker-envvars
           volumeMounts:
             - name: pgsslrootcert
-              mountPath: "/opt/atat/atst/ssl/pgsslrootcert.crt"
+              mountPath: "/opt/atat/atat/ssl/pgsslrootcert.crt"
               subPath: pgsslrootcert.crt
             - name: flask-secret
               mountPath: "/config"
@@ -201,8 +201,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: atst
-  name: atst-beat
+    app: atat
+  name: atat-beat
   namespace: atat
 spec:
   selector:
@@ -214,21 +214,21 @@ spec:
   template:
     metadata:
       labels:
-        app: atst
+        app: atat
         role: beat
         aadpodidbinding: atat-kv-id-binding
     spec:
       securityContext:
         fsGroup: 101
       containers:
-        - name: atst-beat
+        - name: atat-beat
           imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
           args:
             [
-              "/opt/atat/atst/.venv/bin/python",
-              "/opt/atat/atst/.venv/bin/celery",
+              "/opt/atat/atat/.venv/bin/python",
+              "/opt/atat/atat/.venv/bin/celery",
               "-A",
               "celery_worker.celery",
               "beat",
@@ -236,12 +236,12 @@ spec:
             ]
           envFrom:
             - configMapRef:
-                name: atst-envvars
+                name: atat-envvars
             - configMapRef:
-                name: atst-worker-envvars
+                name: atat-worker-envvars
           volumeMounts:
             - name: pgsslrootcert
-              mountPath: "/opt/atat/atst/ssl/pgsslrootcert.crt"
+              mountPath: "/opt/atat/atat/ssl/pgsslrootcert.crt"
               subPath: pgsslrootcert.crt
             - name: flask-secret
               mountPath: "/config"
@@ -271,8 +271,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: atst
-  name: atst-main
+    app: atat
+  name: atat-main
   namespace: atat
 spec:
   externalTrafficPolicy: Local
