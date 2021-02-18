@@ -17,11 +17,19 @@ RUN yum -y update && \
   sudo mv /tmp/kubectl /usr/bin/kubectl && \
   curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 && \
   chmod 700 get_helm.sh && \
-  ./get_helm.sh
-#  && \
-# pip3 install --upgrade pip
+  ./get_helm.sh && \
+  yum install -y rsyslog && \
+  curl -s https://raw.githubusercontent.com/a2o/snoopy/install/install/install-snoopy.sh -o /tmp/install-snoopy.sh && \
+  chmod +x /tmp/install-snoopy.sh && \
+  /tmp/install-snoopy.sh stable && \
+  snoopy-enable && \
+  yum clean all
 
 COPY ./ops/requirements.txt /src/ops/requirements.txt
+
+COPY ./ops/files/snoopy.ini /etc/snoopy.ini
+
+RUN chmod +x /etc/snoopy.ini && touch /var/log/snoopy.log
 
 RUN pip3 install -r /src/ops/requirements.txt
 
@@ -32,3 +40,5 @@ COPY . /src
 WORKDIR /src/ops/phase2
 
 ENTRYPOINT "/bin/bash"
+
+CMD ["tail","-f","/var/log/snoopy.log"]

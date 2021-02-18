@@ -64,7 +64,7 @@ resource "azurerm_container_group" "bastion" {
     image    = "${local.operations_container_registry}/ops:latest"
     cpu      = "1"
     memory   = "2"
-    commands = ["tail", "-f", "/dev/null"]
+    commands = ["tail","-f","/var/log/snoopy.log"]
 
     ports {
       port     = 443
@@ -88,6 +88,13 @@ resource "azurerm_container_group" "bastion" {
     username = var.operator_client_id
     password = var.operator_client_secret
     server   = local.operations_container_registry
+  }
+
+  diagnostics {
+    log_analytics {
+      log_type = "ContainerInstanceLogs"
+      workspace_id = local.log_analytics_workspace_id
+    }
   }
 
   tags = {
