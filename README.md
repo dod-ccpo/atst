@@ -78,7 +78,7 @@ locally:
 This project contains git submodules. Here is an example clone command that will
 automatically initialize and update those modules:
 
-    git clone --recurse-submodules git@github.com:dod-ccpo/atst.git
+    git clone --recurse-submodules git@github.com:dod-ccpo/atat.git
 
 If you have an existing clone that does not yet contain the submodules, you can
 set them up with the following command:
@@ -387,7 +387,7 @@ CircleCI is our current CI/CD provider. The following variables need to be set i
 
 ## UI Test Automation
 
-AT-AT uses [Ghost Inspector](https://app.ghostinspector.com/), a testing PaaS
+ATAT uses [Ghost Inspector](https://app.ghostinspector.com/), a testing PaaS
 for UI test automation and as a form of integration testing.
 These tests do not run locally as part of the regular test suite,
 but they do run in CI.
@@ -395,9 +395,9 @@ but they do run in CI.
 Ghost Inspector was developed to make it easier to create, maintain, and
 execute UI tests than vanilla Selenium. Ghost Inspector tests and steps can
 be exported to files that the Selenium IDE can import. We export these tests/steps
-regularly and archive them with the AT-AT codebase in the `uitests` directory.
+regularly and archive them with the ATAT codebase in the `uitests` directory.
 
-For further information about Ghost Inspector and its use in AT-AT, check out [its README](./uitests/README.md)
+For further information about Ghost Inspector and its use in ATAT, check out [its README](./uitests/README.md)
 in the `uitests` directory.
 
 ## Notes
@@ -509,7 +509,7 @@ env CONTAINER_REGISTRY=cloudzerodryrunregistry.azurecr.io ./ops/build-docker-ima
 
 Then publish the image. Start by tagging it with the appropriate registry.
 ```
-docker tag atst:rhel-py cloudzerodryrunregistry.azurecr.io/rhel-py:latest
+docker tag atat:rhel-py cloudzerodryrunregistry.azurecr.io/rhel-py:latest
 ```
 
 Then push!

@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: atst-nginx
+  name: atat-nginx
   namespace: atat
 data:
-  atst.conf: |-
+  atat.conf: |-
     server {
         access_log /var/log/nginx/access.log json;
 

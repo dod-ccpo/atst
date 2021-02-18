@@ -7,9 +7,9 @@ can be found [here](https://app.ghostinspector.com/suites/5d9e3d303ab5d56633c115
 
 ## Testing philosophy
 
-The tests have been created to traverse the most common user flows in AT-AT. There are a few tests (e.g. "New Portfolio - no optional fields")
+The tests have been created to traverse the most common user flows in ATAT. There are a few tests (e.g. "New Portfolio - no optional fields")
 that check for regressions. Others (e.g. "Remove Portfolio Member") check less-common, "negative path" flows. Tests are added as necessary
-to ensure fairly thorough checking of AT-AT.
+to ensure fairly thorough checking of ATAT.
 
 The tests are constructed in a "stepwise" fashion; that is, no individual test depends upon another, and each test checks one step in complex
 user flows. As an example, there are six tests for creating a new Task Order, one corresponding to each screen in the process plus one
@@ -34,7 +34,7 @@ suite to the "Holding" suite until the PR is merged. Then the test can be edited
 
 ## Running Ghost Inspector tests locally
 
-To run the Ghost Inspector tests against a local instance of AT-AT,
+To run the Ghost Inspector tests against a local instance of ATAT,
 you will need the following:
 
 - [docker](https://docs.docker.com/v17.12/install/)

@@ -29,7 +29,7 @@ def get_pod(target_pod, pods):
     if target_pod == "web":
         target_pod = None
 
-    pattern = re.compile(r"(atst(-\w.*)?)-[a-z0-9].*-[a-z0-9].*")
+    pattern = re.compile(r"(atat(-\w.*)?)-[a-z0-9].*-[a-z0-9].*")
     for pod in pods:
         # suffix will be one of ( None | worker | beat)
         _, suffix = re.match(pattern, pod).groups()
@@ -48,7 +48,7 @@ def tail_pod_logs(pod_name, target, namespace, tail_length=100):
         f"--tail={tail_length}",
     ]
     if target == "web":
-        command += ["-c", "atst"]
+        command += ["-c", "atat"]
     subprocess.run(command)
 
 
