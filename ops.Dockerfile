@@ -4,13 +4,14 @@ FROM $IMAGE
 
 COPY ./azure-cli.repo /etc/yum.repos.d/azure-cli.repo
 
-RUN yum -y update && \
+RUN subscription-manager unregister && \
+  yum -y update && \
   rpm --import https://packages.microsoft.com/keys/microsoft.asc &&  \
   yum install -y azure-cli bzip2-devel gettext git jq openssl-devel postgresql-devel unzip && \
   curl https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip -o tf.zip && \
   unzip tf.zip && \
   sudo mv terraform /usr/local/bin && \
-  ln -s /usr/local/bin/python3.8 /usr/local/bin/python \
+  ln -s /usr/local/bin/python3.8 /usr/local/bin/python && \
   cd /tmp && \
   curl --retry 10 -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" && \
   chmod +x /tmp/kubectl && \

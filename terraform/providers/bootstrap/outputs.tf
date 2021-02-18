@@ -57,3 +57,13 @@ output "logging_workspace_id" {
   value       = azurerm_log_analytics_workspace.log_workspace.id
   description = "Id of the Log Analytics Workspace"
 }
+
+output "logging_workspace_uuid" {
+  value       = azurerm_log_analytics_workspace.log_workspace.workspace_id
+  description = "Primary Key of the Log Analytics Workspace"
+}
+
+output "logging_workspace_primary_key" {
+  value       = azurerm_log_analytics_workspace.log_workspace.primary_shared_key
+  description = "Primary Key of the Log Analytics Workspace"
+}

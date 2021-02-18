@@ -92,8 +92,8 @@ resource "azurerm_container_group" "bastion" {
 
   diagnostics {
     log_analytics {
-      log_type = "ContainerInstanceLogs"
-      workspace_id = local.log_analytics_workspace_id
+      workspace_id = local.log_analytics_workspace_uuid
+      workspace_key = local.log_analytics_workspace_key
     }
   }
 
