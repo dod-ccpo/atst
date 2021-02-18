@@ -44,7 +44,7 @@ def test_create_portfolio_success(client, user_session):
     new_portfolio = Portfolios.for_user(user=user)[-1]
 
     assert (
-        url_for("applications.portfolio_applications", portfolio_id=new_portfolio.id)
+        url_for("task_orders.portfolio_funding", portfolio_id=new_portfolio.id)
         in response.location
     )
     assert new_portfolio.owner == user

@@ -2,7 +2,7 @@ import 'svg-innerhtml'
 import 'babel-polyfill'
 import ally from 'ally.js'
 
-import classes from '../styles/atat.scss'
+import classes from '../styles/atat.scss' // This is required for generating the static assets
 import Vue from 'vue/dist/vue'
 import VTooltip from 'v-tooltip'
 import stickybits from 'stickybits'

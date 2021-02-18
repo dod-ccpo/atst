@@ -41,9 +41,9 @@ By the end of provisioning a Portfolio with the Hybrid Cloud Provider, the follo
 
 - In the [AAD -> Roles & Administrators Blade](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RolesAndAdministrators), search for the `Global Administrator` Role. Click on that entry, and look through the assigned users. An entry should appear with the name `Hybrid :: <portfolio name> :: ATAT Remote Admin` and with the `Service Principal` type.
 
-Evidence of the creation of a service principal with a `Global Administrator` (aka `Company Administrator`) role and a Billing Owner can also be found in the [Enterprise Applications Blade](https://portal.azure.com/#blade/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/AllApps_)
+Evidence of the creation of a service principal with a `Global Administrator` role and a Billing Owner can also be found in the [Enterprise Applications Blade](https://portal.azure.com/#blade/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/AllApps_)
 
 - Find the `Application Types` filter, select `All Application Types`, and click Apply.
 - Search for an application named `Hybrid :: <portfolio name> :: ATAT Remote Admin` and select it
 - Select `Audit logs` in the navigation pane
-- You should see six entries. If you click on them and inspect their details, three should pertain to creating the service principal and setting the `Company Administrator` role, and three should pertain to creating the `Billing Administrator` user
+- You should see six entries. If you click on them and inspect their details, three should pertain to creating the service principal and setting the `Global Administrator` role, and three should pertain to creating the `Billing Administrator` user

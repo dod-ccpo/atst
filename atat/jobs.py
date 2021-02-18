@@ -297,7 +297,7 @@ def render_email(template_path, context):
     return app.jinja_env.get_template(template_path).render(context)
 
 
-def send_PPOC_email(portfolio_dict):
+def send_ppoc_email(portfolio_dict):
     ppoc_email = portfolio_dict.get("password_recovery_email_address")
     user_id = portfolio_dict.get("user_id")
     domain_name = portfolio_dict.get("domain_name")
@@ -330,7 +330,7 @@ def do_provision_portfolio(csp: CloudProviderInterface, portfolio_id=None):
     app.logger.info("Triggering next transition for portfolio %s", portfolio.id)
     fsm.trigger_next_transition(csp_data=make_initial_csp_data(portfolio))
     if fsm.current_state == PortfolioStates.COMPLETED:
-        send_PPOC_email(portfolio.to_dictionary())
+        send_ppoc_email(portfolio.to_dictionary())
 
 
 @celery.task(bind=True, base=RecordFailure, autoretry_for=(GeneralCSPException,))

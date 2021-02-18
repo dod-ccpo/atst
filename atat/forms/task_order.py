@@ -19,7 +19,7 @@ from wtforms.validators import (
     ValidationError,
 )
 
-from atat.forms.validators import AlphaNumeric, Number
+from atat.forms.validators import alpha_numeric, number
 from atat.utils.localization import translate
 
 from .data import JEDI_CLIN_TYPES
@@ -80,7 +80,7 @@ class CLINForm(FlaskForm):
 
     number = StringField(
         label=translate("task_orders.form.clin_number_label"),
-        validators=[Number(), Length(max=4)],
+        validators=[number(), Length(max=4)],
     )
     start_date = DateField(
         translate("task_orders.form.pop_start"),
@@ -139,7 +139,7 @@ class AttachmentForm(BaseForm):
             Length(
                 max=100, message=translate("forms.attachment.filename.length_error")
             ),
-            AlphaNumeric(),
+            alpha_numeric(),
         ],
     )
     object_name = HiddenField(
@@ -148,7 +148,7 @@ class AttachmentForm(BaseForm):
             Length(
                 max=40, message=translate("forms.attachment.object_name.length_error")
             ),
-            AlphaNumeric(),
+            alpha_numeric(),
         ],
     )
     accept = ".pdf,application/pdf"
@@ -161,7 +161,7 @@ class TaskOrderForm(BaseForm):
     number = StringField(
         label=translate("forms.task_order.number_description"),
         filters=[remove_empty_string, remove_dashes, coerce_upper],
-        validators=[AlphaNumeric(), Length(min=13, max=17), Optional()],
+        validators=[alpha_numeric(), Length(min=13, max=17), Optional()],
     )
     pdf = FormField(AttachmentForm)
     clins = FieldList(FormField(CLINForm))

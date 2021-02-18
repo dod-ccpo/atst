@@ -115,8 +115,8 @@ export default {
         credentials: 'include',
       })
         .then((response) => response.json())
-        .then(({ cloudProvider, token, objectName, config }) =>
-          buildUploader(cloudProvider, token, objectName, config)
+        .then(({ token, objectName, config, cloudProvider }) =>
+          buildUploader(token, objectName, config, cloudProvider)
         )
     },
     getDownloadLink: async function (filename, objectName) {

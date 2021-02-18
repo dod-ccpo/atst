@@ -19,7 +19,7 @@ class CSP:
             self.cloud = HybridCloudProvider(azure, mock, config)
             self.files = AzureFileService(config)
         else:
-            raise Exception(f"Unexpected CSP value provided: {csp}")
+            raise ValueError(f"Unexpected CSP value provided: {csp}")
 
         self.reports = MockReportingProvider()
 

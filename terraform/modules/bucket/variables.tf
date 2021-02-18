@@ -60,3 +60,8 @@ variable "storage_container_name" {
   type        = string
   description = "What to name the created storage container"
 }
+
+variable "workspace_id" {
+  description = "The Log Analytics Workspace ID"
+  type        = string
+}

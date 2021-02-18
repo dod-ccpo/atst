@@ -75,10 +75,9 @@ def wait_for_sp_creation(sp_object_id: str, access_token: str):
             wait_time = 1 + attempts
             print(f"Not found, checking again in {wait_time} seconds")
             time.sleep(wait_time)
-            continue
         else:
             raise Exception(
-                f"Recieved an unexpected status of {poll_response.status_code}"
+                f"Received an unexpected status of {poll_response.status_code}"
             )
 
     else:

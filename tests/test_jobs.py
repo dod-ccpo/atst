@@ -32,7 +32,7 @@ from atat.jobs import (
     log_do_create_environment,
     make_initial_csp_data,
     provision_portfolio,
-    send_PPOC_email,
+    send_ppoc_email,
     send_task_order_files,
 )
 from atat.models import (
@@ -346,9 +346,9 @@ class TestDoProvisionPortfolio:
         csp_data = make_initial_csp_data(portfolio)
         trigger_next_transition.assert_called_with(csp_data=csp_data)
 
-    @patch("atat.jobs.send_PPOC_email")
+    @patch("atat.jobs.send_ppoc_email")
     def test_sends_email_to_PPOC_on_completion(
-        self, send_PPOC_email, monkeypatch, csp, portfolio: Portfolio
+        self, send_ppoc_email, monkeypatch, csp, portfolio: Portfolio
     ):
         sm: PortfolioStateMachine = PortfolioStateMachineFactory.create(
             portfolio=portfolio
@@ -359,7 +359,7 @@ class TestDoProvisionPortfolio:
         sm.state = getattr(PortfolioStates, f"{last_step}_CREATED")
         do_provision_portfolio(csp=csp, portfolio_id=portfolio.id)
 
-        send_PPOC_email.assert_called_once()
+        send_ppoc_email.assert_called_once()
 
 
 def test_send_ppoc_email(monkeypatch, app):
@@ -370,7 +370,7 @@ def test_send_ppoc_email(monkeypatch, app):
     user_id = "userid"
     domain_name = "domain"
 
-    send_PPOC_email(
+    send_ppoc_email(
         {
             "password_recovery_email_address": ppoc_email,
             "user_id": user_id,
