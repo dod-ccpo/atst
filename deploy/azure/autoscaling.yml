@@ -3,8 +3,8 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   labels:
-    app: atst
-  name: atst
+    app: atat
+  name: atat
   namespace: atat
 spec:
   minReplicas: 2
@@ -12,7 +12,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: atst
+    name: atat
   metrics:
     - type: Resource
       resource:
@@ -23,8 +23,8 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   labels:
-    app: atst
-  name: atst-worker
+    app: atat
+  name: atat-worker
   namespace: atat
 spec:
   minReplicas: 1
@@ -32,7 +32,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: atst-worker
+    name: atat-worker
   metrics:
     - type: Resource
       resource:

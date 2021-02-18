@@ -44,7 +44,7 @@ runcmd:
   - sudo apt-get install -y python3.7 python3.7-dev ansible terraform kubectl
   - sudo apt-get install -y python3-pip
   - [update-alternatives, --install, /usr/bin/python, python, /usr/bin/python3.7, "1"]
-  - git clone https://github.com/dod-ccpo/atst.git /home/${username}/atst
-  - python -m pip install -r /home/${username}/atst/ops/requirements.txt
+  - git clone https://github.com/dod-ccpo/atat.git /home/${username}/atat
+  - python -m pip install -r /home/${username}/atat/ops/requirements.txt
   - [snap, install, code, "--classic"]
 

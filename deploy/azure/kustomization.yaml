@@ -1,9 +1,9 @@
 namespace: atat
 resources:
   - azure.yml
-  - atst-envvars-configmap.yml
-  - atst-nginx-configmap.yml
-  - atst-worker-envvars-configmap.yml
+  - atat-envvars-configmap.yml
+  - atat-nginx-configmap.yml
+  - atat-worker-envvars-configmap.yml
   - pgsslrootcert.yml
   - acme-challenges.yml
   - nginx-snippets.yml

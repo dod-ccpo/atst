@@ -71,7 +71,7 @@ local-ci.yml
 
 # configuration files
 override.ini
-atst-overrides.ini
+atat-overrides.ini
 
 # binary file created by celery beat
 celerybeat-schedule

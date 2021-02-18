@@ -118,5 +118,5 @@ $ pyenv shell 3.8.7
 ```
 
 From here, your local development environment should be sufficiently configured
-to proceed with the [setup](https://github.com/dod-ccpo/atst#setup) section of
+to proceed with the [setup](https://github.com/dod-ccpo/atat#setup) section of
 the README and to continue with running the local development server.
