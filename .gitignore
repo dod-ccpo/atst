@@ -113,3 +113,6 @@ js/test_templates
 # Terraform
 *.plan
 *.terraform.tfstate.lock.info
+
+# npm lock file; using yarn
+package-lock.json
