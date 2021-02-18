@@ -1801,4 +1801,6 @@ class AzureCloudProvider(CloudProviderInterface):
                     user_object_id,
                     tenant_id,
                 )
-                raise self.sdk.requests.exceptions.RequestException("Error removing elevated access")
+                raise self.sdk.requests.exceptions.RequestException(
+                    "Error removing elevated access"
+                )
