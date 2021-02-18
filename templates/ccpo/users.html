@@ -17,11 +17,11 @@
       <table>
         <thead>
           <tr>
-            <th>{{ "common.name" | translate }}</th>
-            <th>{{ "common.email" | translate }}</th>
-            <th>{{ "common.dod_id" | translate }}</th>
+            <th id="user-name">{{ "common.name" | translate }}</th>
+            <th id="user-email">{{ "common.email" | translate }}</th>
+            <th id="user-dod-id">{{ "common.dod_id" | translate }}</th>
             {% if user_can(permissions.DELETE_CCPO_USER) %}
-              <th></th>
+              <th id="delete-ccpo-user"></th>
             {% endif %}
           </tr>
         </thead>

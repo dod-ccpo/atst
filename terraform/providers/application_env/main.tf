@@ -34,6 +34,7 @@ module "task_order_bucket" {
   subnet_ids             = [azurerm_subnet.aks.id]
   whitelist              = { "operator" = local.operator_ip }
   storage_container_name = var.task_order_bucket_storage_container_name
+  workspace_id           = local.log_analytics_workspace_id
 }
 
 module "container_registry" {

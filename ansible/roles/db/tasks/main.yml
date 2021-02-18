@@ -58,7 +58,7 @@
 
 - name: Initialize database
   shell:
-    cmd: python3.7 script/reset_database.py
+    cmd: python3.8 script/reset_database.py
     chdir: "{{ src_dir }}"
   environment:
     ATAT_PGPASSWORD: "{{  pg_atat_user_password  }}"
@@ -77,7 +77,7 @@
 
 - name: Add CCPO users
   shell:
-    cmd: python3.7 script/add_ccpo_users.py /tmp/ccpo_users.yml
+    cmd: python3.8 script/add_ccpo_users.py /tmp/ccpo_users.yml
     chdir: "{{ src_dir }}"
   environment:
     PGDATABASE: "{{ pg_database_name }}"

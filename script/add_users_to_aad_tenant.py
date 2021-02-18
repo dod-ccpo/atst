@@ -7,8 +7,7 @@ parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(parent_dir)
 
 import argparse
-import random
-from secrets import token_urlsafe
+from secrets import token_urlsafe, choice
 import string
 
 import factory
@@ -19,7 +18,6 @@ from atat.domain.csp.cloud.utils import (
     create_active_directory_user,
 )
 from atat.domain.csp.cloud.models import ServicePrincipalTokenPayload, UserCSPPayload
-
 
 GRAPH_RESOURCE = "https://graph.microsoft.com"
 TOKEN_SCOPE = GRAPH_RESOURCE + "/.default"
@@ -56,20 +54,20 @@ def create_user(token, tenant_id, tenant_host_name):
             "first_name": first_name,
             "last_name": last_name,
             "login_name": payload.user_principal_name,
-            "dod_id": "".join(random.choices(string.digits, k=10)),
+            "dod_id": "".join(choice(string.digits) for _ in range(10)),
         }
     )
     return result
 
 
 def run(cli_args):
-    users = []
     token = get_token(
         TOKEN_SCOPE, cli_args.client_id, cli_args.client_secret, cli_args.tenant_id
     )
-    for i in range(cli_args.user_count):
-        user = create_user(token, cli_args.tenant_id, cli_args.tenant_name)
-        users.append(user)
+    users = [
+        create_user(token, cli_args.tenant_id, cli_args.tenant_name)
+        for _ in range(cli_args.user_count)
+    ]
 
     with open(cli_args.out, "w") as output:
         yaml.dump(users, output)

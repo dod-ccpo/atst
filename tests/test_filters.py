@@ -1,6 +1,6 @@
 import pytest
 
-from atat.filters import dollars, renderAuditEvent, usPhone
+from atat.filters import dollars, render_audit_event, us_phone
 from atat.models import AuditEvent
 
 
@@ -21,18 +21,18 @@ def test_dollar_fomatter(input, expected):
 @pytest.mark.audit_log
 def test_render_audit_event_with_known_resource_type():
     event = AuditEvent(resource_type="user")
-    result = renderAuditEvent(event)
+    result = render_audit_event(event)
     assert "<article" in result
 
 
 @pytest.mark.audit_log
 def test_render_audit_event_with_unknown_resource_type():
     event = AuditEvent(resource_type="boat")
-    result = renderAuditEvent(event)
+    result = render_audit_event(event)
     assert "<article" in result
 
 
 def test_usPhone():
-    assert usPhone("1234567890") == "+1 (123) 456 - 7890"
-    assert usPhone(number=None) == ""
-    assert usPhone(number="") == ""
+    assert us_phone("1234567890") == "+1 (123) 456 - 7890"
+    assert us_phone(number=None) == ""
+    assert us_phone(number="") == ""

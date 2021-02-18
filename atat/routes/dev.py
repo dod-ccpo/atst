@@ -41,6 +41,10 @@ def random_service_branch():
     return random.choice([k for k, v in SERVICE_BRANCHES if k])  # nosec
 
 
+_US = "United States"
+_MILITARY = "military"
+_DEV_PHONE_NUMBER = "1234567890"
+
 _DEV_USERS = {
     "sam": {
         "dod_id": "6346349876",
@@ -49,9 +53,9 @@ _DEV_USERS = {
         "permission_sets": _ALL_PERMS,
         "email": "sam@example.com",
         "service_branch": random_service_branch(),
-        "phone_number": "1234567890",
-        "citizenship": "United States",
-        "designation": "military",
+        "phone_number": _DEV_PHONE_NUMBER,
+        "citizenship": _US,
+        "designation": _MILITARY,
     },
     "amanda": {
         "dod_id": "2345678901",
@@ -59,9 +63,9 @@ _DEV_USERS = {
         "last_name": "Adamson",
         "email": "amanda@example.com",
         "service_branch": random_service_branch(),
-        "phone_number": "1234567890",
-        "citizenship": "United States",
-        "designation": "military",
+        "phone_number": _DEV_PHONE_NUMBER,
+        "citizenship": _US,
+        "designation": _MILITARY,
     },
     "brandon": {
         "dod_id": "3456789012",
@@ -69,9 +73,9 @@ _DEV_USERS = {
         "last_name": "Buchannan",
         "email": "brandon@example.com",
         "service_branch": random_service_branch(),
-        "phone_number": "1234567890",
-        "citizenship": "United States",
-        "designation": "military",
+        "phone_number": _DEV_PHONE_NUMBER,
+        "citizenship": _US,
+        "designation": _MILITARY,
     },
     "christina": {
         "dod_id": "4567890123",
@@ -79,9 +83,9 @@ _DEV_USERS = {
         "last_name": "Collins",
         "email": "christina@example.com",
         "service_branch": random_service_branch(),
-        "phone_number": "1234567890",
-        "citizenship": "United States",
-        "designation": "military",
+        "phone_number": _DEV_PHONE_NUMBER,
+        "citizenship": _US,
+        "designation": _MILITARY,
     },
     "dominick": {
         "dod_id": "5678901234",
@@ -89,9 +93,9 @@ _DEV_USERS = {
         "last_name": "Domingo",
         "email": "dominick@example.com",
         "service_branch": random_service_branch(),
-        "phone_number": "1234567890",
-        "citizenship": "United States",
-        "designation": "military",
+        "phone_number": _DEV_PHONE_NUMBER,
+        "citizenship": _US,
+        "designation": _MILITARY,
     },
     "erica": {
         "dod_id": "6789012345",
@@ -99,9 +103,9 @@ _DEV_USERS = {
         "last_name": "Eichner",
         "email": "erica@example.com",
         "service_branch": random_service_branch(),
-        "phone_number": "1234567890",
-        "citizenship": "United States",
-        "designation": "military",
+        "phone_number": _DEV_PHONE_NUMBER,
+        "citizenship": _US,
+        "designation": _MILITARY,
     },
 }
 

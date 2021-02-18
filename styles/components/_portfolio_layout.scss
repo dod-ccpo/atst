@@ -60,6 +60,7 @@
 
       .icon {
         @include icon-color($color-blue-darkest);
+        @include icon-size(30);
       }
 
       &.active {
@@ -79,10 +80,6 @@
       &--icon {
         text-align: center;
       }
-
-      .icon {
-        @include icon-size(30);
-      }
     }
   }
 }
@@ -93,11 +90,6 @@
   text-transform: uppercase;
   font-weight: bold;
   margin-bottom: 3 * $gap;
-}
-
-.portfolio-admin {
-  margin: $large-spacing 0;
-  max-width: $max-panel-width;
 }
 
 .portfolio-content {
@@ -405,6 +397,9 @@
 }
 
 .portfolio-admin {
+  margin: $large-spacing 0;
+  max-width: $max-panel-width;
+
   .edit-portfolio-name.action-group {
     margin-top: 2rem;
   }

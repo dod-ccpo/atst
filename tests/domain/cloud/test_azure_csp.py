@@ -859,7 +859,7 @@ def test_create_admin_role_definition(
         json_data={
             "value": [
                 {"id": "wrongid", "displayName": "Wrong Role"},
-                {"id": "id", "displayName": "Company Administrator"},
+                {"id": "id", "displayName": "Global Administrator"},
             ]
         }
     )

@@ -1,6 +1,5 @@
 import { set } from 'vue/dist/vue'
 import { formatDollars } from '../../lib/dollars'
-import { set as _set } from 'lodash'
 
 export default {
   name: 'spend-table',

@@ -14,6 +14,8 @@ from atat.utils.localization import translate
 
 from .blueprint import portfolios_bp
 
+_PORTFOLIO_ADMIN_URL = "portfolios.admin"
+
 
 def send_portfolio_invitation(invitee_email, inviter_name, token):
     body = render_template(
@@ -50,7 +52,7 @@ def revoke_invitation(portfolio_id, portfolio_token):
     )
     return redirect(
         url_for(
-            "portfolios.admin",
+            _PORTFOLIO_ADMIN_URL,
             portfolio_id=portfolio_id,
             _anchor="portfolio-members",
             fragment="portfolio-members",
@@ -81,7 +83,7 @@ def resend_invitation(portfolio_id, portfolio_token):
 
     return redirect(
         url_for(
-            "portfolios.admin",
+            _PORTFOLIO_ADMIN_URL,
             portfolio_id=portfolio_id,
             fragment="portfolio-members",
             _anchor="portfolio-members",
@@ -112,13 +114,12 @@ def invite_member(portfolio_id):
             return render_template(
                 "error.html", message="There was an error processing your request."
             )
-    else:
-        pass
-        # TODO: flash error message
+
+    # TODO: flash error message if form is invalid
 
     return redirect(
         url_for(
-            "portfolios.admin",
+            _PORTFOLIO_ADMIN_URL,
             portfolio_id=portfolio_id,
             fragment="portfolio-members",
             _anchor="portfolio-members",

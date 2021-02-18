@@ -4,14 +4,14 @@ from wtforms.fields import RadioField, StringField
 from wtforms.fields.html5 import EmailField, TelField
 from wtforms.validators import DataRequired, Email, Length, Optional
 
-from atat.forms.validators import Number
+from atat.forms.validators import number
 from atat.models.user import User
 from atat.utils.localization import translate
 
 from .data import SERVICE_BRANCHES
 from .fields import SelectField
 from .forms import BaseForm
-from .validators import Name, PhoneNumber
+from .validators import name, phone_number
 
 SERVICE_BRANCH_CHOICES = [
     ("", translate("fragments.edit_user_form.service_choice"))
@@ -20,17 +20,17 @@ SERVICE_BRANCH_CHOICES = [
 USER_FIELDS = {
     "first_name": StringField(
         translate("forms.edit_user.first_name_label"),
-        validators=[Name(), Length(max=100)],
+        validators=[name(), Length(max=100)],
     ),
     "last_name": StringField(
         translate("forms.edit_user.last_name_label"),
-        validators=[Name(), Length(max=100)],
+        validators=[name(), Length(max=100)],
     ),
     "email": EmailField(translate("forms.edit_user.email_label"), validators=[Email()]),
     "phone_number": TelField(
-        translate("forms.edit_user.phone_number_label"), validators=[PhoneNumber()]
+        translate("forms.edit_user.phone_number_label"), validators=[phone_number()]
     ),
-    "phone_ext": StringField("Extension", validators=[Number(), Length(max=10)]),
+    "phone_ext": StringField("Extension", validators=[number(), Length(max=10)]),
     "service_branch": SelectField(
         translate("forms.edit_user.service_branch_label"),
         choices=SERVICE_BRANCH_CHOICES,

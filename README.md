@@ -23,11 +23,11 @@ using the Windows Subsystem for Linux.
 Before running the setup scripts, a couple of dependencies need to be installed
 locally:
 
-* `python` == 3.7.3
-  Python version 3.7.3 **must** be installed on your machine before installing `poetry`.
-  You can download Python 3.7.3 [from python.org](https://www.python.org/downloads/)
+* `python` >= 3.8
+  Python version 3.8 **must** be installed on your machine before installing `poetry`.
+  You can download Python 3.8 [from python.org](https://www.python.org/downloads/)
   or use your preferred system package manager. Multiple versions of Python can exist on one
-  computer, but 3.7.3 is required for ATAT.
+  computer, but 3.8 or newer is required for ATAT.
 
 * `poetry`
   ATAT requires `poetry` to be installed for python dependency management. `poetry`
@@ -163,11 +163,11 @@ To log in as one of them, navigate to `/login-local?username=<lowercase name>`.
 For example `/login-local?username=amanda`.
 
 Additionally, this endpoint can be used to log into any real users in the dev environments by providing their DoD ID:
-`/login-local?dod_id=1234567890123`
+`/login-local?dod_id=1234567890`
 
 With ALLOW_LOCAL_ACCESS enabled, you can create new users by passing first name, last name, and DoD ID query parameters to `/dev-new-user` like so:
 ```
-/dev-new-user?first_name=Harrold&last_name=Henderson&dod_id=1234567890123
+/dev-new-user?first_name=Harrold&last_name=Henderson&dod_id=1234567890
 ```
 And it will create the new user, sign in as them, and load their profile page to fill out the rest of the details.
 

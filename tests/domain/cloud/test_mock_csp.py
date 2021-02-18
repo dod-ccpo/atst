@@ -1,6 +1,8 @@
+import unittest
+
 import pytest
 
-from atat.domain.csp import MockCloudProvider
+from atat.domain.csp import CSP, MockCloudProvider
 from atat.domain.csp.cloud.models import (
     BillingProfileCreationCSPPayload,
     BillingProfileCreationCSPResult,
@@ -81,3 +83,13 @@ def test_create_or_update_user(mock_csp: MockCloudProvider):
 
 def test_disable_user(mock_csp: MockCloudProvider):
     assert mock_csp.disable_user("tenant_id", "role_assignment_cloud_id")
+
+
+class CspTestError(unittest.TestCase):
+    def test_value_error_raised_incorrect_csp(self):
+        """
+        Checks to make sure a value that is not "hybrid", "mock", "mock-test", and "azure" raises an exception
+
+        """
+        with self.assertRaises(ValueError):
+            CSP("Foo", {})

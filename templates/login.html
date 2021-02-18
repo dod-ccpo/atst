@@ -30,14 +30,7 @@
         {% endwith %}
 
         {{ Alert(("login.certificate_selection.title" | translate),
-          message=("login.certificate_selection.message" | translate),
-          actions=[
-            {
-              'label': ("login.certificate_selection.learn_more" | translate),
-              'icon': 'help',
-              'href': '/help'
-            }
-          ]
+          message=("login.certificate_selection.message" | translate)
         ) }}
 
       </div>

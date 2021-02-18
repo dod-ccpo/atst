@@ -75,6 +75,7 @@ atst-overrides.ini
 
 # binary file created by celery beat
 celerybeat-schedule
+celerybeat-schedule.*
 
 # templates created for JS tests
 js/test_templates
@@ -89,6 +90,8 @@ js/test_templates
 
 # vscode config files
 .vscode/
+# intellij/pycharm config files
+.idea/
 
 # mac indexing
 **/*.DS_Store
@@ -110,3 +113,6 @@ js/test_templates
 # Terraform
 *.plan
 *.terraform.tfstate.lock.info
+
+# npm lock file; using yarn
+package-lock.json

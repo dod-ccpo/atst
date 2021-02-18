@@ -2,6 +2,8 @@ from flask import flash
 
 from atat.utils.localization import translate
 
+_FLASH_SUCCESS = "flash.success"
+
 MESSAGES = {
     "application_created": {
         "title": "flash.application.created.title",
@@ -9,7 +11,7 @@ MESSAGES = {
         "category": "success",
     },
     "application_updated": {
-        "title": "flash.success",
+        "title": _FLASH_SUCCESS,
         "message": "flash.application.updated",
         "category": "success",
     },
@@ -54,7 +56,7 @@ MESSAGES = {
         "category": "error",
     },
     "ccpo_user_added": {
-        "title": "flash.success",
+        "title": _FLASH_SUCCESS,
         "message": "flash.ccpo_user.added.message",
         "category": "success",
     },
@@ -64,12 +66,12 @@ MESSAGES = {
         "category": "info",
     },
     "ccpo_user_removed": {
-        "title": "flash.success",
+        "title": _FLASH_SUCCESS,
         "message": "flash.ccpo_user.removed.message",
         "category": "success",
     },
     "environment_added": {
-        "title": "flash.success",
+        "title": _FLASH_SUCCESS,
         "message": "flash.environment_added",
         "category": "success",
     },
@@ -179,7 +181,7 @@ MESSAGES = {
         "category": "error",
     },
     "updated_application_team_settings": {
-        "title": "flash.success",
+        "title": _FLASH_SUCCESS,
         "message": "flash.updated_application_team_settings",
         "category": "success",
     },
