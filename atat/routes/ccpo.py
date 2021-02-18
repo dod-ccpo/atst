@@ -15,6 +15,8 @@ from atat.utils.flash import formatted_flash as flash
 bp = Blueprint("ccpo", __name__)
 bp.context_processor(atat_context_processor)
 
+_CCPO_USERS_ROUTE = "ccpo.users"
+
 
 @bp.route("/activity-history")
 @user_can(Permissions.VIEW_AUDIT_LOG, message="view activity log")
@@ -50,7 +52,7 @@ def submit_new_user():
         form = CCPOUserForm(obj=new_user)
     except NotFoundError:
         flash("ccpo_user_not_found")
-        return redirect(url_for("ccpo.users"))
+        return redirect(url_for(_CCPO_USERS_ROUTE))
 
     return render_template("ccpo/confirm_user.html", new_user=new_user, form=form)
 
@@ -61,7 +63,7 @@ def confirm_new_user():
     user = Users.get_by_dod_id(request.form["dod_id"])
     Users.give_ccpo_perms(user)
     flash("ccpo_user_added", user_name=user.full_name)
-    return redirect(url_for("ccpo.users"))
+    return redirect(url_for(_CCPO_USERS_ROUTE))
 
 
 @bp.route("/ccpo-users/remove-access/<user_id>", methods=["POST"])
@@ -70,4 +72,4 @@ def remove_access(user_id):
     user = Users.get(user_id)
     Users.revoke_ccpo_perms(user)
     flash("ccpo_user_removed", user_name=user.full_name)
-    return redirect(url_for("ccpo.users"))
+    return redirect(url_for(_CCPO_USERS_ROUTE))

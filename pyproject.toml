@@ -10,7 +10,7 @@ homepage = "https://github.com/dod-ccpo/atst"
 
 
 [tool.poetry.dependencies]
-python = "3.7.3"
+python = "~3.8.7"
 alembic = "*"
 azure-storage-blob = "*"
 cachetools = "^4.2.0"
@@ -64,7 +64,7 @@ pytest-depends = "^1.0.1"
 
 [tool.black]
 line-length = 88
-target-version = ['py37']
+target-version = ['py38']
 include = '\.pyi?$'
 exclude = '''
 /(

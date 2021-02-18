@@ -515,12 +515,12 @@ task_orders:
         JEDI_CLIN_3: "Unclassified Cloud Support Package (IDIQ CLIN 0003)"
         JEDI_CLIN_4: "Classified Cloud Support Package (IDIQ CLIN 0004)"
     tooltip:
-      obligated_funds: Funds committed to fund your portfolio. This may represent 100% of your total Task Order value, or a portion of it.
-      total_value: All obligated and projected funds for the Task Order’s Base and Option CLINs.
+      obligated_funds: Funds committed to fund your portfolio. This may represent 100% of your total task order value, or a portion of it.
+      total_value: All obligated and projected funds for the task order’s Base and Option CLINs.
   form:
     add_clin: Add Another CLIN
     add_to_header: Enter the Task Order number
-    add_to_description: Please input your Task Order number. This number is listed under "Order Number" on form SF 1449. Moving forward, this portion of funding will be referenced by the recorded Task Order number.
+    add_to_description: Please input your task order number. This number is listed under "Order Number" on form SF 1449. Moving forward, this portion of funding will be referenced by the recorded task order number.
     builder_base:
       cancel_modal: Do you want to save this draft?
       delete_draft: No, delete it
@@ -547,7 +547,7 @@ task_orders:
     supporting_docs_size_limit: "Your file may not exceed {file_size_limit}MB"
     step_1:
       title: Upload your approved Task Order (TO)
-      description: Upload your approved Task Order here. You are required to confirm you have the appropriate signature. You will have the ability to add additional approved Task Orders with more funding to this Portfolio in the future.
+      description: Upload your approved task order here. You are required to confirm you have the appropriate signature. You will have the ability to add additional approved task orders with more funding to this portfolio in the future.
       next_button: "Next: Add TO Number"
     step_2:
       next_button: "Next: Add Base CLIN"
@@ -560,17 +560,17 @@ task_orders:
       next_button: "Next: Confirm"
     step_5:
       cta_text: Verify Your Information
-      description: Prior to submitting the Task Order, you must acknowledge, by marking the appropriate box below, that the uploaded Task Order is signed by an appropriate, duly warranted Contracting Officer who has the authority to execute the uploaded Task Order on your Agency’s behalf and has authorized you to upload the Task Order in accordance with Agency policy and procedures. You must further acknowledge, by marking the appropriate box below, that all information entered herein matches that of the submitted Task Order.
+      description: Prior to submitting the task order, you must acknowledge, by marking the appropriate box below, that the uploaded task order is signed by an appropriate, duly warranted Contracting Officer who has the authority to execute the uploaded task order on your Agency’s behalf and has authorized you to upload the task order in accordance with Agency policy and procedures. You must further acknowledge, by marking the appropriate box below, that all information entered herein matches that of the submitted task order.
       next_button: "Submit Task Order"
     sticky_header_text: "Add a Task Order"
     sticky_header_review_text: Review Changes
     sticky_header_context: "Step {step} of 5"
   sign:
     digital_signature_description: I confirm the uploaded task order is signed by the appropriate, duly warranted Agency Contracting Officer who authorized me to upload the task order.
-    confirmation_description: I confirm that the information entered here in matches that of the submitted Task Order.
+    confirmation_description: I confirm that the information entered here in matches that of the submitted task order.
     acknowledge:
       title: Acknowledge Statement
-      text: I acknowledge, by executing the confirmation above and submitting this verification, that I am subject to potential penalties that may include fines, imprisonment, or both, under the U.S. law and regulations for any false statement or misrepresentation in association with this Task Order submission or on any accompanying documentation.
+      text: I acknowledge, by executing the confirmation above and submitting this verification, that I am subject to potential penalties that may include fines, imprisonment, or both, under the U.S. law and regulations for any false statement or misrepresentation in association with this task order submission or on any accompanying documentation.
   status_empty_state: "This Portfolio has no {status} Task Orders."
   status_list_title: "{status} Task Orders"
   summary:

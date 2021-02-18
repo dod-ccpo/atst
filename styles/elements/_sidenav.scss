@@ -75,7 +75,6 @@
   &__list {
     margin-top: 3 * $gap;
     margin-bottom: $footer-height;
-    padding-bottom: ($gap * 2);
     position: fixed;
     overflow-y: scroll;
     top: $topbar-height + $usa-banner-height + 4rem;
@@ -84,7 +83,7 @@
     width: $sidenav-expanded-width;
     background-color: $color-white;
     list-style: none;
-    padding: 0;
+    padding: 0 0 ($gap * 2) 0;
 
     &--no-header {
       top: $topbar-height + $usa-banner-height;

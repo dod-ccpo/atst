@@ -1,4 +1,3 @@
-import ally from 'ally.js'
 import stickybits from 'stickybits'
 
 import DateSelector from '../date_selector'

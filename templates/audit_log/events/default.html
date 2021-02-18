@@ -3,7 +3,7 @@
 {% block content %}
   {% if event.event_details %}
     <br>
-    <b>{{ "audit_log.events.default.details" | translate }}</b>
+    <strong>{{ "audit_log.events.default.details" | translate }}</strong>
     <dl>
       {% for key, value in event.event_details.items() %}
         {% if value is not none %}
@@ -15,7 +15,7 @@
   {% endif %}
   {% if event.changed_state %}
     <br>
-    <b>{{ "audit_log.events.default.changes" | translate }}</b>
+    <strong>{{ "audit_log.events.default.changes" | translate }}</strong>
     <dl>
       {% for key, value in event.changed_state.items() %}
         <dt>{{ key }}</dt>
