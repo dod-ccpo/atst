@@ -90,6 +90,8 @@ js/test_templates
 
 # vscode config files
 .vscode/
+# intellij/pycharm config files
+.idea/
 
 # mac indexing
 **/*.DS_Store

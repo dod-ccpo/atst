@@ -2,7 +2,7 @@ from wtforms.fields import SelectMultipleField, StringField, TextAreaField
 from wtforms.validators import InputRequired, Length
 from wtforms.widgets import CheckboxInput, ListWidget
 
-from atat.forms.validators import Name
+from atat.forms.validators import name
 from atat.utils.localization import translate
 
 from .data import SERVICE_BRANCHES
@@ -18,7 +18,7 @@ class PortfolioForm(BaseForm):
                 max=100,
                 message=translate("forms.portfolio.name.length_validation_message"),
             ),
-            Name(),
+            name(),
         ],
     )
     description = TextAreaField(

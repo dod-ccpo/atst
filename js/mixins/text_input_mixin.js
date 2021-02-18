@@ -92,9 +92,10 @@ export default {
     },
 
     onBlur: function (e) {
-      if (!(this.optional && e.target.value === '')) {
-        this._checkIfValid({ value: e.target.value.trim(), invalidate: true })
-      } else if (this.modified && !this.optional) {
+      if (
+        !(this.optional && e.target.value === '') ||
+        (this.modified && !this.optional)
+      ) {
         this._checkIfValid({ value: e.target.value.trim(), invalidate: true })
       }
       this.value = e.target.value.trim()

@@ -230,7 +230,7 @@ def random_applications():
             "description": fake.bs(),
             "environments": random.sample(ENVIRONMENT_NAMES, k=random.randint(1, 4)),
         }
-        for n in range(random.randint(1, 4))
+        for _ in range(random.randint(1, 4))
     ]
 
 
@@ -297,7 +297,6 @@ def create_demo_portfolio(name, data):
                 DEV_USERS["amanda"],
             ),
         )  # Amanda
-        # auditor = Users.get_by_dod_id("3453453453")  # Sally
     except NotFoundError:
         print(
             "Could not find demo users; will not create demo portfolio {}".format(name)
@@ -317,7 +316,7 @@ def create_demo_portfolio(name, data):
             portfolio=portfolio, name=mock_application["name"], description=""
         )
         env_names = [env["name"] for env in mock_application["environments"]]
-        envs = Environments.create_many(portfolio.owner, application, env_names)
+        Environments.create_many(portfolio.owner, application, env_names)
         db.session.add(application)
         db.session.commit()
 

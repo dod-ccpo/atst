@@ -46,7 +46,6 @@ export default {
     return {
       clinIndex: this.initialClinIndex,
       clinNumber: clinNumber,
-      clinNumber: clinNumber,
       showClin: true,
       totalAmount: this.initialTotal || 0,
       obligatedAmount: this.initialObligated || 0,
