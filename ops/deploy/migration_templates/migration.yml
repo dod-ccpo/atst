@@ -10,7 +10,7 @@ spec:
   template:
     metadata:
       labels:
-        app: atst
+        app: atat
         role: migration
         aadpodidbinding: atat-kv-id-binding
     spec:
@@ -24,20 +24,20 @@ spec:
         ]
         args:
           - |
-              /opt/atat/atst/.venv/bin/python \
-              /opt/atat/atst/.venv/bin/alembic \
+              /opt/atat/atat/.venv/bin/python \
+              /opt/atat/atat/.venv/bin/alembic \
               upgrade head \
               && \
-              /opt/atat/atst/.venv/bin/python \
-              /opt/atat/atst/script/seed_roles.py
+              /opt/atat/atat/.venv/bin/python \
+              /opt/atat/atat/script/seed_roles.py
         envFrom:
         - configMapRef:
-            name: atst-envvars
+            name: atat-envvars
         - configMapRef:
-            name: atst-worker-envvars
+            name: atat-worker-envvars
         volumeMounts:
           - name: pgsslrootcert
-            mountPath: "/opt/atat/atst/ssl/pgsslrootcert.crt"
+            mountPath: "/opt/atat/atat/ssl/pgsslrootcert.crt"
             subPath: pgsslrootcert.crt
           - name: flask-secret
             mountPath: "/config"

@@ -4,8 +4,8 @@ description = ""
 license= "MIT"
 name = "atat"
 version = "0.1.0"
-repository = "https://github.com/dod-ccpo/atst"
-homepage = "https://github.com/dod-ccpo/atst"
+repository = "https://github.com/dod-ccpo/atat"
+homepage = "https://github.com/dod-ccpo/atat"
 
 
 

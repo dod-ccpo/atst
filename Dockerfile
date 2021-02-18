@@ -57,7 +57,7 @@ FROM $IMAGE
 ###############################
 # Overridable default config
 # App directory is provided using `--build-arg APP_DIR=<app-dir>`.
-ARG APP_DIR=/opt/atat/atst
+ARG APP_DIR=/opt/atat/atat
 # Git SHA is provided using `--build-arg GIT_SHA=<git-sha>`.
 ARG GIT_SHA
 
@@ -103,15 +103,15 @@ RUN mkdir /var/run/uwsgi \
     # Create a system group `atat`.
     # https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/s2-groups-cl-tools
     && groupadd --system -g 101 atat \
-    # Create a system user `atst` and add them to the `atat` group.
+    # Create a system user `atat` and add them to the `atat` group.
     # https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/s2-users-cl-tools
-    && useradd --system atst -g atat \
-    && chown -R atst:atat /var/run/uwsgi \
-    && chown -R atst:atat "${APP_DIR}" \
+    && useradd --system atat -g atat \
+    && chown -R atat:atat /var/run/uwsgi \
+    && chown -R atat:atat "${APP_DIR}" \
     && update-ca-trust
 
 # Run as the unprivileged APP user
-USER atst
+USER atat
 
 # Use dumb-init for proper signal handling
 ENTRYPOINT ["dumb-init", "--"]

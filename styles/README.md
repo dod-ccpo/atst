@@ -1,6 +1,6 @@
-# Styling AT-ST
+# Styling ATAT
 
-AT-ST's user interface components are based on the (U.S. Web Design System)[https://designsystem.digital.gov/components/]. Please refer there when deciding how to implement a UI feature.
+ATAT's user interface components are based on the (U.S. Web Design System)[https://designsystem.digital.gov/components/]. Please refer there when deciding how to implement a UI feature.
 
 ## CSS Architecture
 ### (Copied from https://github.com/uswds/uswds#css-architecture)
