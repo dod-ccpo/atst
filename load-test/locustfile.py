@@ -89,7 +89,7 @@ def create_application(client, parent, portfolio_id):
 
     # set up application environments
     create_environments_url = f"/applications/{application_id}/new/step_2"
-    response = client.post(
+    client.post(
         create_environments_url + f"?portfolio_id={portfolio_id}",
         {
             "environment_names-0": "Development",

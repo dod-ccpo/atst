@@ -10,8 +10,6 @@ from atat.models.portfolio_role import PortfolioRole
 from atat.models.portfolio_role import Status as PortfolioRoleStatus
 from atat.models.portfolio_state_machine import PortfolioStateMachine
 
-# from atat.models.application import Application
-
 
 class PortfolioStateMachinesQuery(Query):
     model = PortfolioStateMachine

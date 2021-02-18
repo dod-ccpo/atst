@@ -12,6 +12,9 @@ from atat.utils.flash import formatted_flash as flash
 
 from .blueprint import task_orders_bp
 
+_TASK_ORDER_FORM_STEP_ONE_URL = "task_orders.form_step_one_add_pdf"
+_TASK_ORDER_FORM_STEP_TWO_URL = "task_orders.form_step_two_add_number"
+
 
 def render_task_orders_edit(
     template, portfolio_id=None, task_order_id=None, form=None, extra_args=None
@@ -147,11 +150,11 @@ def edit(task_order_id):
 
     if not task_order.pdf:
         return redirect(
-            url_for("task_orders.form_step_one_add_pdf", task_order_id=task_order_id)
+            url_for(_TASK_ORDER_FORM_STEP_ONE_URL, task_order_id=task_order_id)
         )
     elif not task_order.number:
         return redirect(
-            url_for("task_orders.form_step_two_add_number", task_order_id=task_order_id)
+            url_for(_TASK_ORDER_FORM_STEP_TWO_URL, task_order_id=task_order_id)
         )
     elif not task_order.clins_are_completed:
         return redirect(
@@ -165,7 +168,7 @@ def edit(task_order_id):
         )
     else:
         return redirect(
-            url_for("task_orders.form_step_one_add_pdf", task_order_id=task_order_id)
+            url_for(_TASK_ORDER_FORM_STEP_ONE_URL, task_order_id=task_order_id)
         )
 
 
@@ -187,7 +190,7 @@ def form_step_one_add_pdf(portfolio_id=None, task_order_id=None):
 @user_can(Permissions.CREATE_TASK_ORDER, message="update task order form")
 def submit_form_step_one_add_pdf(portfolio_id=None, task_order_id=None):
     form_data = {**http_request.form}
-    next_page = "task_orders.form_step_two_add_number"
+    next_page = _TASK_ORDER_FORM_STEP_TWO_URL
     current_template = "task_orders/step_1.html"
 
     return update_and_render_next(
@@ -243,7 +246,7 @@ def submit_form_step_two_add_number(task_order_id):
     next_page = (
         "task_orders.form_step_three_add_clins"
         if not previous
-        else "task_orders.form_step_one_add_pdf"
+        else _TASK_ORDER_FORM_STEP_ONE_URL
     )
     current_template = "task_orders/step_2.html"
 
@@ -272,7 +275,7 @@ def submit_form_step_three_add_clins(task_order_id):
     next_page = (
         "task_orders.form_step_four_review"
         if not previous
-        else "task_orders.form_step_two_add_number"
+        else _TASK_ORDER_FORM_STEP_TWO_URL
     )
     current_template = "task_orders/step_3.html"
 

@@ -14,6 +14,7 @@ from unipath import Path
 
 from atat.assets import environment as assets_environment
 from atat.database import db
+from atat.debug import setup_debug_toolbar
 from atat.domain.auth import apply_authentication
 from atat.domain.authz import Authorization
 from atat.domain.csp import make_csp_provider
@@ -87,6 +88,9 @@ def make_app(config):
 
     if ENV != "prod":
         app.register_blueprint(dev_routes)
+
+    # Activate debug toolbar if it is the right env
+    setup_debug_toolbar(app, ENV)
 
     if app.config.get("ALLOW_LOCAL_ACCESS"):
         app.register_blueprint(local_access_bp)

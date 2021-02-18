@@ -25,12 +25,12 @@ echo "Now copying this state to the remote"
 terraform init -force-copy
 terraform refresh -var "namespace=$1"
 
-export REGISTRY_NAME=$(terraform output operations_container_registry_login_server)
-export TF_VAR_resource_group_name=$(terraform output operations_resource_group_name)
-export TF_VAR_storage_account_name=$(terraform output operations_storage_account_name)
-export SUBNET_ID=$(terraform output operations_deployment_subnet_id)
-export OPERATIONS_VIRTUAL_NETWORK=$(terraform output operations_virtual_network)
-export LOGGING_WORKSPACE=$(terraform output logging_workspace_name)
+export REGISTRY_NAME=$(terraform output -raw operations_container_registry_login_server)
+export TF_VAR_resource_group_name=$(terraform output -raw operations_resource_group_name)
+export TF_VAR_storage_account_name=$(terraform output -raw operations_storage_account_name)
+export SUBNET_ID=$(terraform output -raw operations_deployment_subnet_id)
+export OPERATIONS_VIRTUAL_NETWORK=$(terraform output -raw operations_virtual_network)
+export LOGGING_WORKSPACE=$(terraform output -raw logging_workspace_name)
 
 
 # Now, need to lock that folder down to just the subnet that was created.
@@ -43,7 +43,7 @@ cd ../../../../atat-rhel-image
 make run-build-push-task
 
 echo "Building Python Base"
-cd ../atst
+cd ../atat
 az acr build --registry ${REGISTRY_NAME} \
   --build-arg IMAGE=${REGISTRY_NAME}/rhelubi:8.3 \
   --build-arg "redhat_username=$2" \
@@ -73,7 +73,7 @@ az container create \
   --registry-username ${TF_VAR_operator_client_id} \
   --memory 4 \
   --cpu 4 \
-  --secure-environment-variables "OPS_RESOURCE_GROUP=$TF_VAR_resource_group_name" "OPS_STORAGE_ACCOUNT=$TF_VAR_storage_account_name" "SUBSCRIPTION_ID=$TF_VAR_operator_subscription_id" "SP_CLIENT_ID=$TF_VAR_operator_client_id" "SP_CLIENT_SECRET=$TF_VAR_operator_client_secret" "TENANT_ID=$TF_VAR_operator_tenant_id" "OPS_REGISTRY=$REGISTRY_NAME" "NAMESPACE=$1" "LOGGING_WORKSPACE=$LOGGING_WORKSPACE" \
+  --secure-environment-variables "OPS_RESOURCE_GROUP=$TF_VAR_resource_group_name" "OPS_STORAGE_ACCOUNT=$TF_VAR_storage_account_name" "SUBSCRIPTION_ID=$TF_VAR_operator_subscription_id" "SP_CLIENT_ID=$TF_VAR_operator_client_id" "SP_CLIENT_SECRET=\'$TF_VAR_operator_client_secret\'" "TENANT_ID=$TF_VAR_operator_tenant_id" "OPS_REGISTRY=$REGISTRY_NAME" "NAMESPACE=$1" "LOGGING_WORKSPACE=$LOGGING_WORKSPACE" \
   --command-line "tail -f /dev/null" \
   --log-analytics-workspace $LOGGING_WORKSPACE \
   --restart-policy Never

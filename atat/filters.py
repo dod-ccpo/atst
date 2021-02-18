@@ -10,17 +10,17 @@ from jinja2.exceptions import TemplateNotFound
 from atat.utils.localization import translate
 
 
-def iconSvg(name):
+def icon_svg(name):
     with open("static/icons/" + name + ".svg") as contents:
         return contents.read()
 
 
 def dollars(value):
     try:
-        numberValue = float(value)
+        number_value = float(value)
     except ValueError:
-        numberValue = 0
-    return "${:,.2f}".format(numberValue)
+        number_value = 0
+    return "${:,.2f}".format(number_value)
 
 
 def with_extra_params(url, **params):
@@ -34,14 +34,14 @@ def with_extra_params(url, **params):
     return urlunparse(parsed_url)
 
 
-def usPhone(number):
+def us_phone(number):
     if not number:
         return ""
     phone = re.sub(r"\D", "", number)
     return "+1 ({}) {} - {}".format(phone[0:3], phone[3:6], phone[6:])
 
 
-def obligatedFundingGraphWidth(values):
+def obligated_funding_graph_width(values):
     numerator, denominator = values
     try:
         return (numerator / denominator) * 100
@@ -49,14 +49,14 @@ def obligatedFundingGraphWidth(values):
         return 0
 
 
-def formattedDate(value, formatter="%m/%d/%Y"):
+def formatted_date(value, formatter="%m/%d/%Y"):
     if value:
         return value.strftime(formatter)
     else:
         return "-"
 
 
-def pageWindow(pagination, size=2):
+def page_window(pagination, size=2):
     page = pagination.page
     num_pages = pagination.pages
 
@@ -66,7 +66,7 @@ def pageWindow(pagination, size=2):
     return (max(1, (page - size) - over), min(num_pages, (page + size) - under))
 
 
-def renderAuditEvent(event):
+def render_audit_event(event):
     template_name = "audit_log/events/{}.html".format(event.resource_type)
     try:
         return render_template(template_name, event=event)
@@ -75,20 +75,20 @@ def renderAuditEvent(event):
 
 
 def register_filters(app):
-    app.jinja_env.filters["iconSvg"] = iconSvg
+    app.jinja_env.filters["iconSvg"] = icon_svg
     app.jinja_env.filters["dollars"] = dollars
-    app.jinja_env.filters["usPhone"] = usPhone
-    app.jinja_env.filters["formattedDate"] = formattedDate
-    app.jinja_env.filters["pageWindow"] = pageWindow
-    app.jinja_env.filters["renderAuditEvent"] = renderAuditEvent
+    app.jinja_env.filters["usPhone"] = us_phone
+    app.jinja_env.filters["formattedDate"] = formatted_date
+    app.jinja_env.filters["pageWindow"] = page_window
+    app.jinja_env.filters["renderAuditEvent"] = render_audit_event
     app.jinja_env.filters["withExtraParams"] = with_extra_params
-    app.jinja_env.filters["obligatedFundingGraphWidth"] = obligatedFundingGraphWidth
+    app.jinja_env.filters["obligatedFundingGraphWidth"] = obligated_funding_graph_width
 
     @contextfilter
-    def translateWithoutCache(context, *kwargs):
+    def translate_without_cache(context, *kwargs):
         return translate(*kwargs)
 
     if app.config["DEBUG"]:
-        app.jinja_env.filters["translate"] = translateWithoutCache
+        app.jinja_env.filters["translate"] = translate_without_cache
     else:
         app.jinja_env.filters["translate"] = translate

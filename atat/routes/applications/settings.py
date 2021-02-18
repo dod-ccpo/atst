@@ -28,6 +28,8 @@ from atat.utils.localization import translate
 
 from .blueprint import applications_bp
 
+_APPLICATION_SETTINGS = "applications.settings"
+
 
 def get_environments_obj_for_app(application):
     return sorted(
@@ -215,9 +217,6 @@ def handle_create_member(application_id, form_data):
             return render_template(
                 "error.html", message="There was an error processing your request."
             )
-    else:
-        pass
-        # TODO: flash error message
 
 
 def handle_update_member(application_id, application_role_id, form_data):
@@ -248,9 +247,6 @@ def handle_update_member(application_id, application_role_id, form_data):
             flash(
                 "application_member_update_error", user_name=app_role.user_name,
             )
-    else:
-        pass
-        # TODO: flash error message
 
 
 def handle_update_environment(form, application=None, environment=None):
@@ -322,7 +318,7 @@ def update_environment(environment_id):
     if updated_environment:
         return redirect(
             url_for(
-                "applications.settings",
+                _APPLICATION_SETTINGS,
                 application_id=application.id,
                 fragment="application-environments",
                 _anchor="application-environments",
@@ -344,7 +340,7 @@ def new_environment(application_id):
     if environment:
         return redirect(
             url_for(
-                "applications.settings",
+                _APPLICATION_SETTINGS,
                 application_id=application.id,
                 fragment="application-environments",
                 _anchor="application-environments",
@@ -385,7 +381,7 @@ def delete_environment(environment_id):
 
     return redirect(
         url_for(
-            "applications.settings",
+            _APPLICATION_SETTINGS,
             application_id=environment.application_id,
             _anchor="application-environments",
             fragment="application-environments",
@@ -401,7 +397,7 @@ def create_member(application_id):
     handle_create_member(application_id, http_request.form)
     return redirect(
         url_for(
-            "applications.settings",
+            _APPLICATION_SETTINGS,
             application_id=application_id,
             fragment="application-members",
             _anchor="application-members",
@@ -426,7 +422,7 @@ def remove_member(application_id, application_role_id):
 
     return redirect(
         url_for(
-            "applications.settings",
+            _APPLICATION_SETTINGS,
             _anchor="application-members",
             application_id=g.application.id,
             fragment="application-members",
@@ -445,7 +441,7 @@ def update_member(application_id, application_role_id):
 
     return redirect(
         url_for(
-            "applications.settings",
+            _APPLICATION_SETTINGS,
             application_id=application_id,
             fragment="application-members",
             _anchor="application-members",
@@ -481,7 +477,7 @@ def revoke_invite(application_id, application_role_id):
 
     return redirect(
         url_for(
-            "applications.settings",
+            _APPLICATION_SETTINGS,
             application_id=application_id,
             fragment="application-members",
             _anchor="application-members",
@@ -520,7 +516,7 @@ def resend_invite(application_id, application_role_id):
 
     return redirect(
         url_for(
-            "applications.settings",
+            _APPLICATION_SETTINGS,
             application_id=application_id,
             fragment="application-members",
             _anchor="application-members",
@@ -538,7 +534,7 @@ def create_subscription(environment_id):
 
     return redirect(
         url_for(
-            "applications.settings",
+            _APPLICATION_SETTINGS,
             application_id=environment.application.id,
             fragment="application-environments",
             _anchor="application-environments",
