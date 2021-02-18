@@ -3,7 +3,7 @@
 
 
 <section>
-  <div class="usa-accordion">      
+  <div class="usa-accordion">
     {% call Accordion(
       "Expired funding", 
       "expired_funding", 
@@ -12,10 +12,10 @@
       content_classes="atat-table reporting-expended-funding__content") %}
         <thead>
           <tr>
-            <th>TO CLIN</th>
-            <th>PoP</th>
-            <th>CLIN Value</th>
-            <th>Amount Obligated</th>
+            <th id="to-clin">TO CLIN</th>
+            <th id="pop">PoP</th>
+            <th id="clin-value">CLIN Value</th>
+            <th id="amount-obligated">Amount Obligated</th>
           </tr>
         </thead>
         <tbody>

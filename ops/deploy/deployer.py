@@ -3,18 +3,12 @@ import logging
 import os
 import shutil
 import subprocess
-
-from os import path
-from subprocess import CalledProcessError, CompletedProcess
-from typing import Optional, Dict, NoReturn
-
-import click
 import sys
-
-from click.utils import echo
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+from os import path
 from pprint import pprint
 
+import click
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -99,7 +93,6 @@ def deploy(
     ops_registry,
     atat_registry,
     atat_image_tag,
-    atat_commit_sha,
     nginx_image_tag,
     config_azcli,
     git_sha,

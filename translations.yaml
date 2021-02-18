@@ -13,17 +13,17 @@ audit_log:
       changes: "Changes:"
       details: "Details:"
 base_public:
-  login: Log in
+  login: Login
   title_tag: JEDI Cloud
 home:
   add_portfolio_button_text: Add New Portfolio
   new_portfolio: New Portfolio
   get_started: Get Started
   head: JEDI Cloud Services
-  funding_descrip: The Task Orders section allows you to enter, manage, and edit awarded TOs associated to a specific Portfolio.
-  applications_descrip: The Applications section allows you to easily create and define new Applications within a Portfolio, as well as manage user permissions and Environments.
-  reports_descrip: The Reports section allows you to view and monitor funding usage within a specific Portfolio.
-  admin_descrip: Within the Settings section, you can manage your Portfolio name and description, as well as add, edit, and delete Portfolio managers.
+  funding_descrip: The task orders section allows you to enter, manage, and edit awarded TOs associated to a specific portfolio.
+  applications_descrip: The applications section allows you to easily create and define new applications within a portfolio, as well as manage user permissions and environments.
+  reports_descrip: The reports section allows you to view and monitor funding usage within a specific portfolio.
+  admin_descrip: Within the settings section, you can manage your portfolio name and description, as well as add, edit, and delete portfolio managers.
 ccpo:
   users_title: CCPO Users
   add_user: Add new CCPO user
@@ -80,14 +80,14 @@ errors:
   not_found: Page Not Found
   not_found_sub: This page does not exist.
 email:
-  application_invite: "{inviter_name} has invited you to a JEDI cloud application"
+  application_invite: "{inviter_name} has invited you to a JEDI Cloud application"
   app_role_created:
     subject: Application Role Created
-    body: "Your application role has been created.\nVisit {url}, and use your username, {username}, to log in."
+    body: "Your application role has been created.\nVisit {url}, and use your username, {username}, to login."
   azure_account_update:
     subject: Azure account update
-    body: "There has been an update to your Azure account. \nVisit {url}, and use your username, {username}, to log in."
-  portfolio_invite: "{inviter_name} has invited you to a JEDI cloud portfolio"
+    body: "There has been an update to your Azure account. \nVisit {url}, and use your username, {username}, to login."
+  portfolio_invite: "{inviter_name} has invited you to a JEDI Cloud portfolio"
   portfolio_ready:
     subject: Portfolio Provisioned
     body: "Your portfolio has been provisioned.\nVisit {password_reset_address}, and use your username, {username}, to create a password."
@@ -97,11 +97,11 @@ email:
 empty_state:
   applications:
     header:
-      edit: You don’t have any Applications yet
-      view: This portfolio has no Applications
+      edit: You don’t have any applications yet
+      view: This portfolio has no applications
     message:
-      edit: You can manage multiple Applications within a single Portfolio as long as the funding sources are the same.
-      view: A Portfolio member with <b>Edit Application</b> permissions can add Applications to this Portfolio.
+      edit: You can manage multiple applications within a single portfolio as long as the funding sources are the same.
+      view: A portfolio member with <b>Edit Application</b> permissions can add applications to this portfolio.
     button_text: Create Your First Application
   applications_reporting:
     header:
@@ -116,8 +116,8 @@ empty_state:
       edit: Add approved task orders
       view: This Portfolio has no Task Orders
     message:
-      edit: Upload your approved Task Order here. You are required to confirm you have the appropriate signature. You will have the ability to add additional approved Task Orders with more funding to this Portfolio in the future.
-      view: A Portfolio member with <b>Edit Funding</b> permissions can fund this Portfolio with approved Task Orders.
+      edit: Upload your approved task order here. You are required to confirm you have the appropriate signature. You will have the ability to add additional approved task orders with more funding to this portfolio in the future.
+      view: A portfolio member with <b>Edit Funding</b> permissions can fund this portfolio with approved task orders.
     button_text: Add Task Order
 flash:
   application:
@@ -173,8 +173,8 @@ flash:
   invite_revoked:
     title: "{resource} invitation revoked"
     message: "You have successfully revoked the invite for {user_name} from {resource_name}"
-  login_required_message: After you log in, you will be redirected to your destination page.
-  login_required_title: Log in required
+  login_required_message: After you login, you will be redirected to your destination page.
+  login_required_title: Login required
   logged_out:
     title: Logged out
     message: You've been logged out.
@@ -201,7 +201,7 @@ flash:
       message: There was an error processing the invitation for {user_name}.
   session_expired:
     title: Session Expired
-    message: Your session expired due to inactivity. Please log in again to continue.
+    message: Your session expired due to inactivity. Please login again to continue.
   success: Success!
   task_order_number_error:
     message: "The TO number has already been entered for a JEDI task order #{to_number}. Please double-check the TO number you are entering. If you believe this is in error, please contact support@cloud.mil."
@@ -244,7 +244,7 @@ forms:
   new_member:
     app_mgmt:
       label: Edit Applications
-      description: Add, remove and edit applications in this Portfolio.
+      description: Add, remove and edit applications in this portfolio.
     dod_id_label: DoD ID
     dod_help: How do I find out the DoD ID?
     dod_text: "An individual's DOD ID (formerly known as EDIPI) number can be found on the back of their CAC. Access to this system requires a valid CAC and DOD ID."
@@ -252,7 +252,7 @@ forms:
     first_name_label: First name
     funding:
       label: Edit Funding
-      description: Add and Modify Task Orders to fund this Portfolio.
+      description: Add and Modify Task Orders to fund this portfolio.
     last_name_label: Last name
     phone_number_label: Phone number
     portfolio_mgmt:
@@ -282,7 +282,7 @@ forms:
       help_text: |
         <div class="usa-input__help">
           <p>
-            Add a brief one to two sentence description of your Portfolio. Consider this your statement of work.
+            Add a brief one to two sentence description of your portfolio. Consider this your statement of work.
           </p>
           <p>
             <strong>Writer's Block? A description example includes:</strong>
@@ -352,11 +352,11 @@ login:
   ccpo_logo_alt_text: Cloud Computing Program Office Logo
   certificate_selection:
     learn_more: Learn more
-    message: "When you are prompted to select a certificate, please select Email Certificate from the provided choices."
+    message: "When you are prompted to select a certificate, please select an Authentication (Identification) Certificate from the provided choices."
     title: Certificate Selection
-  h1_title: Access the JEDI cloud
+  h1_title: Access the JEDI Cloud
   login_button: Sign in with CAC
-  title_tag: Sign in | JEDI cloud
+  title_tag: Sign in | JEDI Cloud
 navigation:
   portfolio_navigation:
     breadcrumbs:
@@ -366,7 +366,7 @@ navigation:
       applications: Applications
   topbar:
     jedi_cloud_link_text: JEDI
-    logout_link_title: Log out of JEDI cloud
+    logout_link_title: Log out of JEDI Cloud
 portfolios:
   admin:
     activity_log_title: Activity log
@@ -400,7 +400,7 @@ portfolios:
         name: |
           <div>
             <p>
-              The name of your Application should be intuitive and easily recognizable for all of your team members.
+              The name of your application should be intuitive and easily recognizable for all of your team members.
             </p>
             <p>
               <strong>Writer's Block? A naming example includes:</strong>
@@ -412,7 +412,7 @@ portfolios:
         description: |
           <div>
             <p>
-              Add a brief one to two sentence description of your Application. You should be able to reference your TO Description of Work.
+              Add a brief one to two sentence description of your application. You should be able to reference your TO Description of Work.
             </p>
             <p>
               <strong>Writer's Block? A description example includes:</strong>
@@ -515,12 +515,12 @@ task_orders:
         JEDI_CLIN_3: "Unclassified Cloud Support Package (IDIQ CLIN 0003)"
         JEDI_CLIN_4: "Classified Cloud Support Package (IDIQ CLIN 0004)"
     tooltip:
-      obligated_funds: Funds committed to fund your portfolio. This may represent 100% of your total Task Order value, or a portion of it.
-      total_value: All obligated and projected funds for the Task Order’s Base and Option CLINs.
+      obligated_funds: Funds committed to fund your portfolio. This may represent 100% of your total task order value, or a portion of it.
+      total_value: All obligated and projected funds for the task order’s Base and Option CLINs.
   form:
     add_clin: Add Another CLIN
     add_to_header: Enter the Task Order number
-    add_to_description: Please input your Task Order number. This number may be listed under "Order Number" if your Contracting Officer used form 1149, or "Delivery Order/Call No." if form 1155 was used. Moving forward, this portion of funding will be referenced by the recorded Task Order number.
+    add_to_description: Please input your task order number. This number is listed under "Order Number" on form SF 1449. Moving forward, this portion of funding will be referenced by the recorded task order number.
     builder_base:
       cancel_modal: Do you want to save this draft?
       delete_draft: No, delete it
@@ -547,7 +547,7 @@ task_orders:
     supporting_docs_size_limit: "Your file may not exceed {file_size_limit}MB"
     step_1:
       title: Upload your approved Task Order (TO)
-      description: Upload your approved Task Order here. You are required to confirm you have the appropriate signature. You will have the ability to add additional approved Task Orders with more funding to this Portfolio in the future.
+      description: Upload your approved task order here. You are required to confirm you have the appropriate signature. You will have the ability to add additional approved task orders with more funding to this portfolio in the future.
       next_button: "Next: Add TO Number"
     step_2:
       next_button: "Next: Add Base CLIN"
@@ -560,17 +560,17 @@ task_orders:
       next_button: "Next: Confirm"
     step_5:
       cta_text: Verify Your Information
-      description: Prior to submitting the Task Order, you must acknowledge, by marking the appropriate box below, that the uploaded Task Order is signed by an appropriate, duly warranted Contracting Officer who has the authority to execute the uploaded Task Order on your Agency’s behalf and has authorized you to upload the Task Order in accordance with Agency policy and procedures. You must further acknowledge, by marking the appropriate box below, that all information entered herein matches that of the submitted Task Order.
+      description: Prior to submitting the task order, you must acknowledge, by marking the appropriate box below, that the uploaded task order is signed by an appropriate, duly warranted Contracting Officer who has the authority to execute the uploaded task order on your Agency’s behalf and has authorized you to upload the task order in accordance with Agency policy and procedures. You must further acknowledge, by marking the appropriate box below, that all information entered herein matches that of the submitted task order.
       next_button: "Submit Task Order"
     sticky_header_text: "Add a Task Order"
     sticky_header_review_text: Review Changes
     sticky_header_context: "Step {step} of 5"
   sign:
-    digital_signature_description: I confirm the uploaded Task Order is signed by the appropriate, duly warranted Agency Contracting Officer who authorized me to upload the Task Order.
-    confirmation_description: I confirm that the information entered here in matches that of the submitted Task Order.
+    digital_signature_description: I confirm the uploaded task order is signed by the appropriate, duly warranted Agency Contracting Officer who authorized me to upload the task order.
+    confirmation_description: I confirm that the information entered here in matches that of the submitted task order.
     acknowledge:
       title: Acknowledge Statement
-      text: I acknowledge, by executing the confirmation above and submitting this verification, that I am subject to potential penalties that may include fines, imprisonment, or both, under the U.S. law and regulations for any false statement or misrepresentation in association with this Task Order submission or on any accompanying documentation.
+      text: I acknowledge, by executing the confirmation above and submitting this verification, that I am subject to potential penalties that may include fines, imprisonment, or both, under the U.S. law and regulations for any false statement or misrepresentation in association with this task order submission or on any accompanying documentation.
   status_empty_state: "This Portfolio has no {status} Task Orders."
   status_list_title: "{status} Task Orders"
   summary:

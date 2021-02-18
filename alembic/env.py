@@ -33,8 +33,7 @@ from atat.app import make_config
 app_config = make_config()
 config.set_main_option("sqlalchemy.url", app_config["DATABASE_URI"])
 
-from atat.database import db
-from atat.models import *
+from atat.models import Base
 
 target_metadata = Base.metadata
 

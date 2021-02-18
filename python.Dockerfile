@@ -52,9 +52,9 @@ RUN  yum remove python3 && \
     # Install python!
     # https://github.com/python/cpython#build-instructions
     cd /usr/src && \
-    wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz && \
-    tar xzf Python-3.7.3.tgz && \
-    cd Python-3.7.3 && \
+    wget https://www.python.org/ftp/python/3.8.7/Python-3.8.7.tgz && \
+    tar xzf Python-3.8.7.tgz && \
+    cd Python-3.8.7 && \
     ./configure --enable-loadable-sqlite-extensions --enable-optimizations && \
     make install && \
-    rm /usr/src/Python-3.7.3.tgz
+    rm /usr/src/Python-3.8.7.tgz

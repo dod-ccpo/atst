@@ -42,7 +42,7 @@ def make_error_pages(app):
     @app.errorhandler(exceptions.UnauthenticatedError)
     # pylint: disable=unused-variable
     def unauthorized(e):
-        return handle_error(e, message="Log in Failed", code=401)
+        return handle_error(e, message="Login Failed", code=401)
 
     @app.errorhandler(CSRFError)
     # pylint: disable=unused-variable

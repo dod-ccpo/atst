@@ -6,9 +6,11 @@ from azure.keyvault.secrets import SecretClient
 from msrest.exceptions import AuthenticationError, ClientRequestError
 import requests
 
+_FAILED_TO_FETCH_SECRET = "Failed to fetch secret"
+
 
 def acquire_token():
-    display = Display()
+    _display = Display()
     token_params = {"api-version": "2018-02-01", "resource": "https://vault.azure.net"}
     token_headers = {"Metadata": "true"}
     token = None
@@ -21,11 +23,11 @@ def acquire_token():
         )
         token = token_res.json().get("access_token")
         if token is None:
-            display.v(
+            _display.v(
                 "Successfully called MSI endpoint, but no token was available. Will use service principal if provided."
             )
     except requests.exceptions.RequestException:
-        display.v("Unable to fetch MSI token. Will use service principal if provided.")
+        _display.v("Unable to fetch MSI token. Will use service principal if provided.")
 
     return token
 
@@ -67,7 +69,7 @@ def lookup_secret_non_msi(terms, vault_url, kwargs):
         except ClientRequestError:
             raise AnsibleError("Error occurred in request")
         except ResourceNotFoundError:
-            raise AnsibleError("Failed to fetch secret " + term + ".")
+            raise AnsibleError(f"{_FAILED_TO_FETCH_SECRET} {term}.")
     return ret
 
 
@@ -84,9 +86,9 @@ def lookup_secret_msi(token, terms, vault_url):
             )
             ret.append(secret_res.json()["value"])
         except requests.exceptions.RequestException:
-            raise AnsibleError("Failed to fetch secret: " + term + " via MSI endpoint.")
+            raise AnsibleError(f"{_FAILED_TO_FETCH_SECRET}: {term} via MSI endpoint")
         except KeyError:
-            raise AnsibleError("Failed to fetch secret " + term + ".")
+            raise AnsibleError(f"{_FAILED_TO_FETCH_SECRET} {term}.")
     return ret
 
 
@@ -108,5 +110,5 @@ def lookup_secret_list_non_msi(terms, vault_url, kwargs):
         except ClientRequestError:
             raise AnsibleError("Error occurred in request")
         except ResourceNotFoundError:
-            raise AnsibleError("Failed to fetch secret " + term + ".")
+            raise AnsibleError(f"{_FAILED_TO_FETCH_SECRET} {term}.")
     return ret
