@@ -172,19 +172,19 @@ def get_user_from_saml_attributes(saml_attributes):
         return Users.get_by_dod_id(dod_id)
     except TypeError:
         app.logger.error("SAML response missing SAM Account Name")
-        raise Exception("SAML response missing SAM Account Name")
+        raise TypeError("SAML response missing SAM Account Name")
     except AttributeError:
         app.logger.error("Incorrect format of SAM Account Name %s", sam_account_name)
-        raise Exception("SAM Account Name Incorrectly Formatted")
+        raise AttributeError("SAM Account Name Incorrectly Formatted")
     except NotFoundError:
         app.logger.info("No user found for DoD ID %s, creating...", dod_id)
 
-    saml_user_details = {}
-    saml_user_details["first_name"] = saml_attributes.get(EIFSAttributes.GIVEN_NAME)
-    saml_user_details["last_name"] = saml_attributes.get(EIFSAttributes.LAST_NAME)
-    saml_user_details["email"] = saml_attributes.get(EIFSAttributes.EMAIL)
-
-    saml_user_details["designation"] = DESIGNATIONS.get(short_designation)
+    saml_user_details = {
+        "first_name": saml_attributes.get(EIFSAttributes.GIVEN_NAME),
+        "last_name": saml_attributes.get(EIFSAttributes.LAST_NAME),
+        "email": saml_attributes.get(EIFSAttributes.EMAIL),
+        "designation": DESIGNATIONS.get(short_designation),
+    }
 
     is_us_citizen = saml_attributes.get(EIFSAttributes.US_CITIZEN)
     if is_us_citizen == "Y":
@@ -193,10 +193,10 @@ def get_user_from_saml_attributes(saml_attributes):
     agency_code = saml_attributes.get(EIFSAttributes.AGENCY_CODE)
     saml_user_details["service_branch"] = AGENCY_CODES.get(agency_code)
 
-    telephoneNumber = saml_attributes.get(EIFSAttributes.TELEPHONE)
+    telephone_number = saml_attributes.get(EIFSAttributes.TELEPHONE)
     mobile = saml_attributes.get(EIFSAttributes.MOBILE)
 
-    saml_user_details["phone_number"] = telephoneNumber or mobile
+    saml_user_details["phone_number"] = telephone_number or mobile
 
     return Users.get_or_create_by_dod_id(dod_id, **saml_user_details)
 

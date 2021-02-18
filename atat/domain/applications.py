@@ -41,7 +41,7 @@ class Applications(BaseDomainClass):
         return application
 
     @classmethod
-    def for_user(self, user, portfolio):
+    def for_user(cls, user, portfolio):
         return (
             db.session.query(Application)
             .join(ApplicationRole)
@@ -108,7 +108,8 @@ class Applications(BaseDomainClass):
             if env_role_name is not None:
                 # pylint: disable=cell-var-from-loop
                 environment = first_or_none(
-                    lambda e: str(e.id) == str(environment_id), application.environments
+                    lambda e, env_id=environment_id: str(e.id) == str(env_id),
+                    application.environments,
                 )
                 if environment is None:
                     raise NotFoundError("environment")

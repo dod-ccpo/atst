@@ -44,7 +44,7 @@ class JsonFormatter(logging.Formatter):
 
     def __init__(self, *args, source="atat", **kwargs):
         self.source = source
-        super().__init__(self)
+        super().__init__()
 
     def format(self, record, *args, **kwargs):
         message_dict = {"source": self.source}

@@ -5,7 +5,7 @@ from wtforms.validators import UUID, Length
 
 from atat.domain.permission_sets import PermissionSets
 from atat.forms.fields import SelectField
-from atat.forms.validators import AlphaNumeric
+from atat.forms.validators import alpha_numeric
 from atat.utils.localization import translate
 
 from .data import ENV_ROLE_NO_ACCESS as NO_ACCESS
@@ -15,7 +15,7 @@ from .member import NewForm as BaseNewMemberForm
 
 class EnvironmentForm(Form):
     environment_id = HiddenField(validators=[UUID()])
-    environment_name = HiddenField(validators=[AlphaNumeric(), Length(max=100)])
+    environment_name = HiddenField(validators=[alpha_numeric(), Length(max=100)])
     role = SelectField(
         environment_name,
         choices=ENV_ROLES,

@@ -43,6 +43,38 @@ resource "azurerm_storage_container" "bucket" {
   container_access_type = var.container_access_type
 }
 
+resource "azurerm_monitor_diagnostic_setting" "bucket_diagnostic" {
+  name                       = "${var.service_name}-bucket-diag-${var.environment}"
+  target_resource_id         = azurerm_storage_account.bucket.id
+  log_analytics_workspace_id = var.workspace_id
+
+  log {
+    category = "StorageRead"
+    retention_policy {
+      enabled = true
+    }
+  }
+  log {
+    category = "StorageWrite"
+    retention_policy {
+      enabled = true
+    }
+  }
+  log {
+    category = "StorageDelete"
+    retention_policy {
+      enabled = true
+    }
+  }
+  metric {
+    category = "Transaction"
+    retention_policy {
+      enabled = true
+    }
+  }
+}
+
+
 # Added until requisite TF bugs are fixed. Typically this would be configured in the
 # storage_account resource
 #resource "null_resource" "retention" {

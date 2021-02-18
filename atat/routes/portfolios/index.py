@@ -26,7 +26,7 @@ def create_portfolio():
     if form.validate():
         portfolio = Portfolios.create(user=g.current_user, portfolio_attrs=form.data)
         return redirect(
-            url_for("applications.portfolio_applications", portfolio_id=portfolio.id)
+            url_for("task_orders.portfolio_funding", portfolio_id=portfolio.id)
         )
     else:
         return render_template("portfolios/new/step_1.html", form=form), 400

@@ -98,14 +98,11 @@
 
   .panel {
     @include shadow-panel;
+    width: 100%;
   }
 
   .alert .alert__actions {
     margin-top: 2 * $gap;
-  }
-
-  .panel {
-    width: 100%;
   }
 
   .task-order-document-link {

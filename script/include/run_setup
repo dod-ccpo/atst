@@ -15,9 +15,9 @@ if [ -z "${INSTALL_SASS+is_set}" ]; then
   INSTALL_SASS="false"
 fi
 
-# If PIP_VERSION is not set, set it to "10.*"
+# If PIP_VERSION is not set, set it to "21.*"
 if [ -z "${PIP_VERSION+is_set}" ]; then
-  PIP_VERSION="10.*"
+  PIP_VERSION="21.*"
 fi
 
 # If RESET_DB is not set, set it to "false"
