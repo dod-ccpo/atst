@@ -2,7 +2,7 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: atst
+  name: atat
 spec:
   minReplicas: 1
   maxReplicas: 2
@@ -10,7 +10,7 @@ spec:
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: atst-worker
+  name: atat-worker
 spec:
   minReplicas: 1
   maxReplicas: 2

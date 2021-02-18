@@ -337,7 +337,7 @@ forms:
     alpha_numeric_message: This field may only contain alphanumeric characters.
 fragments:
   edit_application_form:
-    explain: AT-AT allows you to create multiple applications within a portfolio. Each application can then be broken down into its own customizable environments.
+    explain: ATAT allows you to create multiple applications within a portfolio. Each application can then be broken down into its own customizable environments.
   edit_user_form:
     save_details_button: Save
     service_choice: Please choose a service branch or agency
