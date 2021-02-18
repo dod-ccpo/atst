@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: atst-worker-envvars
+  name: atat-worker-envvars
 data:
   AZURE_STORAGE_ACCOUNT_NAME: dryruntasks
   AZURE_POWERSHELL_CLIENT_ID: 1950a258-227b-4e31-a9cf-717495945fc2
@@ -21,7 +21,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: atst-envvars
+  name: atat-envvars
 data:
   ASSETS_URL: ""
   AZURE_STORAGE_ACCOUNT_NAME: dryruntasks

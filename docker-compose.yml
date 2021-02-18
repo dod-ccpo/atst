@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: ./Dockerfile
     volumes:
-      - ./ssl:/opt/atat/atst/ssl
-      - ./config:/opt/atst/atst/config
+      - ./ssl:/opt/atat/atat/ssl
+      - ./config:/opt/atat/atat/config
       - sockets:/var/run/uwsgi
     environment:
       PGHOST: host.docker.internal

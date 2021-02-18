@@ -4,7 +4,7 @@
 
 - [nginx](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/): On macos with homebrew, `brew install nginx`
 - [uwsgi](https://uwsgi-docs.readthedocs.io/en/latest/Install.html): With python, `pip install uwsgi`.
-- poetry and honcho: If you have the regular atst dependencies installed, you already have poetry and honcho
+- poetry and honcho: If you have the regular atat dependencies installed, you already have poetry and honcho
 
 ## Run
 

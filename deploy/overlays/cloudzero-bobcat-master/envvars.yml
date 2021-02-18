@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: atst-worker-envvars
+  name: atat-worker-envvars
 data:
   CELERY_DEFAULT_QUEUE: celery-master
   FLASK_ENV: master
@@ -12,7 +12,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: atst-envvars
+  name: atat-envvars
 data:
   CDN_ORIGIN: https://master.atat.dev
   CELERY_DEFAULT_QUEUE: celery-master
