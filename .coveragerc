@@ -1,4 +1,7 @@
 [run]
+# Ensure that all files in this list are also excluded from
+# SonarCloud evaluation in property sonar.coverage.exclusions
+# in the file sonar-project.properties
 omit =
   atat/routes/dev.py
   atat/domain/audit_log.py
