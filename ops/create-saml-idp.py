@@ -176,11 +176,11 @@ def register_self_signed_certificate(sp_object_id: str, access_token: str):
     )
 
     pem_pkcs12 = serialize_key_and_certificates(
-        name=b"saml_cert",
-        key=key,
-        cert=cert,
-        cas=None,
-        encryption_algorithm=BestAvailableEncryption(saml_signing_password.encode()),
+        b"saml_cert",
+        key,
+        cert,
+        None,
+        BestAvailableEncryption(saml_signing_password.encode()),
     )
 
     url = f"https://graph.microsoft.com/beta/servicePrincipals/{sp_object_id}"
