@@ -365,8 +365,8 @@ navigation:
       reports: Reports
       applications: Applications
   topbar:
-    jedi_cloud_link_text: JEDI
-    logout_link_title: Log out of JEDI Cloud
+    jedi_cloud_link_text: ATAT
+    logout_link_title: Log out of ATAT Cloud
 portfolios:
   admin:
     activity_log_title: Activity log
