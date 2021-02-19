@@ -1,3 +1,7 @@
+"""
+Supports user feedback via Flask Message Flashing.
+See https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/
+"""
 from flask import flash
 
 from atat.utils.localization import translate
