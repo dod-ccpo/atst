@@ -19,7 +19,7 @@
     "autoprefixer": "^9.8.6",
     "babel-polyfill": "^6.26.0",
     "date-fns": "^2.16.1",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.21",
     "ramda": "^0.27.1",
     "stickybits": "^3.7.8",
     "svg-innerhtml": "^1.1.0",
