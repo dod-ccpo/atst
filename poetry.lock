@@ -14,7 +14,7 @@ requests = ">=2.0.0,<3"
 
 [[package]]
 name = "alembic"
-version = "1.5.4"
+version = "1.5.5"
 description = "A database migration tool for SQLAlchemy."
 category = "main"
 optional = false
@@ -1498,7 +1498,7 @@ adal = [
     {file = "adal-1.2.6.tar.gz", hash = "sha256:08b94d30676ceb78df31bce9dd0f05f1bc2b6172e44c437cbf5b968a00ac6489"},
 ]
 alembic = [
-    {file = "alembic-1.5.4.tar.gz", hash = "sha256:e871118b6174681f7e9a9ea67cfcae954c6d18e05b49c6b17f662d2530c76bf5"},
+    {file = "alembic-1.5.5.tar.gz", hash = "sha256:df0028c19275a2cff137e39617a39cdcdbd1173733b87b6bfa257b7c0860213b"},
 ]
 amqp = [
     {file = "amqp-2.6.1-py2.py3-none-any.whl", hash = "sha256:aa7f313fb887c91f15474c1229907a04dac0b8135822d6603437803424c0aa59"},
