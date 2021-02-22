@@ -56,6 +56,7 @@ def make_app(config):
     app.json_encoder = CustomJSONEncoder
     make_redis(app, config)
     csrf = CSRFProtect()
+    # These routes are exempted in order to allow SAML integration
     csrf.exempt("atat.routes.dev.login_dev")
     csrf.exempt("atat.routes.login")
     csrf.exempt("atat.routes.handle_login_response")

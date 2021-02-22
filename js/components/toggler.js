@@ -15,7 +15,6 @@ export default {
   components: {
     optionsinput,
     textinput,
-    optionsinput,
     BaseForm,
     toggler: this,
   },
