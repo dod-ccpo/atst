@@ -1,6 +1,6 @@
-import random
 import re
 import string
+from secrets import SystemRandom
 from urllib.parse import urlparse
 
 import cachetools.func
@@ -133,8 +133,9 @@ def unique_dod_id():
     """
     Generate a new DOD ID for a development user.
     """
+    random_source = SystemRandom()
     # Ensure that the identifier always starts with a leading 0
-    new_dod_id = "".join(random.choices(string.digits, k=9)).zfill(10)  # nosec
+    new_dod_id = "".join(random_source.choices(string.digits, k=9)).zfill(10)  # nosec
     try:
         Users.get_by_dod_id(new_dod_id)
     except NotFoundError:
