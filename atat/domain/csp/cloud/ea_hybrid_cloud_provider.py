@@ -1,4 +1,6 @@
-from atat.domain.csp import AzureCloudProvider, HybridCloudProvider, MockCloudProvider
+from atat.domain.csp.cloud.azure_cloud_provider import AzureCloudProvider
+from atat.domain.csp.cloud.hybrid_cloud_provider import HybridCloudProvider
+from atat.domain.csp.cloud.mock_cloud_provider import MockCloudProvider
 from atat.domain.csp.cloud.models import (
     BillingOwnerCSPPayload,
     BillingOwnerCSPResult,
