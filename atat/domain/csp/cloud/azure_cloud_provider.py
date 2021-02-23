@@ -985,7 +985,7 @@ class AzureCloudProvider(CloudProviderInterface):
         self, token, definition_name, principal_id
     ):
         """List the role assignments for a particular principal, then filter by
-        defintion id to return a role assignment
+        definition id to return a role assignment
 
         Args:
             definition_name: UUID of a role definition
