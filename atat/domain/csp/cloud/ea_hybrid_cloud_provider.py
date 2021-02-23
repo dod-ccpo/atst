@@ -10,7 +10,9 @@ from atat.domain.csp.cloud.models import (
 
 class EaHybridCloudProvider(HybridCloudProvider):
     """
+        This is the provider made to be used under an EA specific environment.
 
+        Implements py:class::HybridCloudProvider
     """
 
     HYBRID_PREFIX = "EA-Hybrid ::"
