@@ -64,6 +64,12 @@ def make_app(config):
     app.config.update(config)
     app.config.update({"SESSION_REDIS": app.redis})
 
+    app.config.update(
+        SESSION_COOKIE_SECURE=True,
+        SESSION_COOKIE_HTTPONLY=True,
+        SESSION_COOKIE_SAMESITE='Lax',
+    )
+
     update_celery(celery, app)
 
     make_flask_callbacks(app)
@@ -147,7 +153,8 @@ def set_default_headers(app):  # pragma: no cover
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["X-Frame-Options"] = "SAMEORIGIN"
         response.headers["X-XSS-Protection"] = "1; mode=block"
-        response.headers["Access-Control-Allow-Origin"] = app.config.get("CDN_ORIGIN")
+        response.headers["Access-Control-Allow-Origin"] = app.config.get(
+            "CDN_ORIGIN")
 
         if ENV == "dev":
             response.headers[
@@ -238,7 +245,8 @@ def make_config(direct_config=None):
     config.optionxform = str
 
     # Read configuration values from base and environment configuration files
-    BASE_CONFIG_FILENAME = os.path.join(os.path.dirname(__file__), "../config/base.ini")
+    BASE_CONFIG_FILENAME = os.path.join(
+        os.path.dirname(__file__), "../config/base.ini")
     ENV_CONFIG_FILENAME = os.path.join(
         os.path.dirname(__file__), "../config/", "{}.ini".format(ENV.lower())
     )
