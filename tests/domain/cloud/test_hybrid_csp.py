@@ -7,7 +7,7 @@ import pytest
 
 from atat.domain.csp import CSP
 from atat.domain.csp.cloud.exceptions import UnknownServerException
-from atat.domain.csp.cloud.hybrid_cloud_provider import HYBRID_PREFIX
+from atat.domain.csp.cloud.hybrid_cloud_provider import HybridCloudProvider
 from atat.domain.csp.cloud.models import (
     CostManagementQueryCSPPayload,
     SubscriptionCreationCSPPayload,
@@ -275,7 +275,7 @@ def test_get_reporting_data(csp, app):
 def test_create_subscription(csp):
     root_tenant_id = csp.azure.root_tenant_id
     payload = SubscriptionCreationCSPPayload(
-        display_name=f"{HYBRID_PREFIX} Subscription Creation Test",
+        display_name=f"{HybridCloudProvider.HYBRID_PREFIX} Subscription Creation Test",
         tenant_id=root_tenant_id,
         parent_group_id=f"/providers/Microsoft.Management/managementGroups/subscription-creation-test",
         billing_account_name=csp.azure.config["AZURE_BILLING_ACCOUNT_NAME"],

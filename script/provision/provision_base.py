@@ -53,7 +53,7 @@ def handle(f):
     )
     parser.add_argument(
         "--csp",
-        choices=("mock-test", "azure", "hybrid"),
+        choices=("mock-test", "azure", "hybrid", "ea-hybrid"),
         default="mock-test",
         help="Set cloud service provider",
     )
