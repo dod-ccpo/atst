@@ -1,3 +1,7 @@
+"""
+Adapter for Microsoft Azure (https://azure.microsoft.com/) cloud service provider.
+Implements py:class:: CloudProviderInterface
+"""
 import json
 import time
 from contextlib import contextmanager
