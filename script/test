@@ -18,6 +18,11 @@ RUN_PYTHON_TESTS="true"
 # Enable Javascript testing
 RUN_JS_TESTS="true"
 
+# Ensure static asset generation works
+output_divider "Regenerate static assets"
+rm -rf ./static/assets/*
+yarn build
+
 # Check python formatting
 output_divider "Run formatting check"
 source ./script/format check

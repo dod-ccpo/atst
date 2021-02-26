@@ -1,6 +1,11 @@
 import os
 
-from .cloud import AzureCloudProvider, HybridCloudProvider, MockCloudProvider
+from .cloud import (
+    AzureCloudProvider,
+    EaHybridCloudProvider,
+    HybridCloudProvider,
+    MockCloudProvider,
+)
 from .files import AzureFileService, MockFileService
 from .reports import MockReportingProvider
 
@@ -17,6 +22,11 @@ class CSP:
             azure = AzureCloudProvider(config)
             mock = MockCloudProvider(config, **kwargs)
             self.cloud = HybridCloudProvider(azure, mock, config)
+            self.files = AzureFileService(config)
+        elif csp == "ea-hybrid":
+            azure = AzureCloudProvider(config)
+            mock = MockCloudProvider(config, **kwargs)
+            self.cloud = EaHybridCloudProvider(azure, mock, config)
             self.files = AzureFileService(config)
         else:
             raise ValueError(f"Unexpected CSP value provided: {csp}")

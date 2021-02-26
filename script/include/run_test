@@ -26,7 +26,6 @@ fi
 
 ## Main
 if [ "${RUN_PYTHON_TESTS}" = "true" ]; then
-
   output_divider "Lint Python files"
   run_python_lint "${PYTHON_FILES}"
   output_divider "Perform static analysis on Python files"
@@ -35,7 +34,6 @@ if [ "${RUN_PYTHON_TESTS}" = "true" ]; then
   run_python_typecheck
   output_divider "Run Python unit test suite"
   run_python_unit_tests "${PYTHON_FILES}"
-
 fi
 
 if [ "${RUN_JS_TESTS}" = "true" ]; then
