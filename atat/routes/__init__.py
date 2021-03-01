@@ -71,7 +71,9 @@ def logout():
         logout_url = saml_auth.logout(return_to=logout_url)
 
     response = make_response(redirect(logout_url))
-    response.set_cookie("expandSidenav", "", expires=0, httponly=True)
+    response.set_cookie(
+        "expandSidenav", "", expires=0, httponly=True, samesite="Lax", secure=True
+    )
     flash("logged_out")
     return response
 

@@ -64,6 +64,12 @@ def make_app(config):
     app.config.update(config)
     app.config.update({"SESSION_REDIS": app.redis})
 
+    app.config.update(
+        SESSION_COOKIE_SECURE=True,
+        SESSION_COOKIE_HTTPONLY=True,
+        SESSION_COOKIE_SAMESITE="Lax",
+    )
+
     update_celery(celery, app)
 
     make_flask_callbacks(app)
