@@ -46,8 +46,7 @@ def redirect_after_login_url(next_param=None):
     if match_url_pattern(returl):
         param_name = request.args.get(app.form_cache.PARAM_NAME)
         if param_name:
-            returl += "?" + \
-                url.urlencode({app.form_cache.PARAM_NAME: param_name})
+            returl += "?" + url.urlencode({app.form_cache.PARAM_NAME: param_name})
         return returl
     else:
         return url_for("atat.home")
@@ -57,8 +56,7 @@ def current_user_setup(user):
     session["user_id"] = user.id
     session["last_login"] = user.last_login
     app.session_limiter.on_login(user)
-    app.logger.info(
-        "authentication succeeded for user with EDIPI %s", user.dod_id)
+    app.logger.info("authentication succeeded for user with EDIPI %s", user.dod_id)
     Users.update_last_login(user)
 
 
@@ -73,8 +71,9 @@ def logout():
         logout_url = saml_auth.logout(return_to=logout_url)
 
     response = make_response(redirect(logout_url))
-    response.set_cookie("expandSidenav", "", expires=0,
-                        httponly=True, samesite='Lax', secure=True)
+    response.set_cookie(
+        "expandSidenav", "", expires=0, httponly=True, samesite="Lax", secure=True
+    )
     flash("logged_out")
     return response
 
@@ -91,7 +90,6 @@ def handle_login_response():
         attributes = load_attributes_from_assertion(request)
         user = get_user_from_saml_attributes(attributes)
 
-        next_param = session.pop(
-            "query_string_parameters", {}).get("next_param", None)
+        next_param = session.pop("query_string_parameters", {}).get("next_param", None)
         current_user_setup(user)
         return redirect(redirect_after_login_url(next_param))
