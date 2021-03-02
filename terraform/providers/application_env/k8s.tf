@@ -65,7 +65,7 @@ resource "azurerm_kubernetes_cluster" "k8s_private" {
     }
     oms_agent {
       enabled                    = true
-      log_analytics_workspace_id = local.log_analytics_workspace_id
+      log_analytics_workspace_id = local.log_analytics_workspace_resource_id
     }
   }
   network_profile {
