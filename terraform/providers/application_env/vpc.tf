@@ -28,12 +28,6 @@ resource "azurerm_virtual_network" "vpc" {
   }
 }
 
-resource "azurerm_network_watcher" "vpc" {
-  name                = "${var.name}-network-watcher-${var.deployment_namespace}"
-  location            = azurerm_resource_group.vpc.location
-  resource_group_name = azurerm_resource_group.vpc.name
-}
-
 resource "azurerm_storage_account" "flowlogs_storage" {
   name                      = "nsgflowlogs${var.deployment_namespace}"
   resource_group_name       = azurerm_resource_group.vpc.name
@@ -66,8 +60,10 @@ resource "azurerm_network_security_group" "logging_nsg" {
  }
 
 resource "azurerm_network_watcher_flow_log" "vpc" {
-  network_watcher_name = "${var.name}-network-watcher-${var.deployment_namespace}"
-  resource_group_name  = azurerm_resource_group.vpc.name
+  # A network watcher is created by default in the NetworkWatcherRG
+  # resource group. 
+  network_watcher_name = "NetworkWatcher_${var.region}"
+  resource_group_name  = "NetworkWatcherRG"
   network_security_group_id = azurerm_network_security_group.logging_nsg.id
   storage_account_id        = azurerm_storage_account.flowlogs_storage.id
   enabled                   = true
