@@ -181,7 +181,7 @@ def get_or_create_dev_persona(persona):
     return user
 
 
-@local_access_bp.route("/dev-new-user")
+@dev_bp.route("/dev-new-user")
 def dev_new_user():
     first_name = request.args.get("first_name", None)
     last_name = request.args.get("last_name", None)
