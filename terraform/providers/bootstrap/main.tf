@@ -63,7 +63,7 @@ resource "azurerm_container_registry" "operations_container_registry" {
 
 resource "azurerm_monitor_diagnostic_setting" "bucket_diagnostic" {
   name                       = "czopsstorageaccount-bucket-diag-${var.namespace}"
-  target_resource_id         = azurerm_storage_account.operations_storage_account.id
+  target_resource_id         = "${azurerm_storage_account.operations_storage_account.id}/blobServices/default"
   log_analytics_workspace_id = azurerm_log_analytics_workspace.log_workspace.id
 
   log {
