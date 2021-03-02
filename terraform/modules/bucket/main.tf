@@ -45,7 +45,7 @@ resource "azurerm_storage_container" "bucket" {
 
 resource "azurerm_monitor_diagnostic_setting" "bucket_diagnostic" {
   name                       = "${var.service_name}-bucket-diag-${var.environment}"
-  target_resource_id         = azurerm_storage_account.bucket.id
+  target_resource_id         = "${azurerm_storage_account.bucket.id}/blobServices/default"
   log_analytics_workspace_id = var.workspace_id
 
   log {

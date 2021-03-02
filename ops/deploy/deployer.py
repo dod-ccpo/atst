@@ -96,6 +96,7 @@ def deploy(
     nginx_image_tag,
     config_azcli,
     git_sha,
+    atat_commit_sha,
     ironbank_account,
     ironbank_secret,
     ironbank_nginx_tag,
