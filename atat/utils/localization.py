@@ -24,9 +24,10 @@ def _translations_file():
     if app:
         file_name = app.config.get("DEFAULT_TRANSLATIONS_FILE", file_name)
 
-    f = open(file_name)
-
-    return yaml.safe_load(f)
+    # Non-ASCII characters such as smart quotes may be used in the translations
+    # file and therefore it should be parsed as UTF-8
+    with open(file_name, encoding="utf-8") as translations_file:
+        return yaml.safe_load(translations_file)
 
 
 def all_keys():
