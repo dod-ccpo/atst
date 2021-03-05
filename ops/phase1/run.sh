@@ -81,4 +81,4 @@ az container create \
 
 echo "==============REMEMBER==============="
 
-echo "You must put these files in the config container: \n\t- app.tfvars.json\n\t- atatdev.pem\n\t- ccpo_users.yml"
+printf "You must put these files in the config container: \n\t- app.tfvars.json\n\t- atatdev.pem\n\t- ccpo_users.yml"
