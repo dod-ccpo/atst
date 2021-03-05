@@ -192,29 +192,32 @@ def dev_new_user():
     last_name = request.args.get("last_name", None, type=str)
     dod_id = request.args.get("dod_id", None, type=str)
 
-    # This interphase convert dictionaries into Objects instance.
+    # 1: It need to check fist that have all the parameters
+    if None in [first_name, last_name, dod_id]:
+        raise IncompleteInfoError()
+
+    # This interphase convert dictionaries into Objects instance. It is Require for step 2.
     class Struct(object):
         def __init__(self, **entries):
             self.__dict__.update(entries)
 
-    # using standard validator to validate inputs or throw a error
+    # 2: Using standard validator to validate inputs or throw a error
     is_name({}, Struct(**{"data": first_name}))
     is_name({}, Struct(**{"data": last_name}))
     is_number({}, Struct(**{"data": dod_id}))
 
-    if None in [first_name, last_name, dod_id]:
-        raise IncompleteInfoError()
-
+    # 3: Also Check that the ID is not taken
     try:
         Users.get_by_dod_id(dod_id)
         raise AlreadyExistsError("User with dod_id {}".format(dod_id))
     except NotFoundError:
         pass
 
+    # 4: Create a User Instance
     new_user = {"first_name": first_name, "last_name": last_name}
-
     created_user = Users.create(dod_id, **new_user)
 
+    # 5: Make that instance our current user and send to edit user page
     current_user_setup(created_user)
     return redirect(redirect_after_login_url())
 
