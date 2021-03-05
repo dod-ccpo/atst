@@ -1,4 +1,5 @@
 import random
+from types import SimpleNamespace
 
 from flask import Blueprint
 from flask import current_app as app
@@ -188,23 +189,18 @@ def get_or_create_dev_persona(persona):
 
 @local_access_bp.route("/dev-new-user")
 def dev_new_user():
-    first_name = request.args.get("first_name", None, type=str)
-    last_name = request.args.get("last_name", None, type=str)
-    dod_id = request.args.get("dod_id", None, type=str)
+    first_name = request.args.get("first_name")
+    last_name = request.args.get("last_name")
+    dod_id = request.args.get("dod_id")
 
     # 1: It need to check fist that have all the parameters
     if None in [first_name, last_name, dod_id]:
         raise IncompleteInfoError()
 
-    # This interphase convert dictionaries into Objects instance. It is Require for step 2.
-    class Struct(object):
-        def __init__(self, **entries):
-            self.__dict__.update(entries)
-
     # 2: Using standard validator to validate inputs or throw a error
-    is_name({}, Struct(**{"data": first_name}))
-    is_name({}, Struct(**{"data": last_name}))
-    is_number({}, Struct(**{"data": dod_id}))
+    is_name({}, SimpleNamespace(data=first_name))
+    is_name({}, SimpleNamespace(data=last_name))
+    is_number({}, SimpleNamespace(data=dod_id))
 
     # 3: Also Check that the ID is not taken
     try:
