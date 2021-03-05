@@ -8,6 +8,7 @@ from atat.domain.exceptions import AlreadyExistsError, NotFoundError
 from atat.domain.permission_sets import PermissionSets
 from atat.domain.users import Users
 from atat.forms.data import SERVICE_BRANCHES
+from atat.forms.validators import name, number
 from atat.jobs import send_mail
 from atat.routes.saml_helpers import (
     get_or_create_dev_saml_user,
@@ -17,6 +18,10 @@ from atat.routes.saml_helpers import (
 from atat.utils import pick
 
 from . import current_user_setup, redirect_after_login_url
+
+# Standard validators instance
+is_name = name()
+is_number = number()
 
 dev_bp = Blueprint("dev", __name__)
 local_access_bp = Blueprint("local_access", __name__)
@@ -181,11 +186,21 @@ def get_or_create_dev_persona(persona):
     return user
 
 
-@dev_bp.route("/dev-new-user")
+@local_access_bp.route("/dev-new-user")
 def dev_new_user():
-    first_name = request.args.get("first_name", None)
-    last_name = request.args.get("last_name", None)
-    dod_id = request.args.get("dod_id", None)
+    first_name = request.args.get("first_name", None, type=str)
+    last_name = request.args.get("last_name", None, type=str)
+    dod_id = request.args.get("dod_id", None, type=str)
+
+    # This interphase convert dictionaries into Objects instance.
+    class Struct(object):
+        def __init__(self, **entries):
+            self.__dict__.update(entries)
+
+    # using standard validator to validate inputs or throw a error
+    is_name({}, Struct(**{"data": first_name}))
+    is_name({}, Struct(**{"data": last_name}))
+    is_number({}, Struct(**{"data": dod_id}))
 
     if None in [first_name, last_name, dod_id]:
         raise IncompleteInfoError()
