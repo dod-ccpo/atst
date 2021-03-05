@@ -16,6 +16,16 @@ resource "azurerm_subnet" "aks" {
     "Microsoft.ContainerRegistry",
     "Microsoft.Sql"
   ]
+
+    delegation {
+    name = "delegation"
+
+    service_delegation {
+      name    = "Microsoft.ContainerInstance/containerGroups"
+      actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+    }
+  }
+
 }
 
 resource "azurerm_subnet_network_security_group_association" "aks_subnet" {
@@ -57,6 +67,10 @@ resource "azurerm_kubernetes_cluster" "k8s_private" {
   private_cluster_enabled = true
   node_resource_group     = "${azurerm_resource_group.vpc.name}-private-aks-node-rgs"
   addon_profile {
+    aci_connector_linux {
+      enabled = true
+      subnet_name = azurerm_subnet.aks.name
+    }
     azure_policy {
       enabled = true
     }
