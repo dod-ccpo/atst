@@ -1,4 +1,5 @@
 import random
+from types import SimpleNamespace
 
 from flask import Blueprint
 from flask import current_app as app
@@ -8,6 +9,7 @@ from atat.domain.exceptions import AlreadyExistsError, NotFoundError
 from atat.domain.permission_sets import PermissionSets
 from atat.domain.users import Users
 from atat.forms.data import SERVICE_BRANCHES
+from atat.forms.validators import name, number
 from atat.jobs import send_mail
 from atat.routes.saml_helpers import (
     get_or_create_dev_saml_user,
@@ -17,6 +19,10 @@ from atat.routes.saml_helpers import (
 from atat.utils import pick
 
 from . import current_user_setup, redirect_after_login_url
+
+# Standard validators instance
+is_name = name()
+is_number = number()
 
 dev_bp = Blueprint("dev", __name__)
 local_access_bp = Blueprint("local_access", __name__)
@@ -183,23 +189,31 @@ def get_or_create_dev_persona(persona):
 
 @local_access_bp.route("/dev-new-user")
 def dev_new_user():
-    first_name = request.args.get("first_name", None)
-    last_name = request.args.get("last_name", None)
-    dod_id = request.args.get("dod_id", None)
+    first_name = request.args.get("first_name")
+    last_name = request.args.get("last_name")
+    dod_id = request.args.get("dod_id")
 
+    # 1: It need to check fist that have all the parameters
     if None in [first_name, last_name, dod_id]:
         raise IncompleteInfoError()
 
+    # 2: Using standard validator to validate inputs or throw a error
+    is_name({}, SimpleNamespace(data=first_name))
+    is_name({}, SimpleNamespace(data=last_name))
+    is_number({}, SimpleNamespace(data=dod_id))
+
+    # 3: Also Check that the ID is not taken
     try:
         Users.get_by_dod_id(dod_id)
         raise AlreadyExistsError("User with dod_id {}".format(dod_id))
     except NotFoundError:
         pass
 
+    # 4: Create a User Instance
     new_user = {"first_name": first_name, "last_name": last_name}
-
     created_user = Users.create(dod_id, **new_user)
 
+    # 5: Make that instance our current user and send to edit user page
     current_user_setup(created_user)
     return redirect(redirect_after_login_url())
 
