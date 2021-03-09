@@ -1,11 +1,18 @@
 import pytest
 
 from atat.domain.application_roles import ApplicationRoles
-from atat.domain.environment_roles import EnvironmentRoles
 from atat.domain.exceptions import NotFoundError
-from atat.domain.permission_sets import PermissionSets
-from atat.models import ApplicationRoleStatus
-from tests.factories import *
+from atat.utils.utilities import sort_nested
+from tests.factories import (
+    ApplicationFactory,
+    ApplicationRoleFactory,
+    ApplicationRoleStatus,
+    EnvironmentFactory,
+    EnvironmentRoleFactory,
+    PermissionSets,
+    PortfolioFactory,
+    UserFactory,
+)
 
 
 def test_create_application_role():
@@ -150,19 +157,8 @@ def test_get_pending_creation():
 
     app_ids = ApplicationRoles.get_pending_creation()
     expected_ids = [[role_one.id, role_two.id], [role_three.id], [role_four.id]]
+    # Sort the list and the lists in it and then compare them.
     assert sort_nested(app_ids) == sort_nested(expected_ids)
-
-
-@pytest.mark.skip
-def sort_nested(lst):
-    lst.sort(key=operator.itemgetter(0))
-    for item in lst:
-        if isinstance(item[0], list):
-            sort_nested(item)
-        elif isinstance(item, list):
-            item = sorted(item)
-
-    return lst
 
 
 def test_get_many():
