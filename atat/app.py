@@ -155,16 +155,21 @@ def set_default_headers(app):  # pragma: no cover
         response.headers["X-XSS-Protection"] = "1; mode=block"
         response.headers["Access-Control-Allow-Origin"] = app.config.get("CDN_ORIGIN")
 
-        if ENV == "dev":
-            response.headers[
-                "Content-Security-Policy"
-            ] = "default-src 'self' 'unsafe-eval' 'unsafe-inline'; connect-src *"
-        else:
-            response.headers[
-                "Content-Security-Policy"
-            ] = f"default-src 'self' 'unsafe-eval' 'unsafe-inline' {blob_storage_url} {static_url}"
+        set_response_content_security_policy_headers(
+            response,
+            "default-src 'self' 'unsafe-eval' 'unsafe-inline'; connect-src *"
+            if ENV == "dev"
+            else f"default-src 'self' 'unsafe-eval' 'unsafe-inline' {blob_storage_url} {static_url}",
+        )
 
         return response
+
+
+def set_response_content_security_policy_headers(
+    response, content_security_policy_headers
+):
+    response.headers["Content-Security-Policy"] = content_security_policy_headers
+    response.headers["X-Content-Security-Policy"] = content_security_policy_headers
 
 
 def map_config(config):

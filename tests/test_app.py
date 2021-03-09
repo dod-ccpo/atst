@@ -2,12 +2,14 @@ import os
 from configparser import ConfigParser
 
 import pytest
+from flask import Response
 
 from atat.app import (
     apply_config_from_directory,
     apply_config_from_environment,
     apply_hybrid_config_options,
     make_config,
+    set_response_content_security_policy_headers,
 )
 
 
@@ -92,3 +94,11 @@ class TestMakeConfig:
         assert "rediss" not in uri
         assert "redis" in uri
         assert "ssl_cert_reqs" not in uri
+
+
+def test_response_content_security_policy_headers():
+    response = Response()
+
+    set_response_content_security_policy_headers(response, "foobar")
+    assert response.headers["Content-Security-Policy"] == "foobar"
+    assert response.headers["X-Content-Security-Policy"] == "foobar"
