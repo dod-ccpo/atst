@@ -150,8 +150,19 @@ def test_get_pending_creation():
 
     app_ids = ApplicationRoles.get_pending_creation()
     expected_ids = [[role_one.id, role_two.id], [role_three.id], [role_four.id]]
-    # Sort them to produce the same order.
-    assert sorted(app_ids) == sorted(expected_ids)
+    assert sort_nested(app_ids) == sort_nested(expected_ids)
+
+
+@pytest.mark.skip
+def sort_nested(lst):
+    lst.sort(key=operator.itemgetter(0))
+    for item in lst:
+        if isinstance(item[0], list):
+            sort_nested(item)
+        elif isinstance(item, list):
+            item = sorted(item)
+
+    return lst
 
 
 def test_get_many():

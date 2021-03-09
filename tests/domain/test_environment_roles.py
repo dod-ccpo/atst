@@ -3,8 +3,15 @@ from unittest.mock import patch
 import pytest
 
 from atat.domain.environment_roles import EnvironmentRoles
-from atat.models import ApplicationRoleStatus, EnvironmentRole, EnvironmentRoleStatus
-from tests.factories import *
+from atat.models import ApplicationRoleStatus, EnvironmentRoleStatus
+from tests.factories import (
+    UserFactory,
+    ApplicationFactory,
+    ApplicationRoleFactory,
+    EnvironmentFactory,
+    EnvironmentRoleFactory,
+    uuid4,
+)
 
 
 @pytest.fixture
@@ -20,7 +27,6 @@ def environment(application_role):
 
 
 def test_create(application_role, environment, monkeypatch):
-
     environment_role = EnvironmentRoles.create(
         application_role, environment, "network admin"
     )
@@ -83,7 +89,7 @@ def test_get_for_application_member(application_role, environment):
 
 
 def test_get_for_application_member_does_not_return_deleted(
-    application_role, environment
+        application_role, environment
 ):
     EnvironmentRoleFactory.create(
         application_role=application_role, environment=environment, deleted=True
@@ -149,7 +155,7 @@ def test_for_user(application_role):
 
     env_roles = EnvironmentRoles.for_user(user.id, portfolio.id)
     assert len(env_roles) == 3
-    assert env_roles == [env_role_1, env_role_2, env_role_3]
+    assert sorted(env_roles) == sorted([env_role_1, env_role_2, env_role_3])
     assert not rando_env_role in env_roles
 
 
