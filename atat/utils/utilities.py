@@ -20,6 +20,5 @@ def sort_nested(lst):
         # Sort the list of items
         if isinstance(item, list):
             sort_nested(item)
-            item.sort()
 
     lst.sort()
