@@ -300,7 +300,6 @@ All config settings must be declared in "config/base.ini", even if they are null
 - `CSP`: String specifying the cloud service provider to use. Acceptable values: "azure", "mock", "mock-csp" and "hybrid". If using the hybrid provider due to the injunction, set it to "hybrid".
 - `DEBUG`: Boolean. A truthy value enables Flask's debug mode. https://flask.palletsprojects.com/en/1.1.x/config/#DEBUG
 - `DEBUG_SMTP`: [0,1,2]. Use to determine the debug logging level of the mailer SMTP connection. `0` is the default, meaning no extra logs are generated. `1` or `2` will enable debug logging. See [official docs](https://docs.python.org/3/library/smtplib.html#smtplib.SMTP.set_debuglevel) for more info.
-- `ENVIRONMENT`: String specifying the current environment. Acceptable values: "dev", "prod".
 - `LIMIT_CONCURRENT_SESSIONS`: Boolean specifying if users should be allowed only one active session at a time.
 - `LOG_JSON`: Boolean specifying whether app should log in a json format.
 - `MAIL_PASSWORD`: String. Password for the SMTP server.
