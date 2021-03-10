@@ -46,10 +46,13 @@ def test_has_application_role_history(session):
 
 def test_environment_roles():
     application = ApplicationFactory.create()
+    environment1 = EnvironmentFactory.create(application=application)
     environment2 = EnvironmentFactory.create(application=application)
     user = UserFactory.create()
     application_role = ApplicationRoleFactory.create(application=application, user=user)
-
+    environment_role1 = EnvironmentRoleFactory.create(
+        environment=environment1, application_role=application_role
+    )
     EnvironmentRoleFactory.create(
         environment=environment2, application_role=application_role, deleted=True
     )

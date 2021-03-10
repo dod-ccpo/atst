@@ -158,7 +158,9 @@ def test_get_pending_creation():
     app_ids = ApplicationRoles.get_pending_creation()
     expected_ids = [[role_one.id, role_two.id], [role_three.id], [role_four.id]]
     # Sort the list and the lists in it and then compare them.
-    assert sort_nested(app_ids) == sort_nested(expected_ids)
+    sort_nested(app_ids)
+    sort_nested(expected_ids)
+    assert app_ids == expected_ids
 
 
 def test_get_many():
