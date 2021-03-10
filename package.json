@@ -14,7 +14,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@azure/storage-blob": "^12.3.0",
+    "@azure/storage-blob": "^12.5.0",
     "ally.js": "^1.4.1",
     "autoprefixer": "^9.8.6",
     "babel-polyfill": "^6.26.0",
