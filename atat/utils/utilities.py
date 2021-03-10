@@ -1,5 +1,5 @@
-from typing import List
 from operator import itemgetter
+from typing import List
 
 
 def sort_nested(lst: List[list]):
