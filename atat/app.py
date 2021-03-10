@@ -171,7 +171,6 @@ def map_config(config):
     return {
         **config["default"],
         "USE_AUDIT_LOG": config["default"].getboolean("USE_AUDIT_LOG"),
-        "ENV": config["default"]["ENVIRONMENT"],
         "DEBUG": config["default"].getboolean("DEBUG"),
         "DEBUG_MAILER": config["default"].getboolean("DEBUG_MAILER"),
         "DEBUG_SMTP": int(config["default"]["DEBUG_SMTP"]),
