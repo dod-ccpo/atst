@@ -11,8 +11,7 @@ def sort_nested(lst: List[list]):
     # First sort the content of the array first
     lst.sort(key=itemgetter(0))
     for item in lst:
-        if isinstance(item, list):
-            # If they are a list, then sort it
-            item.sort()
+        # Sort the list of items
+        item.sort()
 
     return lst
