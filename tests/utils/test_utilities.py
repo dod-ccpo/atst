@@ -5,7 +5,7 @@ def test_sort_nested_with_2d_matrix():
     validate_sorting([["a", "c"], ["r", "e"]], [["a", "c"], ["e", "r"]])
 
 
-def test_three_level_depth():
+def test_two_level_depth():
     nested_arr = [
         [["c", "a", "b"], ["x", "v", "u"], ["i", "p", "l"]],
         [["b", "m", "k"]],
