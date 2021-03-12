@@ -2,47 +2,39 @@
 ATAT_DIR="${ATAT_DIR:-~/atat}"
 PYENV_ROOT="${PYENV_ROOT:-~/.pyenv}"
 PYTHON_VERSION="3.8.7"
+DIVIDER="----------------------------------------------------------------------"
 clear
-echo
-echo "ATAT REFRESH DEVELOP"
-echo
-echo "-----------------------------"
-echo "---- Update Ubuntu Linux ----"
-echo "-----------------------------"
+echo "$DIVIDER"; echo "-- Update Ubuntu Linux"; echo "$DIVIDER"
 echo "[apt update]"
 sudo apt update
 echo "[apt upgrade]"
 sudo apt upgrade
 echo "[apt autoclean]"
 sudo apt autoclean
-echo "---------------------------------------------------------------"
-echo "---- Install Prerequisites - git and Python 3 (for system) ----"
-echo "---------------------------------------------------------------"
+echo "$DIVIDER"; echo "-- Install Prerequisites - git and Python 3 (for system)"; echo "$DIVIDER"
 sudo apt install git python3 python-is-python3
-echo "-------------------------------------------------------"
-echo "---- Install Python "$PYTHON_VERSION" (under pyenv) and Poetry ----"
-echo "-------------------------------------------------------"
+echo "$DIVIDER"; echo "-- Install Python $PYTHON_VERSION (under pyenv) and Poetry"; echo "$DIVIDER"
 sudo apt-get update; sudo apt-get install --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-if [ ! -d $PYENV_ROOT ]; then
+if [ ! -d "$PYENV_ROOT" ]; then
   echo "[Cloning pyenv]"
-  git clone https://github.com/pyenv/pyenv.git $PYENV_ROOT
+  git clone https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
 else
   echo "[Updating pyenv]"
   ## removes python versions forcing re-install - git clean -f -d -X && git reset --hard HEAD
-  cd $PYENV_ROOT && git pull --all --prune --ff-only --verbose
+  cd "$PYENV_ROOT" && git pull --all --prune --ff-only --verbose
 fi
 PYENV_ROOT="$HOME/.pyenv"
 PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
-cd $ATAT_DIR
-if [ ! -d $PYENV_ROOT/versions/$PYTHON_VERSION ]; then
-  echo "Python not found at "$PYENV_ROOT/versions/$PYTHON_VERSION
+cd "$ATAT_DIR" || exit
+if [ ! -d "$PYENV_ROOT/versions/$PYTHON_VERSION" ]; then
+  echo "Python not found at $PYENV_ROOT/versions/$PYTHON_VERSION"
   echo "[Installing python] ~ 1 minute"
   pyenv install $PYTHON_VERSION
 else
-  echo "Python found at "$PYENV_ROOT/versions/$PYTHON_VERSION
+  echo "Python found at $PYENV_ROOT/versions/$PYTHON_VERSION"
 fi
 pyenv shell $PYTHON_VERSION
 python --version
@@ -50,27 +42,21 @@ echo "[Upgrading pip]"
 python -m pip install --upgrade pip
 echo "[Installing poetry]"
 pip install poetry
-echo "--------------------------"
-echo "---- Install Packages ----"
-echo "--------------------------"
+echo "$DIVIDER"; echo "-- Install Packages"; echo "$DIVIDER"
 sudo apt install redis nodejs postgresql yarnpkg xmlsec1
 echo "[Symlinking yarnpkg as yarn]"
 YARN_PATH="/usr/local/bin/yarn"
 sudo rm -f $YARN_PATH
 sudo ln -s "$(which yarnpkg)" $YARN_PATH
-echo "---------------------"
-echo "---- Start Redis ----"
-echo "---------------------"
-if [ $(pgrep -c redis-server) -gt 0 ]; then
+echo "$DIVIDER"; echo "-- Start Redis"; echo "$DIVIDER"
+if [ "$(pgrep -c redis-server)" -gt 0 ]; then
   echo "Redis is already running.  Restarting..."
   sudo service redis-server restart
 else
   sudo service redis-server start
 fi
-echo "------------------------"
-echo "---- Start Postgres ----"
-echo "------------------------"
-if [ $(pgrep -c postgres) -gt 0 ]; then
+echo "$DIVIDER"; echo "-- Start Postgres"; echo "$DIVIDER"
+if [ "$(pgrep -c postgres)" -gt 0 ]; then
   echo "Postgres is already running.  Restarting..."
   sudo service postgresql restart
 else
@@ -78,10 +64,8 @@ else
 fi
 echo "[Set Postgres Password]"
 sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'postgres';"
-echo "-----------------------------------"
-echo "---- Clean and Update git Repo ----"
-echo "-----------------------------------"
-cd $ATAT_DIR
+echo "$DIVIDER"; echo "-- Clean and Update git Repo"; echo "$DIVIDER"
+cd "$ATAT_DIR" || exit
 ## Script assumes git repo has been cloned to this location
 echo "[Checkout develop branch]"
 git checkout develop
@@ -91,25 +75,19 @@ echo "[Reset branch head to HEAD, reset index and working tree]"
 git reset --hard HEAD
 echo "[Fetch and merge from origin/develop]"
 git pull origin develop
-echo "--------------------"
-echo "---- git status ----"
-echo "--------------------"
+echo "$DIVIDER"; echo "-- git status"; echo "$DIVIDER"
 git status
-echo "----------------------"
-echo "---- script/setup ----"
-echo "----------------------"
+echo "$DIVIDER"; echo "-- script/setup"; echo "$DIVIDER"
 pyenv shell $PYTHON_VERSION
 script/setup
-echo "------------------"
-echo "---- Versions ----"
-echo "------------------"
+echo "$DIVIDER"; echo "-- Versions"; echo "$DIVIDER"
 echo "[user]"
 whoami
 echo
 echo "[os]"
 uname -a
 PRETTY_NAME=$(grep -oP '(?<=^PRETTY_NAME=).+' /etc/os-release | tr -d '"')
-echo $PRETTY_NAME
+echo "$PRETTY_NAME"
 echo
 echo "[services]"
 eval "$(sudo find /usr -wholename '*/bin/redis-server') --version"
@@ -124,10 +102,6 @@ echo
 echo "[javascript]"
 echo "node $(node --version)"
 echo "yarn $(yarn --version)"
-echo "-------------------------------------------------------"
-echo "---- Start Poetry Shell within Virtual Environment ----"
-echo "-------------------------------------------------------"
-echo ""
-echo " ((( Ready to run script/test && script/create_local_certs && script/secure_server !! )))"
-echo ""
+echo "$DIVIDER"; echo "-- Start Poetry Shell within Virtual Environment"; echo "$DIVIDER"
+echo; echo " ((( Ready to run 'script/test && script/create_local_certs && script/secure_server' !! )))"; echo
 poetry shell
