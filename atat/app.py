@@ -39,11 +39,11 @@ from atat.utils.logging import JsonFormatter, RequestContextFilter
 from atat.utils.notification_sender import NotificationSender
 from atat.utils.session_limiter import SessionLimiter
 
-ENV = os.getenv("FLASK_ENV", "dev")
+ENV = os.getenv("FLASK_ENV", "development")
 
 
 def make_app(config):
-    if ENV == "prod" or config.get("LOG_JSON"):
+    if ENV == "production" or config.get("LOG_JSON"):
         apply_json_logger()
 
     parent_dir = Path().parent
@@ -93,7 +93,7 @@ def make_app(config):
     app.register_blueprint(user_routes)
     app.register_blueprint(ccpo_routes)
 
-    if ENV != "prod":
+    if ENV != "production":
         app.register_blueprint(dev_routes)
 
     # Activate debug toolbar if it is the right env
@@ -118,7 +118,7 @@ def make_flask_callbacks(app):
     @app.before_request
     def _set_globals():
         g.current_user = None
-        g.dev = os.getenv("FLASK_ENV", "dev") == "dev"
+        g.dev = os.getenv("FLASK_ENV", "development") == "development"
         g.matchesPath = lambda href: re.search(href, request.full_path)
         g.modal = request.args.get("modal", None)
         g.Authorization = Authorization
@@ -155,7 +155,7 @@ def set_default_headers(app):  # pragma: no cover
         response.headers["X-XSS-Protection"] = "1; mode=block"
         response.headers["Access-Control-Allow-Origin"] = app.config.get("CDN_ORIGIN")
 
-        if ENV == "dev":
+        if ENV == "development":
             response.headers[
                 "Content-Security-Policy"
             ] = "default-src 'self' 'unsafe-eval' 'unsafe-inline'; connect-src *"

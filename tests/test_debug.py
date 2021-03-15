@@ -11,7 +11,7 @@ def test_setup_debug_toolbar():
     app2.config["SECRET_KEY"] = "xxx"
 
     # Make sure bar is not set up on not valid ENVs
-    toolbar1 = setup_debug_toolbar(app2, "prod")
+    toolbar1 = setup_debug_toolbar(app2, "production")
     assert toolbar1 is None, "Toolbar should not be available on prod"
     toolbar1 = setup_debug_toolbar(app2, "bla")
     assert toolbar1 is None, "Toolbar should not be available on this env"

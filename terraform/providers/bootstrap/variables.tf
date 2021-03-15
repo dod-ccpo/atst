@@ -6,7 +6,7 @@ variable "operations_location" {
 
 variable "namespace" {
   type = string
-  # default     = "dev"
+  # default     = "development"
   description = "Namespace of provisioned operations resources."
 }
 
