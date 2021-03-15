@@ -12,7 +12,8 @@ export default {
     mask: false,
     match: /^[A-Za-z0-9\-_,'".\s]{4,100}$$/,
     unmask: [],
-    validationError: 'Application names can be between 4-100 characters',
+    validationError:
+      'Names must be between 4 - 100 characters long and supports the following characters:  A-Z a-z 0-9 - _ , . \' " and space',
   },
   clinNumber: {
     mask: false,
