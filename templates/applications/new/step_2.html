@@ -4,6 +4,7 @@
 {% from "components/icon.html" import Icon %}
 {% from "components/modal.html" import Modal %}
 {% from 'components/save_button.html' import SaveButton %}
+{% from "components/text_input.html" import TextInput %}
 
 {% set secondary_breadcrumb = 'portfolios.applications.new_application_title' | translate %}
 
@@ -37,7 +38,7 @@
               <li v-for="(environment, i) in environments" class="application-edit__env-list-item">
                 <div class="usa-input">
                   <label :for="'environment_names-' + i">Environment Name</label>
-                  <input type="text" :id="'environment_names-' + i" v-model="environment.name" @input="onInput" placeholder="e.g. Development, Staging, Production"/> <input type="hidden" :name="'environment_names-' + i" v-model="environment.name"/>
+                  <input type="text" :id="'environment_names-' + i" :name="'environment_names-' + i" v-model="environment.name" @input="onInput" placeholder="e.g. Development, Staging, Production"/>
                 </div>
                 <div class="application-edit__env-list-item-block">
                   <button v-on:click="removeEnvironment(i)" v-if="environments.length > 1" type="button" class="application-edit__env-list-item__remover">
