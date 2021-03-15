@@ -18,7 +18,7 @@
     "ally.js": "^1.4.1",
     "autoprefixer": "^9.8.6",
     "babel-polyfill": "^6.26.0",
-    "date-fns": "^2.16.1",
+    "date-fns": "^2.19.0",
     "lodash": "^4.17.21",
     "ramda": "^0.27.1",
     "stickybits": "^3.7.8",
@@ -28,7 +28,7 @@
     "v-tooltip": "~2.0.3",
     "vue": "2.6.12",
     "vue-text-mask": "^6.1.2",
-    "whatwg-fetch": "^3.6.1"
+    "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.1.2",
