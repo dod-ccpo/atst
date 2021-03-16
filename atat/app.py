@@ -41,6 +41,12 @@ from atat.utils.session_limiter import SessionLimiter
 
 ENV = os.getenv("FLASK_ENV", "development")
 
+# Env is development by default.
+if not (ENV in ["development", "production"]):
+    ENV = "development"
+
+print(">>> Environment name set: %s", (str(ENV)))
+
 
 def make_app(config):
     if ENV == "production" or config.get("LOG_JSON"):
@@ -99,7 +105,7 @@ def make_app(config):
     # Activate debug toolbar if it is the right env
     setup_debug_toolbar(app, ENV)
 
-    if app.config.get("ALLOW_LOCAL_ACCESS"):
+    if app.config.get("ALLOW_LOCAL_ACCESS") and ENV != "production":
         app.register_blueprint(local_access_bp)
 
     app.form_cache = FormCache(app.redis)
@@ -118,7 +124,7 @@ def make_flask_callbacks(app):
     @app.before_request
     def _set_globals():
         g.current_user = None
-        g.dev = os.getenv("FLASK_ENV", "development") == "development"
+        g.dev = ENV == "development"
         g.matchesPath = lambda href: re.search(href, request.full_path)
         g.modal = request.args.get("modal", None)
         g.Authorization = Authorization
@@ -176,6 +182,7 @@ def map_config(config):
     return {
         **config["default"],
         "USE_AUDIT_LOG": config["default"].getboolean("USE_AUDIT_LOG"),
+        "ENV": ENV,
         "DEBUG": config["default"].getboolean("DEBUG"),
         "DEBUG_MAILER": config["default"].getboolean("DEBUG_MAILER"),
         "DEBUG_SMTP": int(config["default"]["DEBUG_SMTP"]),
